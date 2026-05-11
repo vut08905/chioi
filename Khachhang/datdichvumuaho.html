@@ -1,0 +1,288 @@
+﻿<!DOCTYPE html>
+
+<html lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mua hộ WinMart</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-container": "#3e3833",
+                        "secondary": "#b3272e",
+                        "secondary-fixed-dim": "#ffb3af",
+                        "on-error-container": "#93000a",
+                        "secondary-container": "#fc5d5d",
+                        "primary-fixed": "#ffdbcc",
+                        "primary": "#a04100",
+                        "inverse-surface": "#303030",
+                        "surface-dim": "#dcd9d9",
+                        "on-tertiary-fixed-variant": "#4c4641",
+                        "on-secondary": "#ffffff",
+                        "surface-container-low": "#f6f3f2",
+                        "error": "#ba1a1a",
+                        "surface-container-highest": "#e4e2e1",
+                        "on-tertiary-fixed": "#1f1b17",
+                        "inverse-primary": "#ffb693",
+                        "on-background": "#1b1c1c",
+                        "on-primary-container": "#642600",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed": "#ebe1da",
+                        "background": "#fcf9f8",
+                        "surface-container-high": "#eae7e7",
+                        "on-surface": "#1b1c1c",
+                        "on-primary-fixed-variant": "#7a3000",
+                        "on-primary-fixed": "#351000",
+                        "surface": "#fcf9f8",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed": "#410005",
+                        "surface-tint": "#a04100",
+                        "surface-container-lowest": "#ffffff",
+                        "outline": "#8b7266",
+                        "surface-variant": "#e4e2e1",
+                        "on-surface-variant": "#584238",
+                        "on-error": "#ffffff",
+                        "surface-bright": "#fcf9f8",
+                        "on-secondary-fixed-variant": "#91081a",
+                        "primary-container": "#ff7e36",
+                        "outline-variant": "#dfc0b3",
+                        "tertiary-container": "#aaa19b",
+                        "tertiary-fixed-dim": "#cec5be",
+                        "on-secondary-container": "#60000c",
+                        "inverse-on-surface": "#f3f0f0",
+                        "tertiary": "#645d58",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed-dim": "#ffb693",
+                        "surface-container": "#f0eded",
+                        "secondary-fixed": "#ffdad7"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sm": "12px",
+                        "lg": "24px",
+                        "xs": "8px",
+                        "base": "4px",
+                        "container-padding": "20px",
+                        "md": "16px",
+                        "xl": "32px",
+                        "card-gutter": "12px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Be Vietnam Pro"],
+                        "caption": ["Be Vietnam Pro"],
+                        "h1-display": ["Be Vietnam Pro"],
+                        "body-md": ["Be Vietnam Pro"],
+                        "body-lg": ["Be Vietnam Pro"],
+                        "h2-section": ["Be Vietnam Pro"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                        "caption": ["11px", {"lineHeight": "14px", "fontWeight": "400"}],
+                        "h1-display": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "500"}],
+                        "h2-section": ["18px", {"lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Be Vietnam Pro', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .orange-gradient {
+            background: linear-gradient(135deg, #ff7e36 0%, #a04100 100%);
+        }
+        .soft-shadow {
+            box-shadow: 0 4px 12px rgba(255, 126, 54, 0.08);
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-surface-bright font-body-lg text-on-surface antialiased relative min-h-screen pb-32">
+<div class="absolute top-0 left-0 w-full h-[300px] z-0 pointer-events-none" style="background: linear-gradient(rgb(255, 126, 54) 0%, rgb(252, 249, 248) 100%);"></div>
+<!-- Background Gradient Layer -->
+<!-- TopAppBar -->
+<header class="relative z-50 flex justify-between items-center w-full px-container-padding h-16">
+<div onclick="window.location.href='trangchu.html'" class="flex items-center gap-3" onclick="window.location.href='trangchu.html'" style="cursor:pointer">
+<span class="material-symbols-outlined text-on-primary">arrow_back</span>
+<h1 class="text-headline-md font-headline-md font-extrabold text-on-primary">Mua hộ WinMart</h1>
+</div>
+<div class="bg-white/20 p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary">chat_bubble</span>
+</div>
+</header>
+<main class="relative z-10 mt-4 px-container-padding space-y-lg">
+<!-- Store Selection -->
+<section class="space-y-sm">
+<h2 class="font-title-sm text-on-surface">Chọn cửa hàng</h2>
+<div class="space-y-stack-gap">
+<!-- Active Store -->
+<div class="bg-surface-container-low border-2 border-primary p-md rounded-xl flex justify-between items-center soft-card-shadow">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded-lg bg-white flex items-center justify-center overflow-hidden">
+<img alt="Store logo" class="w-full h-full object-cover" data-alt="A professional close-up of a modern WinMart grocery store logo on a clean white background. The lighting is bright and airy, reflecting a premium retail environment. The colors are crisp and vibrant, following the brand's signature aesthetic to evoke trust and cleanliness." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDirXnDurvqQ8871lDg6qafAcdusXwY-PQyXGm5GIKXY4b8ZC2dPigKCP98eNhfuk0urasAIeCiKQ8XfY7E7qmn9xXswQxucp80l17ovn4LCZpzlF4iTt0MMOwQ8dfe8GrOKP1SxBxJojc5ScInqSmwvFUNEYaGqZ6MU-45LGExwSAsiHPIih831YZ3VVIZJP0FJXHtSNypyoFfuRguunuRzr_w5y_Mc611ojii98rgwyPh7gHysvnYCyEL9WfAnexWFqRY2MO7d6E"/>
+</div>
+<div>
+<p class="font-title-sm text-primary">WinMart Vinhomes A</p>
+<p class="text-body-sm text-on-surface-variant">500m</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary" data-weight="fill">check_circle</span>
+</div>
+<!-- Inactive Store -->
+<div class="bg-white border border-outline-variant/30 p-md rounded-xl flex justify-between items-center soft-card-shadow">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center overflow-hidden">
+<img alt="Store icon" class="w-full h-full object-cover opacity-50" data-alt="A softly blurred interior of a high-end grocery store with clean shelves and organized products. The lighting is warm and natural, creating a serene and inviting atmosphere. The color palette is muted with soft oranges and creams to match the overall UI design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2qdGHphJVxBycRiyEMh1nfEYRR_J2pr89Kc7qBddohDAcl2VY9b9yCh52oJO5ZSrkmPot6-n5F1aU3z5OjhwvWNLOcXau112sxlloIQDm7qWJR14c0wHxw3vn3awCBdD_zvPuUgISy0Wi8zXzsM0hugD9F3s3N780CBar8UpSQAFKakVz9RrnPLfYgWrBTozzAEbA6I_MX7H6U9yH0UeBSM2EOaKjXXzum-pobGaPBlh7TVzlP7uMPb_fH6VFEAR83NDBr_f3icc"/>
+</div>
+<div>
+<p class="font-title-sm text-on-surface">WinMart Vinhomes B</p>
+<p class="text-body-sm text-on-surface-variant">1km</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant">radio_button_unchecked</span>
+</div>
+</div>
+</section>
+<!-- Product List -->
+<section class="space-y-sm">
+<div class="flex justify-between items-center">
+<h2 class="font-title-sm text-on-surface">Danh sách sản phẩm</h2>
+<span class="text-primary font-bold text-body-sm">3 sản phẩm</span>
+</div>
+<div class="bg-white rounded-xl soft-card-shadow overflow-hidden divide-y divide-outline-variant/20 border border-light-orange">
+<div class="p-md flex justify-between items-center">
+<div>
+<p class="font-title-sm text-on-surface">Sữa TH</p>
+<p class="text-body-sm text-on-surface-variant">Số lượng: x2</p>
+</div>
+<button class="text-error bg-error-container/20 p-2 rounded-full">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+<div class="p-md flex justify-between items-center">
+<div>
+<p class="font-title-sm text-on-surface">Trứng gà</p>
+<p class="text-body-sm text-on-surface-variant">Số lượng: x1</p>
+</div>
+<button class="text-error bg-error-container/20 p-2 rounded-full">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+<div class="p-md flex justify-between items-center">
+<div>
+<p class="font-title-sm text-on-surface">Rau xà lách</p>
+<p class="text-body-sm text-on-surface-variant">Số lượng: x1</p>
+</div>
+<button class="text-error bg-error-container/20 p-2 rounded-full">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+<button class="w-full p-md flex items-center justify-center gap-sm text-primary font-bold">
+<span class="material-symbols-outlined">add</span>
+                    Thêm sản phẩm
+                </button>
+</div>
+</section>
+<!-- Delivery Address -->
+<section class="bg-white p-md rounded-xl border border-outline-variant/30 soft-card-shadow flex justify-between items-center">
+<div class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-primary mt-1">location_on</span>
+<div>
+<p class="text-body-sm text-on-surface-variant">Địa chỉ giao hàng</p>
+<p class="font-title-sm text-on-surface">Căn A1-2003, Vinhomes</p>
+</div>
+</div>
+<button class="text-primary font-bold text-body-sm">Thay đổi</button>
+</section>
+<!-- Budget & Fees -->
+<section class="space-y-sm">
+<h2 class="font-title-sm text-on-surface">Ngân sách dự kiến</h2>
+<div class="bg-white p-md rounded-xl border border-outline-variant/30 flex items-center justify-between">
+<span class="text-on-surface-variant">Ngân sách tối đa</span>
+<span class="font-headline-md text-on-surface">500.000 đ</span>
+</div>
+<div class="bg-primary-fixed-dim/20 p-md rounded-xl flex gap-sm border border-primary/10">
+<span class="material-symbols-outlined text-primary" data-weight="fill">info</span>
+<p class="text-body-sm text-on-primary-fixed-variant leading-tight">Nếu tổng chi vượt ngân sách, Tasker sẽ chụp hóa đơn và chat xác nhận với bạn trước khi mua</p>
+</div>
+<div class="flex justify-between items-center pt-xs">
+<span class="text-on-surface">Phí DV mua hộ</span>
+<span class="font-bold text-primary">50.000 đ</span>
+</div>
+</section>
+<!-- Summary Card -->
+<section class="bg-white p-md rounded-xl soft-card-shadow border border-outline-variant/20 space-y-md">
+<div class="space-y-xs">
+<div class="flex justify-between text-body-sm text-on-surface-variant">
+<span>Cửa hàng</span>
+<span>WinMart Vinhomes A</span>
+</div>
+<div class="flex justify-between text-body-sm text-on-surface-variant">
+<span>Số lượng sản phẩm</span>
+<span>3 mặt hàng</span>
+</div>
+<div class="flex justify-between text-body-sm text-on-surface-variant">
+<span>Ngân sách đi chợ</span>
+<span>500.000 đ</span>
+</div>
+<div class="flex justify-between text-body-sm text-on-surface-variant">
+<span>Phí dịch vụ</span>
+<span>50.000 đ</span>
+</div>
+<div class="border-t border-dashed border-outline-variant my-sm pt-sm flex justify-between items-center">
+<span class="font-title-sm">Tổng cộng</span>
+<span class="text-headline-md font-bold text-primary">550.000 đ</span>
+</div>
+</div>
+<div class="flex justify-between items-center bg-surface-container-low p-sm rounded-lg">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-secondary">account_balance_wallet</span>
+<span class="text-body-sm font-bold">Ví Chị Ơi</span>
+</div>
+<button class="text-primary font-bold text-body-sm">Thay đổi</button>
+</div>
+<button class="primary-gradient w-full py-4 rounded-full text-on-primary font-bold text-title-sm orange-shadow active:scale-95 transition-all">
+                Đặt mua hộ — 550.000 đ
+            </button>
+</section>
+</main>
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[92%] max-w-md z-50 flex justify-around items-center px-4 py-3 rounded-full bg-white shadow-xl border border-surface-container-high">
+<!-- Trang chủ -->
+<a class="flex flex-col items-center justify-center text-primary active:scale-95 transition-transform" href="trangchu.html">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="text-label-sm font-label-sm">Trang chủ</span>
+</a>
+<!-- Hoạt động -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:scale-95" href="lichsuhoatdong.html">
+<span class="material-symbols-outlined text-[28px]">assignment</span>
+<span class="text-label-sm font-label-sm font-medium">Hoạt động</span>
+</a>
+<!-- Thông báo (UC-KH-15) → M11 -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:scale-95 relative" href="thongbao.html">
+<span class="material-symbols-outlined text-[28px]">notifications</span>
+<span class="absolute -top-1 left-1/2 ml-1 bg-secondary text-white text-[8px] w-4 h-4 rounded-full flex items-center justify-center font-bold">3</span>
+<span class="text-label-sm font-label-sm font-medium">Thông báo</span>
+</a>
+<!-- Tài khoản -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:scale-95" href="taikhoan.html">
+<span class="material-symbols-outlined text-[28px]">person</span>
+<span class="text-label-sm font-label-sm font-medium">Tài khoản</span>
+</a>
+</nav>
+</body></html>

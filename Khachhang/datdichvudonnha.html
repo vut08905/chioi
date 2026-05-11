@@ -1,0 +1,264 @@
+﻿<!DOCTYPE html>
+
+<html lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Đặt dịch vụ dọn nhà</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-container": "#3e3833",
+                        "secondary": "#b3272e",
+                        "secondary-fixed-dim": "#ffb3af",
+                        "on-error-container": "#93000a",
+                        "secondary-container": "#fc5d5d",
+                        "primary-fixed": "#ffdbcc",
+                        "primary": "#a04100",
+                        "inverse-surface": "#303030",
+                        "surface-dim": "#dcd9d9",
+                        "on-tertiary-fixed-variant": "#4c4641",
+                        "on-secondary": "#ffffff",
+                        "surface-container-low": "#f6f3f2",
+                        "error": "#ba1a1a",
+                        "surface-container-highest": "#e4e2e1",
+                        "on-tertiary-fixed": "#1f1b17",
+                        "inverse-primary": "#ffb693",
+                        "on-background": "#1b1c1c",
+                        "on-primary-container": "#642600",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed": "#ebe1da",
+                        "background": "#fcf9f8",
+                        "surface-container-high": "#eae7e7",
+                        "on-surface": "#1b1c1c",
+                        "on-primary-fixed-variant": "#7a3000",
+                        "on-primary-fixed": "#351000",
+                        "surface": "#fcf9f8",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed": "#410005",
+                        "surface-tint": "#a04100",
+                        "surface-container-lowest": "#ffffff",
+                        "outline": "#8b7266",
+                        "surface-variant": "#e4e2e1",
+                        "on-surface-variant": "#584238",
+                        "on-error": "#ffffff",
+                        "surface-bright": "#fcf9f8",
+                        "on-secondary-fixed-variant": "#91081a",
+                        "primary-container": "#ff7e36",
+                        "outline-variant": "#dfc0b3",
+                        "tertiary-container": "#aaa19b",
+                        "tertiary-fixed-dim": "#cec5be",
+                        "on-secondary-container": "#60000c",
+                        "inverse-on-surface": "#f3f0f0",
+                        "tertiary": "#645d58",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed-dim": "#ffb693",
+                        "surface-container": "#f0eded",
+                        "secondary-fixed": "#ffdad7"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sm": "12px",
+                        "lg": "24px",
+                        "xs": "8px",
+                        "base": "4px",
+                        "container-padding": "20px",
+                        "md": "16px",
+                        "xl": "32px",
+                        "card-gutter": "12px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Be Vietnam Pro"],
+                        "caption": ["Be Vietnam Pro"],
+                        "h1-display": ["Be Vietnam Pro"],
+                        "body-md": ["Be Vietnam Pro"],
+                        "body-lg": ["Be Vietnam Pro"],
+                        "h2-section": ["Be Vietnam Pro"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                        "caption": ["11px", {"lineHeight": "14px", "fontWeight": "400"}],
+                        "h1-display": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "500"}],
+                        "h2-section": ["18px", {"lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Be Vietnam Pro', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .orange-gradient {
+            background: linear-gradient(135deg, #ff7e36 0%, #a04100 100%);
+        }
+        .soft-shadow {
+            box-shadow: 0 4px 12px rgba(255, 126, 54, 0.08);
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-lg min-h-screen pb-40">
+<div class="absolute top-0 left-0 w-full h-[300px] z-0 pointer-events-none" style="background: linear-gradient(rgb(255, 126, 54) 0%, rgb(252, 249, 248) 100%);"></div>
+<!-- Top Visual Background Gradient (Same as Home) -->
+<!-- Top App Bar - Transparent to show gradient -->
+<header class="sticky top-0 z-50 flex justify-between items-center w-full px-container-padding h-16 bg-transparent">
+<div class="flex items-center gap-4">
+<button onclick="window.location.href='trangchu.html'" class="w-10 h-10 flex items-center justify-center rounded-full bg-white/20 text-on-primary active:scale-95 transition-all backdrop-blur-sm" onclick="window.location.href='trangchu.html'" style="cursor:pointer">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="text-headline-md font-headline-md font-extrabold text-on-primary">Dọn dẹp nhà</h1>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-white/20 text-on-primary active:scale-95 transition-all backdrop-blur-sm">
+<span class="material-symbols-outlined">chat_bubble</span>
+</button>
+</header>
+<main class="px-container-padding py-md space-y-lg max-w-md mx-auto relative z-10">
+<!-- Loại dọn dẹp -->
+<section class="space-y-sm">
+<h2 class="text-title-sm font-title-sm">Loại dọn dẹp</h2>
+<div class="flex flex-wrap gap-sm">
+<button class="px-4 py-2 rounded-full border-1.5 border-primary bg-surface-container-low text-primary font-semibold text-body-sm shadow-sm active:scale-95 transition-all">
+                    Dọn tiêu chuẩn
+                </button>
+<button class="px-4 py-2 rounded-full border border-outline-variant bg-white text-on-surface-variant font-medium text-body-sm active:scale-95 transition-all">
+                    Dọn tổng vệ sinh
+                </button>
+</div>
+</section>
+<!-- Ngày & giờ -->
+<section class="space-y-sm">
+<h2 class="text-title-sm font-title-sm">Ngày &amp; giờ</h2>
+<div class="space-y-stack-gap">
+<div class="relative group">
+<input class="w-full h-12 px-4 rounded-2xl border-none ring-1 ring-outline-variant focus:ring-2 focus:ring-primary-container bg-white text-body-lg" readonly="" type="text" value="20/10/2026"/>
+<span class="material-symbols-outlined absolute right-4 top-3 text-on-surface-variant">calendar_today</span>
+</div>
+<div class="grid grid-cols-3 gap-sm">
+<button class="h-10 rounded-xl border border-outline-variant bg-white text-on-surface-variant text-body-sm font-semibold active:bg-primary-container active:text-white transition-colors">08:00</button>
+<button class="h-10 rounded-xl border border-outline-variant bg-white text-on-surface-variant text-body-sm font-semibold active:bg-primary-container active:text-white transition-colors">09:00</button>
+<button class="h-10 rounded-xl border-2 border-primary-container bg-surface-container-low text-primary-container text-body-sm font-bold">10:00</button>
+</div>
+</div>
+</section>
+<!-- Thông báo phụ phí -->
+<div class="bg-[#FFFBEB] border-l-4 border-yellow-500 p-4 rounded-xl flex items-start gap-3">
+<span class="material-symbols-outlined text-yellow-600">warning</span>
+<p class="text-body-sm font-medium text-yellow-800">Phụ phí cuối tuần/lễ sẽ được áp dụng</p>
+</div>
+<!-- Số giờ -->
+<section class="flex items-center justify-between p-4 bg-white rounded-2xl soft-card-shadow border border-[#FFF1EB]">
+<div>
+<h2 class="text-title-sm font-title-sm">Số giờ</h2>
+<p class="text-body-sm text-primary font-semibold">Tạm tính: 450.000 đ</p>
+</div>
+<div class="flex items-center gap-4 bg-surface-container-low rounded-full px-2 py-1">
+<button class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-primary-container shadow-sm active:scale-90">
+<span class="material-symbols-outlined">remove</span>
+</button>
+<span class="text-title-sm font-bold w-4 text-center">3</span>
+<button class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-white shadow-sm active:scale-90">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</section>
+<!-- Ghi chú -->
+<section class="space-y-sm">
+<h2 class="text-title-sm font-title-sm">Ghi chú</h2>
+<textarea class="w-full h-24 p-4 rounded-2xl border-none ring-1 ring-outline-variant focus:ring-2 focus:ring-primary-container bg-white text-body-lg resize-none" placeholder="VD: Mang theo dụng cụ..."></textarea>
+</section>
+<!-- Cảnh báo trùng đơn -->
+<div class="bg-[#FFFBEB] border-l-4 border-yellow-500 p-4 rounded-2xl space-y-3">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-yellow-600">event_busy</span>
+<p class="text-body-sm text-on-surface">Bạn đã có đơn dọn nhà vào <span class="font-bold">20/10/2026</span> lúc <span class="font-bold">14:00</span>. Bạn có chắc muốn đặt thêm?</p>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 py-2 rounded-full bg-yellow-600 text-white text-label-caps font-label-caps active:scale-95 transition-all">Tiếp tục đặt</button>
+<button class="flex-1 py-2 rounded-full border border-yellow-600 text-yellow-700 text-label-caps font-label-caps active:scale-95 transition-all">Xem đơn cũ</button>
+</div>
+</div>
+<!-- Tổng kết đơn hàng (Bento style card) -->
+<section class="bg-white p-container-padding rounded-2xl soft-card-shadow border border-[#FFF1EB] space-y-md">
+<div class="flex items-center justify-between border-b border-surface-variant pb-2">
+<h3 class="text-title-sm font-title-sm">Tổng kết</h3>
+<span class="material-symbols-outlined text-primary-container">receipt_long</span>
+</div>
+<div class="space-y-sm">
+<div class="flex justify-between">
+<span class="text-on-surface-variant">Dịch vụ</span>
+<span class="font-semibold">Dọn tiêu chuẩn</span>
+</div>
+<div class="flex justify-between">
+<span class="text-on-surface-variant">Thời gian</span>
+<span class="font-semibold">20/10/2026 - 10:00</span>
+</div>
+<div class="flex justify-between">
+<span class="text-on-surface-variant">Số lượng</span>
+<span class="font-semibold">3 giờ</span>
+</div>
+<div class="flex justify-between pt-2 border-t border-surface-variant">
+<span class="text-title-sm font-bold">Tổng cộng</span>
+<span class="text-title-sm font-bold text-primary-container">450.000 đ</span>
+</div>
+</div>
+</section>
+<!-- Thanh toán -->
+<section class="flex items-center justify-between p-4 bg-white rounded-2xl soft-card-shadow border border-[#FFF1EB]">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-fixed-dim flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+</div>
+<div>
+<p class="text-body-sm text-on-surface-variant">Thanh toán</p>
+<p class="font-bold">Ví Chị Ơi</p>
+</div>
+</div>
+<button class="text-primary-container font-bold text-body-sm px-3 py-1 rounded-full hover:bg-primary-container/10">Thay đổi</button>
+</section>
+</main>
+<!-- Bottom Actions Container -->
+<div class="fixed bottom-24 left-0 right-0 p-container-padding bg-white/80 backdrop-blur-md z-40 max-w-md mx-auto">
+<button class="primary-gradient w-full py-4 rounded-2xl text-white font-bold text-body-lg shadow-lg shadow-primary/30 active:scale-95 transition-all flex justify-center items-center gap-2">
+<span>Đặt dịch vụ — 450.000 đ</span>
+</button>
+</div>
+<!-- Navigation Shell (Exact from Home screen) -->
+<nav class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[92%] max-w-md z-50 flex justify-around items-center px-4 py-3 rounded-full bg-white shadow-xl border border-surface-container-high">
+<!-- Trang chủ -->
+<a class="flex flex-col items-center justify-center text-primary active:scale-95 transition-transform" href="trangchu.html">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="text-label-sm font-label-sm">Trang chủ</span>
+</a>
+<!-- Hoạt động -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:scale-95" href="lichsuhoatdong.html">
+<span class="material-symbols-outlined text-[28px]">assignment</span>
+<span class="text-label-sm font-label-sm font-medium">Hoạt động</span>
+</a>
+<!-- Thông báo (UC-KH-15) → M11 -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:scale-95 relative" href="thongbao.html">
+<span class="material-symbols-outlined text-[28px]">notifications</span>
+<span class="absolute -top-1 left-1/2 ml-1 bg-secondary text-white text-[8px] w-4 h-4 rounded-full flex items-center justify-center font-bold">3</span>
+<span class="text-label-sm font-label-sm font-medium">Thông báo</span>
+</a>
+<!-- Tài khoản -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:scale-95" href="taikhoan.html">
+<span class="material-symbols-outlined text-[28px]">person</span>
+<span class="text-label-sm font-label-sm font-medium">Tài khoản</span>
+</a>
+</nav>
+</body></html>
