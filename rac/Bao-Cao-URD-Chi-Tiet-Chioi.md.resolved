@@ -1,0 +1,80 @@
+# TÀI LIỆU YÊU CẦU NGƯỜI DÙNG (URD) - HỆ THỐNG CHỊ ƠI!
+
+## 1. TỔNG QUAN DỰ ÁN
+**Chị Ơi!** là một nền tảng dịch vụ tiện ích kết nối trực tiếp giữa khách hàng (Cư dân) có nhu cầu sử dụng dịch vụ tại nhà (dọn dẹp, trông trẻ, đi chợ,...) với những người lao động (Người giúp việc - Tasker) có khả năng cung cấp dịch vụ. Hệ thống vận hành với ba phân hệ chính, đảm bảo quy trình hoạt động từ đặt lịch, thực hiện, đến thanh toán và đối soát hoàn toàn tự động và minh bạch.
+
+---
+
+## 2. CÁC ĐỐI TƯỢNG NGƯỜI DÙNG (USER ROLES)
+1. **Customer (Cư dân / Khách hàng):** Người có nhu cầu tìm kiếm và đặt lịch các dịch vụ tiện ích tại nhà.
+2. **Tasker (Người giúp việc / Người nhận việc):** Người lao động đăng ký cung cấp dịch vụ trên nền tảng để kiếm thu nhập.
+3. **Admin (Quản trị viên):** Người vận hành, giám sát toàn bộ hoạt động của hệ thống, xử lý sự cố và kiểm soát tài chính.
+
+---
+
+## 3. YÊU CẦU CHỨC NĂNG CHI TIẾT (FUNCTIONAL REQUIREMENTS)
+
+### 3.1. Phân hệ Khách hàng (Customer App)
+| Mã UC | Tên chức năng | Mô tả chi tiết |
+| :--- | :--- | :--- |
+| **CUS-01** | Đăng ký / Đăng nhập | Đăng ký tài khoản qua số điện thoại/Email, xác thực OTP. |
+| **CUS-02** | Khám phá dịch vụ | Xem danh sách các dịch vụ hiện có (Dọn nhà, đi chợ, trông trẻ...), xem banner khuyến mãi và gói ưu đãi. |
+| **CUS-03** | Đặt lịch dịch vụ | Chọn loại dịch vụ, nhập thời gian, địa điểm, ghi chú và các yêu cầu đặc biệt. Hệ thống tính toán và hiển thị giá tiền tạm tính. |
+| **CUS-04** | Thanh toán | Thanh toán cho đơn dịch vụ (tiền mặt hoặc chuyển khoản/Ví/QR code). |
+| **CUS-05** | Theo dõi tiến độ | Theo dõi trạng thái đơn hàng theo thời gian thực (Đang tìm người -> Đã nhận -> Đang thực hiện -> Hoàn thành). |
+| **CUS-06** | Đánh giá & Phản hồi | Đánh giá sao (Rating) và viết nhận xét cho Tasker sau khi công việc hoàn thành. |
+| **CUS-07** | Hỗ trợ & Khiếu nại | Chat với CSKH hoặc gửi yêu cầu khiếu nại, hoàn tiền nếu không hài lòng với dịch vụ. |
+
+### 3.2. Phân hệ Người giúp việc (Tasker App)
+| Mã UC | Tên chức năng | Mô tả chi tiết |
+| :--- | :--- | :--- |
+| **TSK-01** | Đăng ký hồ sơ | Đăng ký tài khoản và nộp hồ sơ trực tuyến (CCCD, giấy khám sức khỏe,...) chờ Admin duyệt. |
+| **TSK-02** | Quản lý trạng thái online | Bật/tắt trạng thái sẵn sàng nhận việc. |
+| **TSK-03** | Nhận việc | Nhận thông báo có đơn đặt mới trong khu vực. Xem chi tiết công việc và chấp nhận (hoặc từ chối) nhận việc. |
+| **TSK-04** | Cập nhật tiến độ | Cập nhật các trạng thái: Đang di chuyển, Đã đến nơi, Bắt đầu làm, Hoàn thành công việc (chụp ảnh nghiệm thu nếu cần). |
+| **TSK-05** | Quản lý thu nhập | Xem doanh thu theo ngày/tuần/tháng, lịch sử nhận tiền, và số dư hiện có. |
+| **TSK-06** | Rút tiền | Gửi yêu cầu rút tiền từ Ví doanh thu về tài khoản ngân hàng cá nhân. |
+
+### 3.3. Phân hệ Quản trị (Admin Dashboard)
+| Mã UC | Tên chức năng | Mô tả chi tiết |
+| :--- | :--- | :--- |
+| **ADM-01** | Dashboard (Bảng điều khiển) | Xem tổng quan chỉ số: Doanh thu, Số đơn hàng, Tasker đang online, Đơn đăng ký mới cần duyệt. |
+| **ADM-02** | Phê duyệt người dùng | Duyệt hoặc từ chối hồ sơ đăng ký của Người giúp việc và Cư dân. |
+| **ADM-03** | Quản lý Người dùng | Tra cứu danh sách, xem lịch sử hoạt động, rating, thực hiện khóa/mở khóa tài khoản. |
+| **ADM-04** | Cấu hình Dịch vụ | Thiết lập biểu giá cơ bản theo giờ cho từng dịch vụ, cấu hình tỷ lệ hoa hồng (phí sàn) thu từ Tasker. |
+| **ADM-05** | Gói ưu đãi & Khuyến mãi | Tạo mới, cấu hình giá, bật/tắt hiển thị và đánh dấu nổi bật cho các combo dịch vụ. |
+| **ADM-06** | Lịch sử Đơn hàng | Theo dõi toàn bộ giao dịch, trạng thái đơn dịch vụ, tra cứu chi tiết và can thiệp điều phối nếu cần. |
+| **ADM-07** | Hộp thư Hỗ trợ | Chat với khách hàng và Tasker, tiếp nhận khiếu nại và xử lý sự cố vận hành. |
+| **ADM-08** | Yêu cầu Hoàn tiền | Xác minh thông tin ngân hàng của khách và xử lý lệnh hoàn tiền cho các đơn bị hủy/khiếu nại. |
+| **ADM-09** | Ví Doanh thu | Quản lý lợi nhuận, dòng tiền (nạp, rút, QR), cấu hình tài khoản nhận tiền và duyệt lệnh rút tiền của Tasker. |
+| **ADM-10** | Quản lý Nội dung | Cập nhật Banner trang chủ, soạn thảo bài viết và quản lý bộ Câu hỏi thường gặp (FAQ). |
+
+---
+
+## 4. PHÂN TÍCH LUỒNG NGHIỆP VỤ CHÍNH (KEY WORKFLOWS)
+
+### 4.1. Luồng đặt dịch vụ cốt lõi (End-to-End Booking Flow)
+1. **Khách hàng** chọn dịch vụ, nhập thời gian/địa điểm và tạo đơn.
+2. Hệ thống phát thông báo (Broadcast) đến các **Tasker** đang online ở gần đó.
+3. **Tasker** nhận đơn -> Di chuyển đến điểm làm việc -> Bắt đầu làm -> Báo cáo hoàn thành.
+4. **Khách hàng** kiểm tra và thanh toán (nếu thanh toán sau) -> Đánh giá Tasker.
+5. Tiền được cộng vào Ví của Tasker (sau khi trừ phí hoa hồng cho Admin).
+
+### 4.2. Luồng xử lý sự cố & Hoàn tiền (Support & Refund Flow)
+1. Khách hàng không hài lòng, gửi yêu cầu Khiếu nại/Hoàn tiền qua mục Hỗ trợ.
+2. **Admin** tiếp nhận qua Hộp thư Hỗ trợ, tiến hành chat/gọi điện xác minh với cả Khách hàng và Tasker.
+3. Nếu hợp lệ, **Admin** duyệt Yêu cầu hoàn tiền, chuyển tiền lại cho Khách hàng từ Ví Doanh thu hệ thống.
+
+### 4.3. Luồng kiểm soát chất lượng & Vận hành (Quality Control Flow)
+1. Tasker mới phải nộp hồ sơ qua App -> **Admin** duyệt hồ sơ (Phê duyệt người dùng) mới được phép nhận việc.
+2. Hệ thống tự động theo dõi rating của Tasker. Nếu rating quá thấp hoặc vi phạm quy định, **Admin** sử dụng tính năng "Quản lý Người dùng" để khóa tài khoản.
+
+---
+
+## 5. YÊU CẦU PHI CHỨC NĂNG (NON-FUNCTIONAL REQUIREMENTS)
+- **Hiệu năng (Performance):** Hệ thống phải điều phối đơn hàng (matching) trong thời gian thực dưới 2 giây. Admin dashboard tải dữ liệu thống kê mượt mà.
+- **Bảo mật (Security):** Mọi giao dịch tài chính phải được mã hóa. Phân quyền chặt chẽ trên trang Admin (không cho phép truy cập trái phép vào Ví Doanh Thu).
+- **Tính khả dụng (Availability):** Nền cùng hoạt động ổn định 24/7 để phục vụ nhu cầu đặt lịch bất cứ lúc nào.
+- **Trải nghiệm người dùng (UX/UI):** Giao diện phải trực quan, thao tác đặt lịch của khách hàng tối đa không quá 3 bước. Banner ưu đãi phải bắt mắt và rõ ràng.
+
+*Tài liệu URD này được tổng hợp để định hướng toàn bộ quy trình phát triển và kiểm thử End-to-End cho nền tảng Chị Ơi!.*

@@ -292,4 +292,145 @@
 <span class="text-label-sm font-label-sm font-medium">Tài khoản</span>
 </a>
 </nav>
+
+<!-- Socket.IO for Realtime -->
+<script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+<script src="../shared/api.js"></script>
+<script>
+(async function() {
+  // ===== 1. Kiểm tra đăng nhập =====
+  if (!ChiOiAuth.requireAuth('dangnhap.html')) return;
+
+  var user = ChiOiAuth.getUser();
+
+  // ===== 2. Hiển thị tên user lên Header =====
+  if (user && user.full_name) {
+    var nameEl = document.querySelector('header h1');
+    if (nameEl) nameEl.textContent = user.full_name;
+
+    // Cập nhật avatar
+    var avatarImg = document.querySelector('header img[alt="Avatar"]');
+    if (avatarImg) {
+      avatarImg.src = 'https://ui-avatars.com/api/?name=' + encodeURIComponent(user.full_name) + '&background=FF7E36&color=fff';
+    }
+  }
+
+  // ===== 3. Load Số dư ví =====
+  try {
+    var wallet = await apiFetch('/api/wallets/balance');
+    var balanceEl = document.querySelector('.text-body-lg.font-bold');
+    if (balanceEl && wallet) {
+      balanceEl.textContent = formatVND(wallet.balance || 0);
+    }
+  } catch (e) {
+    console.warn('[ChiOi] Không thể load ví:', e.message);
+  }
+
+  // ===== 4. Load Danh sách dịch vụ từ API =====
+  try {
+    var services = await apiFetch('/api/services');
+    var serviceGrid = document.querySelector('.grid.grid-cols-4');
+    if (serviceGrid) {
+      serviceGrid.innerHTML = '';
+      if (services && services.length > 0) {
+        var defaultIcons = [
+          { icon: 'cleaning_services', bg: 'bg-primary-fixed', text: 'text-primary', href: 'datdichvudonnha.html' },
+          { icon: 'calendar_month', bg: 'bg-tertiary-fixed', text: 'text-tertiary', href: 'goigiadinh.html' },
+          { icon: 'child_care', bg: 'bg-secondary-fixed', text: 'text-secondary', href: 'datdichvutrongtre.html' },
+          { icon: 'shopping_cart', bg: 'bg-primary-fixed', text: 'text-primary', href: 'datdichvumuaho.html' },
+        ];
+
+        services.forEach(function(svc, idx) {
+          var style = defaultIcons[idx % defaultIcons.length];
+          // Use DB icon if matches mapping (optional, for now use default map)
+          var a = document.createElement('a');
+          a.href = style.href;
+          a.className = 'flex flex-col items-center text-center';
+          a.innerHTML = '<div class="w-14 h-14 ' + style.bg + ' rounded-2xl flex items-center justify-center mb-xs">' +
+            '<span class="material-symbols-outlined ' + style.text + ' text-3xl">' + (svc.icon_url || style.icon) + '</span>' +
+            '</div>' +
+            '<span class="text-label-sm font-label-sm leading-tight">' + svc.name + '</span>';
+          serviceGrid.appendChild(a);
+        });
+      } else {
+        serviceGrid.innerHTML = '<div class="col-span-4 text-center text-on-surface-variant text-sm">Chưa có dịch vụ nào</div>';
+      }
+    }
+  } catch (e) {
+    console.warn('[ChiOi] Không thể load dịch vụ:', e.message);
+  }
+
+  // ===== 4.1 Load Danh sách Tasker gần bạn =====
+  try {
+    var taskers = await apiFetch('/api/taskers/active');
+    var taskerContainer = document.querySelector('.overflow-x-auto.no-scrollbar');
+    if (taskerContainer) {
+      taskerContainer.innerHTML = '';
+      if (taskers && taskers.length > 0) {
+        var bgColors = ['bg-primary-fixed', 'bg-tertiary-fixed', 'bg-secondary-fixed'];
+        var textColors = ['text-primary', 'text-tertiary', 'text-secondary'];
+        
+        taskers.forEach(function(t, idx) {
+          var bg = bgColors[idx % bgColors.length];
+          var txt = textColors[idx % textColors.length];
+          var rating = (t.taskers && t.taskers.average_rating) ? t.taskers.average_rating : 5.0;
+          var distance = (Math.random() * 2 + 0.5).toFixed(1) + 'km'; // Mock distance
+          
+          var div = document.createElement('div');
+          div.className = 'min-w-[160px] bg-white rounded-2xl overflow-hidden soft-shadow border border-surface-container-high';
+          div.innerHTML = '<div class="p-md flex flex-col items-center text-center">' +
+            '<div class="w-16 h-16 rounded-full ' + bg + ' flex items-center justify-center mb-sm">' +
+            '<span class="material-symbols-outlined ' + txt + ' text-3xl" data-icon="person" style="font-variation-settings: \'FILL\' 1;">person</span>' +
+            '</div>' +
+            '<span class="text-body-lg font-bold">' + t.full_name + '</span>' +
+            '<div class="flex items-center gap-xs mt-xs">' +
+            '<span class="material-symbols-outlined text-[#CA8A04] text-sm" data-icon="star" style="font-variation-settings: \'FILL\' 1;">star</span>' +
+            '<span class="text-label-sm font-bold">' + Number(rating).toFixed(1) + '</span>' +
+            '</div>' +
+            '<span class="text-caption text-outline mt-xs">' + distance + ' · Dịch vụ</span>' +
+            '</div>';
+          taskerContainer.appendChild(div);
+        });
+      } else {
+        taskerContainer.innerHTML = '<div class="w-full text-center text-on-surface-variant text-sm py-4">Hiện không có Tasker nào trực tuyến</div>';
+      }
+    }
+  } catch (e) {
+    console.warn('[ChiOi] Không thể load Tasker:', e.message);
+  }
+
+  // ===== 5. Kết nối Socket Realtime =====
+  var socket = connectSocket();
+  if (socket) {
+    // Nhận cập nhật trạng thái đơn hàng
+    socket.on('order_accepted', function(data) {
+      showToastMsg('🎉 ' + data.message);
+    });
+
+    socket.on('order_status_updated', function(data) {
+      showToastMsg('📋 ' + data.message);
+    });
+
+    // Nhận tin nhắn chat
+    socket.on('receive_message', function(msg) {
+      // Cập nhật badge thông báo
+      var badge = document.querySelector('nav .bg-secondary');
+      if (badge) {
+        var count = parseInt(badge.textContent) || 0;
+        badge.textContent = count + 1;
+      }
+      showToastMsg('💬 Bạn có tin nhắn mới từ Tasker');
+    });
+  }
+
+  // ===== 6. Nút Đăng xuất trên trang Tài khoản =====
+  var logoutBtns = document.querySelectorAll('[data-logout]');
+  logoutBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      ChiOiAuth.logout('dangnhap.html');
+    });
+  });
+
+})();
+</script>
 </body></html>

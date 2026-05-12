@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Can thiệp đơn hàng - Admin Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed": "#c7e7ff",
+                        "tertiary": "#00658f",
+                        "on-error-container": "#93000a",
+                        "inverse-surface": "#3a2e25",
+                        "inverse-primary": "#ffb77d",
+                        "surface-tint": "#904d00",
+                        "on-tertiary-fixed-variant": "#004c6c",
+                        "on-surface-variant": "#564334",
+                        "on-secondary": "#ffffff",
+                        "surface-container-high": "#f9e4d7",
+                        "surface-dim": "#ead6c9",
+                        "surface-bright": "#fff8f5",
+                        "secondary-fixed-dim": "#bdc7d9",
+                        "outline": "#897362",
+                        "secondary": "#555f6f",
+                        "primary-container": "#ff8c00",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed": "#2f1500",
+                        "on-surface": "#241912",
+                        "primary-fixed-dim": "#ffb77d",
+                        "surface": "#fff8f5",
+                        "primary-fixed": "#ffdcc3",
+                        "inverse-on-surface": "#ffede3",
+                        "on-tertiary-fixed": "#001e2e",
+                        "outline-variant": "#ddc1ae",
+                        "on-primary-fixed-variant": "#6e3900",
+                        "surface-variant": "#f3dfd1",
+                        "on-primary-container": "#623200",
+                        "on-background": "#241912",
+                        "surface-container-low": "#fff1e9",
+                        "secondary-container": "#d6e0f3",
+                        "on-secondary-fixed-variant": "#3d4756",
+                        "on-secondary-fixed": "#121c2a",
+                        "on-tertiary-container": "#004360",
+                        "on-secondary-container": "#596373",
+                        "on-error": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#85cfff",
+                        "surface-container": "#ffeadd",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed": "#d9e3f6",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-highest": "#f3dfd1",
+                        "primary": "#904d00",
+                        "error": "#ba1a1a",
+                        "tertiary-container": "#00b5fc",
+                        "background": "#fff8f5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "inline-gutter": "0.75rem",
+                        "stack-gap": "1rem",
+                        "section-padding": "2rem",
+                        "page-margin": "1rem",
+                        "card-padding": "1.25rem"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Manrope"],
+                        "body-sm": ["Inter"],
+                        "status-badge": ["Inter"],
+                        "display-lg": ["Manrope"],
+                        "body-lg": ["Inter"],
+                        "label-caps": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["22px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "status-badge": ["11px", {"lineHeight": "12px", "fontWeight": "700"}],
+                        "display-lg": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #F9FAFB;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="max-w-md mx-auto shadow-2xl border-x border-gray-200 relative min-h-screen font-body-sm text-on-background">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface shadow-sm">
+<div class="flex justify-between items-center px-page-margin py-3 w-full max-w-7xl mx-auto">
+<div class="flex items-center gap-3">
+<h1 class="text-headline-md font-headline-md font-bold text-primary">Can thiệp đơn hàng</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-variant transition-colors duration-200 active:scale-95">
+<span class="material-symbols-outlined text-primary">notifications</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-20 pb-40 px-page-margin max-w-2xl mx-auto flex flex-col gap-stack-gap">
+<!-- Alert Banner -->
+<div class="bg-error-container border-l-4 border-error p-card-padding rounded-xl shadow-sm flex items-start gap-3">
+<span class="material-symbols-outlined text-error" style="font-variation-settings: 'FILL' 1;">warning</span>
+<div>
+<p class="font-label-caps text-label-caps text-on-error-container uppercase mb-1">Cần can thiệp</p>
+<p class="text-body-sm text-on-error-container">Đơn hàng <span class="font-bold">#BK0144</span> đã chờ hơn 8 phút mà chưa có Tasker tiếp nhận.</p>
+</div>
+</div>
+<!-- Order Details Card -->
+<div class="bg-surface-container-lowest p-card-padding rounded-xl shadow-[0px_4px_12px_rgba(0,0,0,0.05)] border border-gray-100">
+<div class="flex justify-between items-start mb-4">
+<h2 class="text-headline-md font-headline-md">Chi tiết đơn hàng</h2>
+<span class="bg-primary-container/10 text-primary-container px-3 py-1 rounded-full text-status-badge font-status-badge">Đang chờ</span>
+</div>
+<div class="space-y-3">
+<div class="flex justify-between border-b border-outline-variant/30 pb-2">
+<span class="text-secondary font-label-caps text-label-caps uppercase">Mã đơn hàng</span>
+<span class="text-on-surface font-bold">#BK0144</span>
+</div>
+<div class="flex justify-between border-b border-outline-variant/30 pb-2">
+<span class="text-secondary font-label-caps text-label-caps uppercase">Khách hàng</span>
+<span class="text-on-surface">Nguyễn Văn A</span>
+</div>
+<div class="flex justify-between border-b border-outline-variant/30 pb-2">
+<span class="text-secondary font-label-caps text-label-caps uppercase">Địa chỉ</span>
+<span class="text-on-surface text-right max-w-[200px]">123 Lê Lợi, Quận 1</span>
+</div>
+<div class="flex justify-between">
+<span class="text-secondary font-label-caps text-label-caps uppercase">Giờ đặt</span>
+<span class="text-on-surface">10:30 AM</span>
+</div>
+</div>
+</div>
+<!-- Suggested Taskers -->
+<section>
+<div class="flex justify-between items-end mb-3">
+<h3 class="text-headline-md font-headline-md">Gợi ý Tasker (3)</h3>
+<button class="text-primary font-label-caps text-label-caps hover:underline">Xem tất cả</button>
+</div>
+<div class="flex flex-col gap-3">
+<!-- Tasker Item 1 -->
+<div class="bg-surface-container-lowest p-4 rounded-xl shadow-[0px_4px_12px_rgba(0,0,0,0.05)] border border-gray-100 flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg overflow-hidden bg-secondary-fixed">
+<img alt="Tasker Portrait" class="w-full h-full object-cover" data-alt="Close up photo of a cheerful Vietnamese professional tasker wearing a clean polo shirt uniform. The setting is a bright, modern interior with soft natural light. The aesthetic is clean and high-performance, using a palette of white and vibrant orange accents to convey reliability and energy." src="https://lh3.googleusercontent.com/aida-public/AB6AXuATNEccjoMx3fy2ZfrXv7jXuhUVd3fRhxG1jCJeDEUYry_d5dfCsav0wEzbNFUw4ugirNHYKMM5WX0Zh27xucssRjB_AXHZznJAJ0R4cPVS-VzWTIrSus_69fOfuWThAMKQ7ehlJ7q30SzCE-DkySD2SEcbX1dXed4iuZw0G82nQ0HdnV1s95QVTU3ltcfJfruiasoCUKIZZHweBX0srOZeG73hxCIiKlJuW0gJpb777srylZhVBoFZ3C7UiUbyoIlgE5Zr81aGdcob"/>
+</div>
+<div class="flex-1">
+<p class="font-bold text-on-surface">Trần Thị B</p>
+<div class="flex items-center gap-3 text-body-sm text-secondary">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span> 4.9</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-xs">distance</span> 1.2 km</span>
+</div>
+</div>
+<button class="bg-primary-container text-on-primary py-2 px-4 rounded-lg text-label-caps font-label-caps hover:bg-primary-container/90 active:scale-95 transition-all">Gán Tasker này</button>
+</div>
+<!-- Tasker Item 2 -->
+<div class="bg-surface-container-lowest p-4 rounded-xl shadow-[0px_4px_12px_rgba(0,0,0,0.05)] border border-gray-100 flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg overflow-hidden bg-secondary-fixed">
+<img alt="Tasker Portrait" class="w-full h-full object-cover" data-alt="A focused professional service provider in Vietnam, wearing a bright orange uniform. Captured in a high-key lighting environment that emphasizes efficiency and professionalism. The background is a clean, out-of-focus city scene, maintaining a modern corporate admin aesthetic with vibrant orange pops." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBU_8ujtrrHBOpUhEkw28IXne5NqVFcAZfg32dij8u2rU9nz2xlugBr62ueJ86UwU6wWwXQv8yqtGVh1n3le5yAPEeyPdj_euRP2aiJuSJe196kM1h8qC-B2kkbImG0Qv3_I-48t3-GGL6vqsqrXe8uSn0ddj1CkKhu_M4wax95v22oddJjSdlvu6aI5OBIq85Ur3t9sdXZCQHgembd51Wt0J0lMoYTxEyUUbQvtiVNQSfBQTuD0-n0lALwte40FWTQTr--Kxl4i1MF"/>
+</div>
+<div class="flex-1">
+<p class="font-bold text-on-surface">Lê Văn C</p>
+<div class="flex items-center gap-3 text-body-sm text-secondary">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span> 4.7</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-xs">distance</span> 0.8 km</span>
+</div>
+</div>
+<button class="bg-primary-container text-on-primary py-2 px-4 rounded-lg text-label-caps font-label-caps hover:bg-primary-container/90 active:scale-95 transition-all">Gán Tasker này</button>
+</div>
+<!-- Tasker Item 3 -->
+<div class="bg-surface-container-lowest p-4 rounded-xl shadow-[0px_4px_12px_rgba(0,0,0,0.05)] border border-gray-100 flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg overflow-hidden bg-secondary-fixed">
+<img alt="Tasker Portrait" class="w-full h-full object-cover" data-alt="Profile image of a smiling, trustworthy female service tasker in Ho Chi Minh City. She wears a crisp white and orange branded uniform. The lighting is vibrant and professional, following a light-mode modern UI aesthetic. The composition is clean and centered with high clarity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHloao_OgdLeDpdf3k7CuaVjarQOmUQBPeTxgn97XOhlxPHDjhxRsZ46sOyofoi-hPM3p49XoLVQDIJepnFXPu_rAKuqQZe5W1fypzFtO4CvrWayRF04rRCOTqJClOl81v1FwU1dffir6jYsGEKixjJgLx2iaiEjMCCLIXzb749W4KDqHBI5aF3oaAEvCEZrmm1E_tLF6CSXeATzF1AvZCaJ-pvuDHa4rLv358SbBZcgOm3UC4UNJmXmA10rQpCPApCP5GiexK-PoY"/>
+</div>
+<div class="flex-1">
+<p class="font-bold text-on-surface">Phạm Minh D</p>
+<div class="flex items-center gap-3 text-body-sm text-secondary">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span> 5.0</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-xs">distance</span> 2.5 km</span>
+</div>
+</div>
+<button class="bg-primary-container text-on-primary py-2 px-4 rounded-lg text-label-caps font-label-caps hover:bg-primary-container/90 active:scale-95 transition-all">Gán Tasker này</button>
+</div>
+</div>
+</section>
+<!-- Urgent Actions -->
+<div class="flex gap-3 mt-4">
+<button class="flex-1 flex items-center justify-center gap-2 border-2 border-primary-container text-primary-container py-3 rounded-xl font-label-caps text-label-caps hover:bg-primary-container/5 transition-colors active:scale-95">
+<span class="material-symbols-outlined text-lg">call</span>
+                Gọi điện Khách hàng
+            </button>
+<button class="flex-1 flex items-center justify-center gap-2 border-2 border-error text-error py-3 rounded-xl font-label-caps text-label-caps hover:bg-error/5 transition-colors active:scale-95">
+<span class="material-symbols-outlined text-lg">cancel</span>
+                Hủy đơn &amp; Hoàn tiền
+            </button>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="bg-white/90 backdrop-blur-md fixed bottom-6 left-1/2 -translate-x-1/2 flex justify-around items-center h-16 w-[95%] max-w-md rounded-full shadow-xl border border-outline-variant/20 px-4 z-50">
+    <a href="../b_ng_i_u_khi_n_qu_n_tr_vi_n_pill_nav/code.html" class="text-on-secondary-container hover:text-primary flex flex-col items-center justify-center transition-all active:scale-90">
+        <span class="material-symbols-outlined text-[22px] ">dashboard</span>
+        <span class="font-label-caps text-[10px] leading-tight mt-0.5 uppercase ">Dashboard</span>
+    </a>
+    <a href="../danh_s_ch_n_h_ng_full_nav/code.html" class="text-primary relative px-3 py-1 rounded-full bg-primary/10 flex flex-col items-center justify-center transition-all active:scale-90">
+        <span class="material-symbols-outlined text-[22px] font-bold">receipt_long</span>
+        <span class="font-label-caps text-[10px] leading-tight mt-0.5 uppercase font-bold">Đơn</span>
+    </a>
+    <a href="../danh_s_ch_tasker_qu_n_tr_pill_nav/code.html" class="text-on-secondary-container hover:text-primary flex flex-col items-center justify-center transition-all active:scale-90">
+        <span class="material-symbols-outlined text-[22px] ">engineering</span>
+        <span class="font-label-caps text-[10px] leading-tight mt-0.5 uppercase ">Tasker</span>
+    </a>
+    <a href="../danh_s_ch_c_d_n_qu_n_tr_pill_nav/code.html" class="text-on-secondary-container hover:text-primary flex flex-col items-center justify-center transition-all active:scale-90">
+        <span class="material-symbols-outlined text-[22px] ">group</span>
+        <span class="font-label-caps text-[10px] leading-tight mt-0.5 uppercase ">Cư dân</span>
+    </a>
+    <a href="../v_giao_d_ch_qu_n_tr_pill_nav/code.html" class="text-on-secondary-container hover:text-primary flex flex-col items-center justify-center transition-all active:scale-90">
+        <span class="material-symbols-outlined text-[22px] ">account_balance_wallet</span>
+        <span class="font-label-caps text-[10px] leading-tight mt-0.5 uppercase ">Ví</span>
+    </a>
+    <a href="../h_p_th_admin_pill_nav/code.html" class="text-on-secondary-container hover:text-primary flex flex-col items-center justify-center transition-all active:scale-90">
+        <span class="material-symbols-outlined text-[22px] ">inbox</span>
+        <span class="font-label-caps text-[10px] leading-tight mt-0.5 uppercase ">Inbox</span>
+    </a>
+</nav>
+</body></html>

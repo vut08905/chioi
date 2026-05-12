@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chị Ơi! — WMS Mockup · 3 Luồng Người Dùng</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --kh-primary: #E85C1A;
+  --kh-light: #FFF4EF;
+  --kh-mid: #FF8A50;
+  --tasker-primary: #0D9488;
+  --tasker-light: #F0FDFA;
+  --tasker-mid: #2DD4BF;
+  --admin-primary: #7C3AED;
+  --admin-light: #F5F3FF;
+  --admin-mid: #A78BFA;
+  --neutral-900: #0F172A;
+  --neutral-700: #334155;
+  --neutral-500: #64748B;
+  --neutral-300: #CBD5E1;
+  --neutral-100: #F1F5F9;
+  --white: #FFFFFF;
+  --green: #16A34A;
+  --yellow: #CA8A04;
+  --red: #DC2626;
+  --shadow: 0 4px 24px rgba(15,23,42,0.10);
+  --shadow-sm: 0 2px 8px rgba(15,23,42,0.08);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Be Vietnam Pro', sans-serif;
+  background: #0F172A;
+  color: var(--neutral-900);
+  min-height: 100vh;
+}
+
+/* ========== HEADER ========== */
+.site-header {
+  background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+  padding: 32px 48px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  position: sticky; top: 0; z-index: 100;
+}
+.site-header h1 {
+  font-size: 28px; font-weight: 800; color: #fff;
+  letter-spacing: -0.5px;
+}
+.site-header h1 span { color: var(--kh-primary); }
+.site-header p { font-size: 13px; color: #94A3B8; margin-top: 4px; }
+.tab-bar {
+  display: flex; gap: 8px; margin-top: 20px;
+}
+.tab-btn {
+  padding: 8px 20px; border-radius: 100px; border: none; cursor: pointer;
+  font-family: inherit; font-size: 13px; font-weight: 600;
+  transition: all 0.2s;
+  background: rgba(255,255,255,0.06); color: #94A3B8;
+}
+.tab-btn.active-kh { background: var(--kh-primary); color: #fff; }
+.tab-btn.active-tasker { background: var(--tasker-primary); color: #fff; }
+.tab-btn.active-admin { background: var(--admin-primary); color: #fff; }
+
+/* ========== MAIN ========== */
+.main { padding: 40px 48px; }
+
+/* ========== SECTION ========== */
+.section { display: none; }
+.section.active { display: block; }
+
+.section-title {
+  font-size: 22px; font-weight: 800; margin-bottom: 8px;
+}
+.section-meta { font-size: 13px; color: var(--neutral-500); margin-bottom: 32px; }
+
+/* ========== UC GRID ========== */
+.uc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  gap: 16px;
+}
+
+.uc-card {
+  background: var(--white);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+.uc-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+.uc-card.expanded { border-color: var(--accent); }
+
+.uc-card-header {
+  padding: 16px 20px;
+  display: flex; align-items: flex-start; gap: 12px;
+}
+.uc-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; font-weight: 500;
+  padding: 4px 8px; border-radius: 6px;
+  white-space: nowrap; flex-shrink: 0; margin-top: 1px;
+}
+.uc-title { font-size: 14px; font-weight: 700; line-height: 1.4; }
+.uc-screen { font-size: 11px; color: var(--neutral-500); margin-top: 2px; font-family: 'JetBrains Mono', monospace; }
+
+.uc-tags {
+  display: flex; gap: 6px; flex-wrap: wrap;
+  padding: 0 20px 12px;
+}
+.tag {
+  font-size: 10px; font-weight: 600; padding: 3px 8px; border-radius: 100px;
+}
+
+.uc-card-body {
+  display: none;
+  padding: 0 20px 20px;
+  border-top: 1px solid var(--neutral-100);
+  padding-top: 16px;
+}
+.uc-card.expanded .uc-card-body { display: block; }
+
+.field-group { margin-bottom: 12px; }
+.field-label {
+  font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.8px; color: var(--neutral-500); margin-bottom: 4px;
+}
+.field-value {
+  font-size: 13px; color: var(--neutral-700); line-height: 1.6;
+}
+.field-value.mono { font-family: 'JetBrains Mono', monospace; font-size: 12px; }
+
+.note-box {
+  background: #FFFBEB;
+  border-left: 3px solid #F59E0B;
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-top: 12px;
+  font-size: 12px;
+  color: #78350F;
+  line-height: 1.6;
+}
+.note-box strong { font-weight: 700; }
+
+/* ========== STATUS BADGES ========== */
+.status-ok { background: #DCFCE7; color: #15803D; }
+.status-warn { background: #FEF9C3; color: #854D0E; }
+.status-err { background: #FEE2E2; color: #991B1B; }
+
+/* ========== FLOW DIAGRAM ========== */
+.flow-section {
+  margin-bottom: 40px;
+}
+.flow-title {
+  font-size: 14px; font-weight: 700; margin-bottom: 16px;
+  display: flex; align-items: center; gap: 8px;
+}
+.flow-wrap {
+  display: flex; gap: 0; align-items: center; flex-wrap: wrap;
+}
+.flow-step {
+  display: flex; align-items: center; gap: 0;
+}
+.flow-node {
+  background: var(--white);
+  border-radius: 10px;
+  padding: 10px 16px;
+  font-size: 12px; font-weight: 600;
+  box-shadow: var(--shadow-sm);
+  white-space: nowrap;
+  border: 2px solid var(--neutral-100);
+}
+.flow-arrow {
+  font-size: 16px; color: var(--neutral-300); padding: 0 6px;
+}
+
+/* ========== SUMMARY TABLE ========== */
+.summary-bar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+}
+.stat-card {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 20px 24px;
+  box-shadow: var(--shadow-sm);
+}
+.stat-num { font-size: 40px; font-weight: 800; line-height: 1; }
+.stat-label { font-size: 13px; color: var(--neutral-500); margin-top: 4px; }
+.stat-sub { font-size: 11px; color: var(--neutral-400); margin-top: 2px; }
+
+/* COLOR THEMING PER SECTION */
+.kh-section .uc-badge { background: #FFF4EF; color: var(--kh-primary); }
+.kh-section .uc-card:hover { border-color: var(--kh-primary); }
+.kh-section .uc-card.expanded { border-color: var(--kh-primary); }
+.kh-section .section-title { color: #fff; }
+.kh-section .stat-num { color: var(--kh-primary); }
+.kh-section .flow-node { border-color: #FFE4D6; }
+
+.tasker-section .uc-badge { background: #F0FDFA; color: var(--tasker-primary); }
+.tasker-section .uc-card:hover { border-color: var(--tasker-primary); }
+.tasker-section .uc-card.expanded { border-color: var(--tasker-primary); }
+.tasker-section .section-title { color: #fff; }
+.tasker-section .stat-num { color: var(--tasker-primary); }
+.tasker-section .flow-node { border-color: #CCFBF1; }
+
+.admin-section .uc-badge { background: #F5F3FF; color: var(--admin-primary); }
+.admin-section .uc-card:hover { border-color: var(--admin-primary); }
+.admin-section .uc-card.expanded { border-color: var(--admin-primary); }
+.admin-section .section-title { color: #fff; }
+.admin-section .stat-num { color: var(--admin-primary); }
+.admin-section .flow-node { border-color: #EDE9FE; }
+
+.expand-hint {
+  font-size: 11px; color: var(--neutral-400);
+  padding: 0 20px 14px;
+  font-style: italic;
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <h1>Chị <span>Ơi!</span> — WMS Mockup</h1>
+  <p>Wireframe Management Specification · 3 luồng người dùng · 48 Use Cases · v2.0 (đã sửa theo review)</p>
+  <div class="tab-bar">
+    <button class="tab-btn active-kh" onclick="showSection('kh', this)">🟠 Khách hàng (25 UC)</button>
+    <button class="tab-btn" onclick="showSection('tasker', this)">🟢 Người giúp việc (14 UC)</button>
+    <button class="tab-btn" onclick="showSection('admin', this)">🟣 Người quản lý (9 UC)</button>
+  </div>
+</header>
+
+<main class="main">
+
+<!-- ==================== KHÁCH HÀNG ==================== -->
+<div id="sect-kh" class="section active kh-section">
+  <div class="section-title">Luồng Khách hàng (Cư dân)</div>
+  <div class="section-meta">App màu cam · Màn hình M01, M03–M15 · 25 Use Cases · Nhấn vào card để xem chi tiết</div>
+
+  <div class="summary-bar">
+    <div class="stat-card"><div class="stat-num">25</div><div class="stat-label">Tổng Use Cases</div><div class="stat-sub">Khách hàng / Cư dân</div></div>
+    <div class="stat-card"><div class="stat-num">13</div><div class="stat-label">Đầy đủ</div><div class="stat-sub">Sẵn sàng phát triển</div></div>
+    <div class="stat-card"><div class="stat-num">12</div><div class="stat-label">Đã bổ sung</div><div class="stat-sub">Theo review xlsx</div></div>
+  </div>
+
+  <div class="flow-section">
+    <div class="flow-title" style="color:#fff">Luồng chính — Khách hàng</div>
+    <div class="flow-wrap">
+      <div class="flow-step"><div class="flow-node">Đăng nhập<br><small style="color:#94A3B8">UC-KH-01</small></div><div class="flow-arrow">→</div></div>
+      <div class="flow-step"><div class="flow-node">Trang chủ<br><small>UC-KH-03</small></div><div class="flow-arrow">→</div></div>
+      <div class="flow-step"><div class="flow-node">Chọn DV & Đặt<br><small>UC-KH-07/08/09</small></div><div class="flow-arrow">→</div></div>
+      <div class="flow-step"><div class="flow-node">Theo dõi<br><small>UC-KH-10</small></div><div class="flow-arrow">→</div></div>
+      <div class="flow-step"><div class="flow-node">Hoàn tất<br><small>UC-KH-16</small></div><div class="flow-arrow">→</div></div>
+      <div class="flow-step"><div class="flow-node">Ví & TT<br><small>UC-KH-17/18/19</small></div></div>
+    </div>
+  </div>
+
+  <div class="uc-grid" id="kh-grid"></div>
+</div>
+
+<!-- ==================== TASKER ==================== -->
+<div id="sect-tasker" class="section tasker-section">
+  <div class="section-title">Luồng Người giúp việc (Tasker)</div>
+  <div class="section-meta">App màu xanh teal · Màn hình M01–M02, M03, M10, M16–M17 · 14 Use Cases · Nhấn vào card để xem chi tiết</div>
+
+  <div class="summary-bar">
+    <div class="stat-card"><div class="stat-num">14</div><div class="stat-label">Tổng Use Cases</div><div class="stat-sub">Người giúp việc / Tasker</div></div>
+    <div class="stat-card"><div class="stat-num">7</div><div class="stat-label">Đầy đủ</div><div class="stat-sub">Sẵn sàng phát triển</div></div>
+    <div class="stat-card"><div class="stat-num">7</div><div class="stat-label">Đã bổ sung</div><div class="stat-sub">Theo review xlsx</div></div>
+  </div>
+
+  <div class="flow-section">
+    <div class="flow-title" style="color:#fff">Luồng chính — Tasker</div>
+    <div class="flow-wrap">
+      <div class="flow-step"><div class="flow-node">Đăng ký & KYC<br><small>UC-T-02</small></div><div class="flow-arrow">→</div></div>
+      <div class="flow-step"><div class="flow-node">Đăng nhập<br><small>UC-T-01</small></div><div class="flow-arrow">→</div></div>
+      <div class="flow-step"><div class="flow-node">Online/Offline<br><small>UC-T-04</small></div><div class="flow-arrow">→</div></div>
+      <div class="flow-step"><div class="flow-node">Nhận đơn<br><small>UC-T-05/06</small></div><div class="flow-arrow">→</div></div>
+      <div class="flow-step"><div class="flow-node">Hoàn thành<br><small>UC-T-09</small></div><div class="flow-arrow">→</div></div>
+      <div class="flow-step"><div class="flow-node">Rút tiền<br><small>UC-T-13</small></div></div>
+    </div>
+  </div>
+
+  <div class="uc-grid" id="tasker-grid"></div>
+</div>
+
+<!-- ==================== ADMIN ==================== -->
+<div id="sect-admin" class="section admin-section">
+  <div class="section-title">Luồng Người quản lý (Admin)</div>
+  <div class="section-meta">Giao diện màu tím · Màn hình M18 · 9 Use Cases · Nhấn vào card để xem chi tiết</div>
+
+  <div class="summary-bar">
+    <div class="stat-card"><div class="stat-num">9</div><div class="stat-label">Tổng Use Cases</div><div class="stat-sub">Người quản lý / Admin</div></div>
+    <div class="stat-card"><div class="stat-num">1</div><div class="stat-label">Đầy đủ</div><div class="stat-sub">Sẵn sàng phát triển</div></div>
+    <div class="stat-card"><div class="stat-num">8</div><div class="stat-label">Đã bổ sung</div><div class="stat-sub">Theo review xlsx</div></div>
+  </div>
+
+  <div class="flow-section">
+    <div class="flow-title" style="color:#fff">Luồng chính — Admin</div>
+    <div class="flow-wrap">
+      <div class="flow-step"><div class="flow-node">Dashboard<br><small>UC-AD-01</small></div><div class="flow-arrow">→</div></div>
+      <div class="flow-step"><div class="flow-node">Quản lý Đơn<br><small>UC-AD-02/03</small></div><div class="flow-arrow">→</div></div>
+      <div class="flow-step"><div class="flow-node">Duyệt Tasker<br><small>UC-AD-04</small></div><div class="flow-arrow">→</div></div>
+      <div class="flow-step"><div class="flow-node">Tài chính<br><small>UC-AD-06</small></div><div class="flow-arrow">→</div></div>
+      <div class="flow-step"><div class="flow-node">Khiếu nại<br><small>UC-AD-08</small></div><div class="flow-arrow">→</div></div>
+      <div class="flow-step"><div class="flow-node">Báo cáo<br><small>UC-AD-09</small></div></div>
+    </div>
+  </div>
+
+  <div class="uc-grid" id="admin-grid"></div>
+</div>
+
+</main>
+
+<script>
+// ==================== DATA ====================
+
+const KH_UCS = [
+  { id:"UC-KH-01", title:"Đăng nhập hệ thống", screen:"M01 · login.php", status:"ok", tags:["Bảo mật","Cao"],
+    desc:"Chọn tab Cư dân, nhập SĐT + mật khẩu. Khóa 15 phút sau 5 lần sai. 2FA tùy chọn.",
+    flow:"1. Mở app → 2. Tab Cư dân → 3. Nhập SĐT + MK → 4. Đăng nhập → 5. Vào M04",
+    alt:"Sai 5 lần → khóa 15 phút; Quên MK → M03",
+    note:"Khóa TK 15 phút sau 5 lần sai; 2FA tùy chọn cho ví >5tr" },
+  { id:"UC-KH-02", title:"Quên mật khẩu / OTP", screen:"M03 · forgot-password.php", status:"ok", tags:["Bảo mật","Cao"],
+    desc:"OTP 6 chữ số hiệu lực 5 phút. Giới hạn 3 lần gửi/30 phút.",
+    flow:"1. Quên MK? → 2. Nhập SĐT → 3. OTP SMS (5 phút) → 4. Điền OTP → 5. Mật khẩu mới",
+    alt:"OTP hết hạn → Gửi lại; >3 lần/30 phút → Chặn",
+    note:"OTP hiệu lực 5 phút; giới hạn 3 lần/30 phút/SĐT" },
+  { id:"UC-KH-03", title:"Xem trang chủ", screen:"M04 · index.php", status:"ok", tags:["MVP","Cao"],
+    desc:"4 dịch vụ, banner gói, danh sách Tasker gần bạn. Empty-state khi không có Tasker.",
+    flow:"1. Đăng nhập → 2. Xem 4 DV → 3. Xem banner gói → 4. Xem Tasker gần bạn",
+    alt:"Không có Tasker → Empty-state; Mạng chậm → Skeleton loading",
+    note:"Empty-state khi không có Tasker; placeholder loading khi mạng chậm" },
+  { id:"UC-KH-04", title:"Tìm kiếm dịch vụ", screen:"M04 · index.php", status:"warn", tags:["Trung bình"],
+    desc:"Tìm kiếm đa phạm vi: DV + Tasker + gói + FAQ. Gợi ý từ khóa phổ biến và lịch sử.",
+    flow:"1. Nhấn thanh tìm kiếm → 2. Xem gợi ý/lịch sử → 3. Nhập từ khóa → 4. Kết quả đa loại",
+    alt:"Không có kết quả → Thông báo + gợi ý; <2 ký tự → Chưa tìm",
+    note:"Mở rộng phạm vi: DV + tasker + gói + FAQ; thêm gợi ý từ khóa" },
+  { id:"UC-KH-05", title:"Xem Tasker gần bạn", screen:"M04 · index.php", status:"ok", tags:["MVP"],
+    desc:"Thuật toán ưu tiên: cùng block → cùng tòa → bán kính 2km.",
+    flow:"1. Cuộn xuống phần Gần bạn → 2. Ưu tiên cùng block/tòa → 3. Xem tất cả",
+    alt:"Không có Tasker 2km → Mở rộng 5km tự động",
+    note:"Thuật toán: cùng block → cùng tòa → bán kính 2km" },
+  { id:"UC-KH-06", title:"Xem gói gia đình 30 ngày", screen:"M04 → M-pkg", status:"warn", tags:["Trung bình"],
+    desc:"Màn hình M-pkg riêng với giá, quyền lợi, FAQ, T&C. Phụ thuộc UC-KH-22.",
+    flow:"1. Banner → 2. Tìm hiểu → 3. M-pkg: giá/quyền lợi/T&C → 4. Đăng ký (→UC-KH-22)",
+    alt:"Đã đăng ký → Hiển thị ngày hết hạn",
+    note:"Tạo màn hình M-pkg với đầy đủ giá/quyền lợi/FAQ/T&C" },
+  { id:"UC-KH-07", title:"Đặt dịch vụ dọn nhà", screen:"M05 · house-cleaning.php", status:"ok", tags:["Core","Cao"],
+    desc:"Đặt trước tối thiểu 2h. Cảnh báo trùng đơn. Phụ phí cuối tuần/lễ.",
+    flow:"1. Chọn DV → 2. Loại → 3. Ngày & giờ (≥2h) → 4. Số giờ → 5. Ghi chú → 6. Thanh toán",
+    alt:"Không đủ ví → Nạp tiền; <2h → Lỗi; Trùng đơn → Cảnh báo",
+    note:"Đặt trước ≥2h; cảnh báo trùng đơn; phụ phí cuối tuần/lễ" },
+  { id:"UC-KH-08", title:"Đặt dịch vụ trông trẻ", screen:"M06 · babysitting.php", status:"ok", tags:["Core","Rủi ro cao"],
+    desc:"Chỉ Tasker có chứng chỉ. Khai báo dị ứng/lưu ý. Giá: số giờ × 100k.",
+    flow:"1. Chọn DV → 2. Số trẻ/tuổi → 3. Lưu ý đặc biệt → 4. Ngày giờ → 5. Tìm Tasker có chứng chỉ",
+    alt:"Không có Tasker chứng chỉ → Gợi ý khung giờ khác",
+    note:"Tasker phải có chứng chỉ; khai báo dị ứng; bảo hiểm trẻ em (cân nhắc)" },
+  { id:"UC-KH-09", title:"Đặt dịch vụ mua hộ WinMart", screen:"M07 · shopping.php", status:"warn", tags:["Core","Trung bình"],
+    desc:"Phí 50k. Vượt ngân sách → Tasker chụp hóa đơn & chat xác nhận trước khi mua.",
+    flow:"1. Chọn DV → 2. Cửa hàng → 3. DS sản phẩm → 4. Địa chỉ giao → 5. Ngân sách → 6. Đặt",
+    alt:"Vượt ngân sách → Chat xác nhận trước khi mua; Thiếu → Hoàn chênh lệch",
+    note:"Tasker chụp hóa đơn; vượt ngân sách phải xác nhận qua chat" },
+  { id:"UC-KH-10", title:"Theo dõi tiến trình đơn", screen:"M08 · tracking.php", status:"ok", tags:["Core","Cao"],
+    desc:"5 bước theo thời gian thực. Push + polling 30s. SLA cập nhật <10s.",
+    flow:"1. Hoạt động → 2. Theo dõi → 3. Xem 5 bước → 4. Thông tin Tasker → 5. Gọi/Chat/Hủy",
+    alt:"Mất kết nối → Polling 30s fallback",
+    note:"Push notification + polling 30s fallback; SLA <10s" },
+  { id:"UC-KH-11", title:"Chat với Tasker", screen:"M10 · chat.php", status:"warn", tags:["Core","Trung bình"],
+    desc:"Chat 2 chiều. Lọc bad-words. Lưu 90 ngày. Cấm chia sẻ SĐT cá nhân.",
+    flow:"1. Mở Chat → 2. Xem lịch sử → 3. Nhập & Gửi TN/ảnh → 4. Nhận phản hồi",
+    alt:"Bad-words → Chặn; Tasker offline → Thông báo offline",
+    note:"Lọc bad-words; lưu 90 ngày; cấm chia sẻ SĐT ngoài hệ thống" },
+  { id:"UC-KH-12", title:"Gọi điện cho Tasker", screen:"M08, M10", status:"warn", tags:["Bảo mật","Trung bình"],
+    desc:"Gọi qua số ảo (masked phone). Active ±30 phút khung giờ đơn. Không lộ SĐT thật.",
+    flow:"1. Nhấn icon phone → 2. Kết nối số ảo → 3. Gọi mà không lộ SĐT thật",
+    alt:"Tasker không nghe → Gợi ý chat; Ngoài khung giờ → Số ảo không hoạt động",
+    note:"Số ảo qua Stringee/CMC; active ±30 phút đơn" },
+  { id:"UC-KH-13", title:"Hủy đơn", screen:"M08, M09", status:"warn", tags:["Tài chính","Cao"],
+    desc:"Phí 3 mốc: trước khớp (free), sau khớp-trước xuất phát (10%), sau xuất phát (30-50%).",
+    flow:"1. Nhấn Hủy → 2. Hiển thị phí → 3. Xác nhận → 4. Đã hủy + hoàn tiền",
+    alt:"Đơn đang làm → Không thể hủy; Lỗi Tasker → Admin xét miễn phí",
+    note:"3 mốc phí: free / 10% / 30-50%" },
+  { id:"UC-KH-14", title:"Xem lịch sử hoạt động", screen:"M09 · activity.php", status:"ok", tags:["MVP","Cao"],
+    desc:"3 tab + bộ lọc theo DV/ngày/Tasker. Export CSV.",
+    flow:"1. Tab Hoạt động → 2. 3 tab DV → 3. Filter → 4. Chi tiết đơn → 5. Export CSV",
+    alt:"Chưa có đơn → Empty-state",
+    note:"Filter: loại DV, từ-đến ngày, Tasker; export CSV" },
+  { id:"UC-KH-15", title:"Xem thông báo", screen:"M11 · notifications.php", status:"ok", tags:["MVP","Cao"],
+    desc:"4 nhóm: Đơn/Ví/Hệ thống/KM. Có thể tắt từng nhóm trong Cài đặt.",
+    flow:"1. Tab Thông báo → 2. Xem 4 nhóm → 3. Nhấn TBC → 4. Đánh dấu đã đọc",
+    alt:"Chưa có → Empty-state",
+    note:"4 nhóm phân loại; tắt từng nhóm trong Cài đặt" },
+  { id:"UC-KH-16", title:"Đánh giá Tasker", screen:"M12 · review.php", status:"ok", tags:["Core","Cao"],
+    desc:"Auto-nhắc sau 24h. Đánh giá ≤2★ → tự động tạo ticket Admin.",
+    flow:"1. Thông báo nhắc → 2. Chọn sao → 3. Tags → 4. Nhận xét → 5. Gửi",
+    alt:"Bỏ qua → Auto-nhắc 24h; ≤2★ → Tạo ticket Admin",
+    note:"Auto-prompt sau 24h; ≤2★ tự động tạo ticket hỗ trợ" },
+  { id:"UC-KH-17", title:"Xem ví & lịch sử giao dịch", screen:"M13 · wallet.php", status:"ok", tags:["Tài chính","Cao"],
+    desc:"Filter theo loại/ngày. Export PDF/CSV.",
+    flow:"1. Cá nhân → Ví → 2. Xem số dư → 3. Filter → 4. Lịch sử → 5. Export",
+    alt:"Số dư = 0 → Gợi ý nạp",
+    note:"Filter: loại giao dịch, khoảng thời gian; export PDF/CSV" },
+  { id:"UC-KH-18", title:"Nạp tiền vào ví", screen:"M14 · topup-qr.php", status:"warn", tags:["Tài chính","Cao"],
+    desc:"Webhook VietQR tự động. Reference code NAPVI+SĐT. Fallback Admin thủ công.",
+    flow:"1. Nạp → 2. Chọn số tiền → 3. QR/MoMo/VNPay → 4. CK → 5. Webhook tự cộng tiền",
+    alt:"Webhook lỗi → Admin duyệt thủ công",
+    note:"Webhook VietQR tự động; không cần bấm Tôi đã chuyển khoản" },
+  { id:"UC-KH-19", title:"Rút tiền từ ví ⚠ Đã viết lại", screen:"M13 · wallet.php", status:"err", tags:["Tài chính","Cao","KYC"],
+    desc:"Yêu cầu KYC mức 2. Hạn mức: 50k–50tr/ngày. Phí 5k/lần. Xử lý T+1.",
+    flow:"1. Rút → 2. Kiểm tra KYC → 3. Nhập số tiền (50k-50tr) → 4. Phí 5k → 5. OTP → 6. T+1",
+    alt:"Chưa KYC → Hướng dẫn KYC; Vượt hạn mức → Từ chối",
+    note:"⚠ Đã viết lại đầy đủ: KYC mức 2; hạn mức 50k-50tr/ngày; phí 5k; T+1" },
+  { id:"UC-KH-20", title:"Xem & quản lý thông tin cá nhân", screen:"M15 · profile.php", status:"ok", tags:["MVP"],
+    desc:"Đổi SĐT: OTP cả số cũ và mới. Đổi địa chỉ căn hộ: xác thực BQL.",
+    flow:"1. Cá nhân → Thông tin → 2. Chỉnh sửa → 3. SĐT: OTP kép → 4. Địa chỉ: BQL xác thực",
+    alt:"OTP không khớp → Từ chối; BQL không xác nhận → Không đổi",
+    note:"Đổi SĐT OTP cả 2 số; đổi địa chỉ xác thực BQL" },
+  { id:"UC-KH-21", title:"Quản lý ví & phương thức TT", screen:"M15 · profile.php", status:"warn", tags:["Tài chính","Bảo mật"],
+    desc:"Token hóa qua cổng TT. OTP khi thêm phương thức. Không xóa PM đang dùng.",
+    flow:"1. Ví & PTTT → 2. Xem danh sách → 3. Thêm: OTP + token hóa → 4. Xóa: xác nhận",
+    alt:"OTP sai → Không thêm; PM đang dùng trong đơn → Không xóa",
+    note:"Bắt buộc token hóa; OTP khi thêm PM mới" },
+  { id:"UC-KH-22", title:"Đăng ký gói gia đình", screen:"M15 · profile.php", status:"warn", tags:["Trung bình"],
+    desc:"Phụ thuộc UC-KH-06. Gia hạn tự động. Nhắc 3 ngày trước khi hết hạn.",
+    flow:"1. Gói gia đình → 2. Xem chi tiết → 3. Đăng ký → 4. Thanh toán → 5. Kích hoạt + gia hạn tự động",
+    alt:"Ví không đủ → Nạp tiền; Không gia hạn → Hết hạn tự nhiên",
+    note:"Gia hạn tự động; nhắc 3 ngày trước hết hạn; phụ thuộc UC-KH-06" },
+  { id:"UC-KH-23", title:"Liên hệ CSKH 24/7", screen:"M15 · profile.php", status:"warn", tags:["Hỗ trợ","Cao"],
+    desc:"SLA: ≤5 phút giờ HC, ≤30 phút ngoài giờ. 3 mức ưu tiên.",
+    flow:"1. CSKH → 2. Chọn ưu tiên → 3. Chọn hình thức → 4. Gửi yêu cầu",
+    alt:"Ngoài giờ → Chatbot; Khẩn cấp → Ưu tiên agent",
+    note:"SLA: ≤5 phút giờ HC; ≤30 phút ngoài giờ; 3 mức ưu tiên" },
+  { id:"UC-KH-24", title:"Cài đặt tài khoản ⚠ Đã bổ sung", screen:"M15 · profile.php", status:"err", tags:["Bảo mật","GDPR"],
+    desc:"5 mục: Thông báo/Ngôn ngữ/Bảo mật/Quyền riêng tư/Xóa TK (GDPR NĐ 13/2023).",
+    flow:"1. Cài đặt → 2. (1)Thông báo (2)Ngôn ngữ (3)Bảo mật (4)Riêng tư (5)Xóa TK",
+    alt:"Bật 2FA → OTP; Xóa TK → 2 bước xác nhận; Đăng xuất tất cả → Xác nhận MK",
+    note:"⚠ Đã bổ sung đầy đủ: thông báo/ngôn ngữ/bảo mật/riêng tư/xóa TK (GDPR)" },
+  { id:"UC-KH-25", title:"Đăng xuất", screen:"M15 · profile.php", status:"ok", tags:["MVP"],
+    desc:"Xóa phiên thiết bị hiện tại. Đăng xuất tất cả thiết bị trong Cài đặt.",
+    flow:"1. Đăng xuất → 2. Xác nhận → 3. Xóa phiên → 4. Về M01",
+    alt:"Hủy → Ở lại; Đăng xuất tất cả → Vào Cài đặt > Bảo mật",
+    note:"Bổ sung Đăng xuất tất cả thiết bị trong UC-KH-24" },
+];
+
+const TASKER_UCS = [
+  { id:"UC-T-01", title:"Đăng nhập với vai trò Tasker", screen:"M01 · login.php", status:"ok", tags:["Bảo mật","2FA"],
+    desc:"Tab Tasker. 2FA bắt buộc (vì có thu nhập). Khóa 15 phút sau 5 lần sai.",
+    flow:"1. Tab Tasker → 2. SĐT + MK → 3. 2FA → 4. Đăng nhập → M16",
+    alt:"Sai 5 lần → Khóa; Chưa duyệt → Thông báo chờ",
+    note:"2FA bắt buộc với Tasker; cùng chính sách bảo mật với KH" },
+  { id:"UC-T-02", title:"Đăng ký trở thành Tasker", screen:"M02 · tasker-register.php", status:"warn", tags:["KYC","Cao"],
+    desc:"eKYC liveness check (FPT.AI/VNPT). Lý lịch tư pháp số 1 bắt buộc với trông trẻ.",
+    flow:"1. Đăng ký → 2. Họ tên + CCCD → 3. Chọn DV → 4. eKYC liveness → 5. LLTPháp (trông trẻ) → 6. Gửi",
+    alt:"eKYC lỗi → Thử lại; Thiếu LLTP → Không duyệt trông trẻ",
+    note:"eKYC liveness check; LLTP số 1 bắt buộc với trông trẻ" },
+  { id:"UC-T-03", title:"Quên mật khẩu / OTP", screen:"M03 · forgot-password.php", status:"ok", tags:["Bảo mật"],
+    desc:"Tương tự UC-KH-02. OTP 5 phút, max 3 lần/30 phút.",
+    flow:"1. Quên MK? → 2. SĐT → 3. OTP SMS (5 phút) → 4. Điền → 5. MK mới",
+    alt:"OTP hết → Gửi lại; >3 lần/30 phút → Chặn",
+    note:"Cân nhắc gộp với UC-KH-02 thành UC chung" },
+  { id:"UC-T-04", title:"Bật/tắt Online/Offline", screen:"M16 · tasker-app.php", status:"ok", tags:["Core","Cao"],
+    desc:"Auto-offline sau 5 phút mất heartbeat. Thông báo khi bị auto-offline.",
+    flow:"1. Nhấn nút trạng thái → 2. Cập nhật tức thì → 3. Heartbeat 30s → 4. Auto-offline nếu mất 5 phút",
+    alt:"Mạng chập chờn → Không cập nhật; Auto-offline sau 5 phút",
+    note:"Auto-offline sau 5 phút không heartbeat; chống zombie online" },
+  { id:"UC-T-05", title:"Xem đơn mới", screen:"M16 · tasker-app.php", status:"warn", tags:["Thuật toán","Cao"],
+    desc:"Phân phối: 40% khoảng cách + 30% rating + 20% tỷ lệ nhận + 10% load. Hiển thị 60 giây.",
+    flow:"1. Online → 2. Push thông báo đơn mới → 3. Xem DV/thu nhập/khoảng cách → 4. Quyết định 60s",
+    alt:"Hết 60s → Tự chuyển Tasker khác",
+    note:"Thuật toán 40/30/20/10; timeout 60s" },
+  { id:"UC-T-06", title:"Nhận đơn", screen:"M16 · tasker-app.php", status:"ok", tags:["Core","Cao"],
+    desc:"Nhận trong 60 giây. Hệ thống thông báo khách hàng ngay.",
+    flow:"1. Xem đơn → 2. Nhấn Nhận đơn (<60s) → 3. Đơn → Đang TH → 4. Thông báo KH",
+    alt:"Hết 60s → Bỏ qua tự động; Tasker khác nhận trước → Thông báo",
+    note:"Timeout 60s tự động bỏ qua" },
+  { id:"UC-T-07", title:"Bỏ qua đơn", screen:"M16 · tasker-app.php", status:"warn", tags:["Vận hành","Trung bình"],
+    desc:">30% bỏ qua/7 ngày → giảm 50% đơn. >50% → tạm khóa nhận đơn.",
+    flow:"1. Nhấn Bỏ qua → 2. Đơn chuyển Tasker khác → 3. Cập nhật tỷ lệ bỏ qua",
+    alt:">30%/7 ngày → Cảnh báo + giảm 50% đơn; >50% → Tạm khóa",
+    note:"Ngưỡng cụ thể: >30% giảm 50% đơn; >50% tạm khóa" },
+  { id:"UC-T-08", title:"Xem đơn đang thực hiện", screen:"M16 · tasker-app.php", status:"ok", tags:["Core","Cao"],
+    desc:"Bộ đếm xuôi từ thời điểm Tasker check-in tại nhà cư dân.",
+    flow:"1. Nhận đơn → 2. Xem DV/KH/địa chỉ → 3. Check-in → 4. Đếm xuôi bắt đầu",
+    alt:"Cần liên hệ → Chat UC-T-11",
+    note:"Đếm xuôi từ check-in (không phải giờ đặt đơn)" },
+  { id:"UC-T-09", title:"Hoàn thành đơn", screen:"M16 · tasker-app.php", status:"warn", tags:["Core","Cao"],
+    desc:"KH xác nhận trong 30 phút. Auto-approve nếu im lặng.",
+    flow:"1. Bấm Hoàn thành → 2. KH nhận TBC → 3a. KH xác nhận / 3b. Im lặng 30' → Auto → 4. Thu nhập ghi nhận",
+    alt:"KH phản đối → Ticket khiếu nại Admin",
+    note:"Xác nhận 2 chiều; auto-approve sau 30 phút im lặng" },
+  { id:"UC-T-10", title:"Xem lịch sử đơn đã làm", screen:"M16 (tab Lịch sử)", status:"warn", tags:["Thống kê","Trung bình"],
+    desc:"Filter theo tháng/DV/đánh giá. Xem đánh giá khách trong chi tiết.",
+    flow:"1. Tab Lịch sử → 2. Filter → 3. Xem danh sách → 4. Chi tiết + đánh giá khách",
+    alt:"Chưa có đơn → Empty-state",
+    note:"Filter tháng/DV/đánh giá; chi tiết xem đánh giá khách" },
+  { id:"UC-T-11", title:"Chat với khách hàng", screen:"M10 · chat.php", status:"ok", tags:["Core","Trung bình"],
+    desc:"Chat 2 chiều. Thông báo khi KH offline. Lưu 90 ngày.",
+    flow:"1. Mở chat → 2. Xem lịch sử → 3. Gửi TN/ảnh → 4. Nhận phản hồi",
+    alt:"KH offline → Hiển thị trạng thái offline",
+    note:"Hiển thị offline; lưu 90 ngày; gộp logic 2 chiều với UC-KH-11" },
+  { id:"UC-T-12", title:"Xem thu nhập & thống kê", screen:"M17 · tasker-stats.php", status:"ok", tags:["Tài chính","Cao"],
+    desc:"4 KPI. Phí 15% trên giá trị thực thu (sau giảm giá). Breakdown khi click.",
+    flow:"1. Tab Thu nhập → 2. Chọn khoảng TG → 3. Tổng thu + biểu đồ → 4. 4 KPI → 5. Click → Breakdown",
+    alt:"Chưa có → Tất cả = 0",
+    note:"Phí 15% tính trên giá thực thu; breakdown chi tiết khi click" },
+  { id:"UC-T-13", title:"Yêu cầu rút tiền", screen:"M17 · tasker-stats.php", status:"warn", tags:["Tài chính","TNCN"],
+    desc:"100k–100tr/lần. Max 200tr/tháng. T+1. Khấu trừ TNCN 10% khi >2tr/lần.",
+    flow:"1. Yêu cầu rút → 2. Nhập số tiền → 3. Tính TNCN 10% nếu >2tr → 4. Xác nhận → 5. Admin duyệt T+1",
+    alt:"Số dư = 0 → Vô hiệu; Vượt hạn mức tháng → Từ chối",
+    note:"T+1; hạn mức 100k-100tr/lần, max 200tr/tháng; TNCN 10% khi >2tr" },
+  { id:"UC-T-14", title:"Xem & chỉnh sửa thông tin cá nhân", screen:"M16 (tab Cá nhân)", status:"warn", tags:["Hồ sơ"],
+    desc:"Chỉnh sửa: avatar, mô tả, DV (cần Admin duyệt), khu vực. KYC info chỉ đọc.",
+    flow:"1. Tab Cá nhân → 2. Xem hồ sơ → 3. Chỉnh sửa avatar/mô tả/khu vực → 4. Thêm DV → Admin duyệt",
+    alt:"Thêm DV → Chờ duyệt; KYC info → Read-only",
+    note:"DV mới cần Admin duyệt; KYC info read-only" },
+];
+
+const ADMIN_UCS = [
+  { id:"UC-AD-01", title:"Xem bảng điều khiển tổng quan", screen:"M18 · admin.php", status:"ok", tags:["Core","Cao"],
+    desc:"4 KPI + sparkline 7 ngày. KPI mở rộng: GMV, retention, CAC.",
+    flow:"1. Đăng nhập → 2. Dashboard tự động → 3. 4 KPI + sparkline → 4. KPI mở rộng → 5. Danh sách đơn",
+    alt:"Doanh thu giảm đột ngột → Cảnh báo đỏ",
+    note:"Bổ sung sparkline 7 ngày; KPI mở rộng: GMV, retention, CAC" },
+  { id:"UC-AD-02", title:"Xem & theo dõi danh sách đơn", screen:"M18 (tab Đơn)", status:"warn", tags:["Vận hành","Cao"],
+    desc:"Filter đa chiều. Search theo mã/SĐT. Pagination 50/trang. Export Excel.",
+    flow:"1. Tab Đơn → 2. Filter/Search → 3. Danh sách phân trang (50) → 4. Chi tiết → 5. Export Excel",
+    alt:"Không có đơn → Rỗng",
+    note:"Filter đa chiều; search mã/SĐT; pagination; export Excel" },
+  { id:"UC-AD-03", title:"Can thiệp đơn cần xử lý", screen:"M18 · admin.php", status:"warn", tags:["Vận hành","Cao"],
+    desc:"Push/email cảnh báo chủ động. Escalation: 5 → 10 → 15 phút.",
+    flow:"1. Nhận push cảnh báo → 2. Xem đơn viền cam → 3. Gán Tasker thủ công → 4. Liên hệ KH nếu cần",
+    alt:"5p → mở rộng bán kính; 10p → tăng giá +10%; 15p → cảnh báo Admin",
+    note:"Push/email cảnh báo chủ động; quy trình escalation 3 bước" },
+  { id:"UC-AD-04", title:"Xem & quản lý Tasker ⚠ Đã bổ sung", screen:"M18 (tab Tasker)", status:"err", tags:["KYC","Cao"],
+    desc:"Tab Chờ duyệt với checklist KYC. Approve/Reject/Request more. Lịch sử trạng thái.",
+    flow:"1. Tab Tasker → 2. Tab Chờ duyệt → 3. Checklist KYC → 4. Approve/Reject/Request → 5. Hoạt động: filter/suspend/blacklist",
+    alt:"Thiếu hồ sơ → Reject yêu cầu bổ sung; Vi phạm → Suspend tức thì",
+    note:"⚠ Đã viết lại: tab Chờ duyệt, checklist KYC, flow duyệt, lịch sử thay đổi" },
+  { id:"UC-AD-05", title:"Xem & quản lý Cư dân", screen:"M18 (tab Cư dân)", status:"warn", tags:["Quản lý","Trung bình"],
+    desc:"Tìm nhanh theo tên/SĐT/căn hộ. Khóa/Mở/Tặng credit/Gộp TK trùng.",
+    flow:"1. Tab Cư dân → 2. Tìm kiếm → 3. Xem chi tiết (lịch sử, LTV, vi phạm) → 4. Actions",
+    alt:"Vi phạm → Khóa; Trùng SĐT → Gộp TK",
+    note:"Bổ sung: khóa/mở, tặng credit, xem LTV, gộp TK trùng" },
+  { id:"UC-AD-06", title:"Quản lý ví & tài chính (4 UC con)", screen:"M18 (tab Ví)", status:"warn", tags:["Tài chính","Cao"],
+    desc:"4 UC con mỗi UC có audit log: duyệt rút Tasker / đối soát NH / hoàn tiền KH / báo cáo.",
+    flow:"(a) Duyệt rút Tasker → (b) Đối soát NH → (c) Hoàn tiền KH → (d) Báo cáo tài chính",
+    alt:"GD bất thường → Khóa điều tra; Webhook lỗi → Đối soát thủ công",
+    note:"Tách 4 UC con; mỗi UC có audit log đầy đủ" },
+  { id:"UC-AD-07", title:"Xem & quản lý Inbox", screen:"M18 (tab Inbox)", status:"warn", tags:["Hỗ trợ","Cao"],
+    desc:"Assign ticket cho Admin. SLA timer. Tag: kỹ thuật/tài chính/khiếu nại.",
+    flow:"1. Tab Inbox → 2. Xem ticket → 3. Assign → 4. Tag → 5. Phản hồi → 6. Đóng ticket",
+    alt:"SLA sắp hết → Cảnh báo đỏ",
+    note:"Assign ticket; SLA timer; tag phân loại; status mở/đang xử lý/đóng" },
+  { id:"UC-AD-08", title:"Xử lý khiếu nại", screen:"M18 · admin.php", status:"warn", tags:["Khiếu nại","Cao"],
+    desc:"3 mức: Mức 1 CSKH <24h (<500k) → Mức 2 Manager <48h (<5tr) → Mức 3 BOD.",
+    flow:"1. Nhận cảnh báo → 2. Phân mức 1/2/3 → 3. Điều tra → 4. Quyết định → 5. Thực hiện → 6. Đóng",
+    alt:"Tái phạm → Blacklist Tasker; Cần thêm TT → Liên hệ cả 2 bên",
+    note:"3 cấp độ xử lý: CSKH/Manager/BOD với SLA riêng" },
+  { id:"UC-AD-09", title:"Theo dõi doanh thu & hoa hồng", screen:"M18 · admin.php", status:"warn", tags:["Báo cáo","Cao"],
+    desc:"Dashboard Reports riêng. DT theo DV, top Tasker, P&L. Export PDF/Excel + schedule email.",
+    flow:"1. Tab Reports → 2. Chọn khoảng TG → 3. DT theo DV → 4. Top Tasker → 5. P&L → 6. Export/Schedule",
+    alt:"Doanh thu giảm đột ngột → Kiểm tra hệ thống",
+    note:"Dashboard Reports riêng; DT theo DV, top Tasker, P&L; export + schedule email" },
+];
+
+// ==================== RENDER ====================
+
+function renderGrid(data, containerId, color) {
+  const container = document.getElementById(containerId);
+  container.innerHTML = '';
+  data.forEach((uc, idx) => {
+    const card = document.createElement('div');
+    card.className = 'uc-card';
+    card.style.setProperty('--accent', color);
+    const statusClass = uc.status === 'ok' ? 'status-ok' : uc.status === 'warn' ? 'status-warn' : 'status-err';
+    const statusText = uc.status === 'ok' ? '✓ Đầy đủ' : uc.status === 'warn' ? '⚠ Đã bổ sung' : '✗ Đã viết lại';
+    const tagsHtml = uc.tags.map(t => `<span class="tag ${statusClass}">${t}</span>`).join('');
+    card.innerHTML = `
+      <div class="uc-card-header" onclick="toggleCard(this.parentElement)">
+        <div>
+          <div class="uc-badge">${uc.id}</div>
+        </div>
+        <div style="flex:1">
+          <div class="uc-title">${uc.title}</div>
+          <div class="uc-screen">${uc.screen}</div>
+        </div>
+        <span class="tag ${statusClass}" style="flex-shrink:0;font-size:10px">${statusText}</span>
+      </div>
+      <div class="uc-tags">${tagsHtml}</div>
+      <div class="expand-hint">Nhấn để xem chi tiết</div>
+      <div class="uc-card-body">
+        <div class="field-group">
+          <div class="field-label">Mô tả</div>
+          <div class="field-value">${uc.desc}</div>
+        </div>
+        <div class="field-group">
+          <div class="field-label">Luồng chính</div>
+          <div class="field-value">${uc.flow}</div>
+        </div>
+        <div class="field-group">
+          <div class="field-label">Luồng thay thế / ngoại lệ</div>
+          <div class="field-value">${uc.alt}</div>
+        </div>
+        <div class="note-box"><strong>📋 Review note:</strong> ${uc.note}</div>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+function toggleCard(card) {
+  card.classList.toggle('expanded');
+  const hint = card.querySelector('.expand-hint');
+  if (card.classList.contains('expanded')) {
+    hint.style.display = 'none';
+  } else {
+    hint.style.display = '';
+  }
+}
+
+function showSection(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.className = 'tab-btn');
+  document.getElementById('sect-' + id).classList.add('active');
+  if (id === 'kh') btn.className = 'tab-btn active-kh';
+  else if (id === 'tasker') btn.className = 'tab-btn active-tasker';
+  else btn.className = 'tab-btn active-admin';
+}
+
+// Init
+renderGrid(KH_UCS, 'kh-grid', 'var(--kh-primary)');
+renderGrid(TASKER_UCS, 'tasker-grid', 'var(--tasker-primary)');
+renderGrid(ADMIN_UCS, 'admin-grid', 'var(--admin-primary)');
+</script>
+</body>
+</html>

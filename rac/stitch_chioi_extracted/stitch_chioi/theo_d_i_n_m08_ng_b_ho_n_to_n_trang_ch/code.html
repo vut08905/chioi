@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+
+<html lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#00b1da",
+                        "on-primary-container": "#642600",
+                        "primary-fixed-dim": "#ffb693",
+                        "inverse-primary": "#ffb693",
+                        "on-secondary-fixed-variant": "#6d391d",
+                        "outline": "#8b7266",
+                        "surface-container-low": "#fff1eb",
+                        "primary-fixed": "#ffdbcc",
+                        "on-secondary-fixed": "#351000",
+                        "surface": "#fff8f6",
+                        "tertiary-fixed-dim": "#52d5ff",
+                        "surface-container-high": "#fae4da",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed-variant": "#004d61",
+                        "on-error-container": "#93000a",
+                        "tertiary": "#006780",
+                        "secondary-fixed-dim": "#ffb693",
+                        "on-tertiary-fixed": "#001f28",
+                        "surface-tint": "#a04100",
+                        "on-background": "#241914",
+                        "on-tertiary": "#ffffff",
+                        "outline-variant": "#dfc0b3",
+                        "primary": "#a04100",
+                        "on-surface": "#241914",
+                        "on-error": "#ffffff",
+                        "surface-container-highest": "#f4ded5",
+                        "on-primary-fixed-variant": "#7a3000",
+                        "surface-variant": "#f4ded5",
+                        "surface-bright": "#fff8f6",
+                        "inverse-surface": "#3b2e28",
+                        "surface-container": "#ffeae1",
+                        "secondary-container": "#feb28e",
+                        "tertiary-fixed": "#b8eaff",
+                        "primary-container": "#ff7e36",
+                        "secondary-fixed": "#ffdbcc",
+                        "on-secondary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-primary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "secondary": "#895032",
+                        "on-primary-fixed": "#351000",
+                        "background": "#fff8f6",
+                        "inverse-on-surface": "#ffede6",
+                        "on-secondary-container": "#794226",
+                        "on-tertiary-container": "#003f4f",
+                        "surface-dim": "#ecd6cc",
+                        "on-surface-variant": "#584238"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "base": "4px",
+                        "md": "16px",
+                        "xs": "4px",
+                        "stack-gap": "12px",
+                        "xl": "32px",
+                        "sm": "8px",
+                        "container-padding": "16px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Be Vietnam Pro"],
+                        "body-sm": ["Be Vietnam Pro"],
+                        "body-lg": ["Be Vietnam Pro"],
+                        "display-lg": ["Be Vietnam Pro"],
+                        "title-sm": ["Be Vietnam Pro"],
+                        "headline-md": ["Be Vietnam Pro"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "title-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #fcf9f8;
+            font-family: 'Be Vietnam Pro', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .step-line::after {
+            content: '';
+            position: absolute;
+            left: 11px;
+            top: 24px;
+            width: 2px;
+            height: calc(100% - 16px);
+            background-color: #dfc0b3;
+        }
+        .step-line-completed::after {
+            background-color: #ff7e36;
+        }
+        .pulse-orange {
+            box-shadow: 0 0 0 0 rgba(255, 126, 54, 0.7);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 126, 54, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(255, 126, 54, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 126, 54, 0); }
+        }
+        .top-gradient-bg {
+            background: linear-gradient(180deg, #a04100 0%, #ff7e36 40%, rgba(255, 126, 54, 0) 100%);
+            height: 300px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body class="min-h-screen text-on-background relative overflow-x-hidden">
+<!-- Background Gradient -->
+<div class="top-gradient-bg"></div>
+<!-- TopAppBar -->
+<header class="sticky top-0 z-40 flex justify-between items-center w-full px-container-padding h-16 bg-transparent">
+<button class="flex items-center justify-center w-10 h-10 text-on-primary hover:bg-white/10 rounded-full active:scale-95 transition-all duration-200">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="text-headline-md font-headline-md font-extrabold text-on-primary">Theo dõi đơn</h1>
+<button class="flex items-center justify-center w-10 h-10 text-on-primary hover:bg-white/10 rounded-full active:scale-95 transition-all duration-200">
+<span class="material-symbols-outlined" data-icon="chat_bubble">chat_bubble</span>
+</button>
+</header>
+<main class="relative z-10 px-md pt-4 pb-32 space-y-stack-gap">
+<!-- Section: Tasker Card -->
+<section class="bg-surface-container-lowest rounded-[24px] p-md flex items-center gap-md shadow-[0px_4px_20px_0px_rgba(160,65,0,0.08)] border border-surface-container-low">
+<div class="relative w-16 h-16 rounded-full overflow-hidden border-2 border-primary-container shrink-0">
+<img alt="Nguyễn Lan" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZVSugv299UqahXmjAPFAeviYxHR9yZsRhqGPurWxflfnS6a8k03SsM5HUwAhydanxXz8XpstBesIZq35k6LqVmDNqRa336tBTQs3FV7h1zCSBcvfmBH9WcbiJrpilAAMFWXwkfxttryr-tw3b7S1vvUYRqDBCDgoyBx0ZoP20oN7Jp8kaoaoiNmFeNeoo_zfBSwe2Sde9WvngDXtP-oXC4e6YKlEoLkK6ak_t4aXk_sLKDDvfKdho8h7JDnXgnXRGSoTuktsg8NQ"/>
+</div>
+<div class="flex-1">
+<h3 class="text-title-sm font-title-sm text-on-background">Nguyễn Lan</h3>
+<div class="flex items-center gap-xs mt-1">
+<span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant">4.8</span>
+<span class="mx-1 text-outline-variant">•</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant">Dọn dẹp nhà</span>
+</div>
+</div>
+<div class="flex gap-sm">
+<button class="bg-surface-container-high p-3 rounded-full text-primary hover:bg-primary-container/20 transition-colors">
+<span class="material-symbols-outlined" data-icon="call">call</span>
+</button>
+</div>
+</section>
+<!-- Section: Order Stepper -->
+<section class="bg-surface-container-lowest rounded-[24px] p-md shadow-[0px_4px_20px_0px_rgba(0,0,0,0.04)] border border-surface-container-low">
+<h4 class="text-label-caps font-label-caps text-outline mb-md">TIẾN TRÌNH THỰC HIỆN</h4>
+<div class="space-y-0 relative">
+<!-- Step 1: Completed -->
+<div class="flex gap-md min-h-[64px] relative step-line step-line-completed">
+<div class="z-10 bg-primary text-on-primary w-6 h-6 rounded-full flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[16px] font-bold" data-icon="check">check</span>
+</div>
+<div class="pb-lg flex-1">
+<div class="flex justify-between items-start">
+<span class="text-body-lg font-semibold text-on-background">Đã đặt đơn</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant">10:00</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Đơn hàng của bạn đã được tiếp nhận</p>
+</div>
+</div>
+<!-- Step 2: Completed -->
+<div class="flex gap-md min-h-[64px] relative step-line step-line-completed">
+<div class="z-10 bg-primary text-on-primary w-6 h-6 rounded-full flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[16px] font-bold" data-icon="check">check</span>
+</div>
+<div class="pb-lg flex-1">
+<div class="flex justify-between items-start">
+<span class="text-body-lg font-semibold text-on-background">Đã tìm Tasker</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant">10:02</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Tasker Nguyễn Lan đã nhận việc</p>
+</div>
+</div>
+<!-- Step 3: Completed -->
+<div class="flex gap-md min-h-[64px] relative step-line step-line-completed">
+<div class="z-10 bg-primary text-on-primary w-6 h-6 rounded-full flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[16px] font-bold" data-icon="check">check</span>
+</div>
+<div class="pb-lg flex-1">
+<div class="flex justify-between items-start">
+<span class="text-body-lg font-semibold text-on-background">Tasker đang đến</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant">10:15</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Đang di chuyển tới địa chỉ của bạn</p>
+</div>
+</div>
+<!-- Step 4: Active -->
+<div class="flex gap-md min-h-[64px] relative step-line">
+<div class="z-10 bg-primary text-on-primary w-6 h-6 rounded-full flex items-center justify-center shrink-0 pulse-orange">
+<div class="w-2 h-2 bg-on-primary rounded-full"></div>
+</div>
+<div class="pb-lg flex-1">
+<div class="flex justify-between items-start">
+<span class="text-body-lg font-bold text-primary">Đang thực hiện</span>
+<span class="text-body-sm font-bold text-primary">Hiện tại</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Tasker đang tiến hành dọn dẹp</p>
+</div>
+</div>
+<!-- Step 5: Upcoming -->
+<div class="flex gap-md">
+<div class="z-10 bg-outline-variant text-white w-6 h-6 rounded-full flex items-center justify-center shrink-0">
+<div class="w-2 h-2 bg-white rounded-full"></div>
+</div>
+<div class="flex-1">
+<span class="text-body-lg font-semibold text-outline">Hoàn thành</span>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Dịch vụ kết thúc</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Section: Order Details -->
+<section class="bg-surface-container-lowest rounded-[24px] p-md shadow-[0px_4px_20px_0px_rgba(0,0,0,0.04)] border border-surface-container-low space-y-md">
+<h4 class="text-label-caps font-label-caps text-outline">CHI TIẾT ĐƠN HÀNG</h4>
+<div class="space-y-sm">
+<div class="flex justify-between items-center">
+<span class="text-body-sm text-on-surface-variant">Mã đơn</span>
+<span class="text-body-sm font-semibold text-on-background">#DH20261020-001</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-body-sm text-on-surface-variant">Dịch vụ</span>
+<span class="text-body-sm font-semibold text-on-background">Dọn dẹp nhà</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-body-sm text-on-surface-variant">Thời gian</span>
+<span class="text-body-sm font-semibold text-on-background">20/10/2026 - 10:00</span>
+</div>
+<div class="pt-sm mt-sm border-t border-outline-variant flex justify-between items-center">
+<span class="text-body-lg font-bold text-on-background">Tổng tiền</span>
+<span class="text-headline-md font-bold text-primary">450.000 đ</span>
+</div>
+</div>
+</section>
+<!-- Action Buttons -->
+<section class="grid grid-cols-3 gap-sm pt-md">
+<button class="flex flex-col items-center justify-center gap-1 py-3 px-2 bg-surface-container-high rounded-[16px] text-primary hover:bg-primary/10 active:scale-95 transition-all">
+<span class="material-symbols-outlined" data-icon="chat">chat</span>
+<span class="text-label-caps font-label-caps">Chat</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-1 py-3 px-2 bg-surface-container-high rounded-[16px] text-primary hover:bg-primary/10 active:scale-95 transition-all">
+<span class="material-symbols-outlined" data-icon="call">call</span>
+<span class="text-label-caps font-label-caps">Gọi</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-1 py-3 px-2 bg-red-50 rounded-[16px] text-error hover:bg-error/10 active:scale-95 transition-all">
+<span class="material-symbols-outlined" data-icon="cancel">cancel</span>
+<span class="text-label-caps font-label-caps">Hủy đơn</span>
+</button>
+</section>
+</main>
+<!-- BottomNavBar (Floating Pill) -->
+<nav class="fixed bottom-6 left-4 right-4 z-50 flex justify-around items-center h-16 max-w-md mx-auto bg-white shadow-[0px_10px_30px_rgba(160,65,0,0.15)] backdrop-blur-md rounded-full px-2 border border-surface-container-low">
+<!-- Trang chủ -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-primary-container/10 px-4 py-2 rounded-full" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="text-label-caps font-label-caps mt-0.5">Trang chủ</span>
+</a>
+<!-- Hoạt động (Active) -->
+<a class="flex flex-col items-center justify-center bg-primary text-on-primary rounded-full px-5 py-2 scale-100 shadow-lg shadow-primary/30 transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="history" style="font-variation-settings: 'FILL' 1;">history</span>
+<span class="text-label-caps font-label-caps mt-0.5">Hoạt động</span>
+</a>
+<!-- Thông báo -->
+<a class="relative flex flex-col items-center justify-center text-on-surface-variant hover:bg-primary-container/10 px-4 py-2 rounded-full" href="#">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="text-label-caps font-label-caps mt-0.5">Thông báo</span>
+<!-- Red Badge -->
+<div class="absolute top-2 right-6 w-2 h-2 bg-error rounded-full ring-2 ring-white"></div>
+</a>
+<!-- Tài khoản -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-primary-container/10 px-4 py-2 rounded-full" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="text-label-caps font-label-caps mt-0.5">Tài khoản</span>
+</a>
+</nav>
+</body></html>

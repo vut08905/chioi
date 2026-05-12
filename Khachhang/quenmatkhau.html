@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html class="light" lang="vi"><head>
 <meta charset="utf-8"/>
@@ -200,7 +200,121 @@
             </button>
 </section>
 </main>
-<!-- Visual Polish: Soft Decorative Shapes -->
 <div class="fixed -bottom-20 -left-20 w-64 h-64 bg-primary-container/10 rounded-full blur-3xl -z-10"></div>
 <div class="fixed -top-20 -right-20 w-64 h-64 bg-secondary-container/10 rounded-full blur-3xl -z-10"></div>
+
+<script src="../shared/api.js"></script>
+<script>
+(function() {
+  var phoneInput = document.querySelector('input[type="tel"]');
+  var otpInputs = document.querySelectorAll('.grid.grid-cols-6 input');
+  var passwordInput = document.querySelector('input[placeholder="Mật khẩu mới"]');
+  var confirmInput = document.querySelector('input[placeholder="Nhập lại mật khẩu mới"]');
+  var phoneForDisplay = document.querySelector('.text-on-surface.font-bold');
+  var countdownEl = document.querySelector('.text-primary.font-bold');
+
+  var storedPhone = '';
+  var countdownTimer = null;
+
+  // ===== Step 1: Request OTP =====
+  var requestOtpBtn = document.querySelector('button.border-primary-container');
+  if (requestOtpBtn) {
+    requestOtpBtn.addEventListener('click', async function() {
+      var phone = phoneInput ? phoneInput.value.trim() : '';
+      if (!phone || phone.length < 9) { showToastMsg('Vui lòng nhập số điện thoại hợp lệ'); return; }
+
+      storedPhone = phone;
+      showLoading();
+      try {
+        var result = await apiFetch('/api/auth/forgot-password', {
+          method: 'POST',
+          body: { phone: phone }
+        });
+        hideLoading();
+        showToastMsg('✅ Mã OTP đã gửi đến ' + phone);
+
+        // Update display phone
+        if (phoneForDisplay) {
+          phoneForDisplay.textContent = phone.substring(0, 3) + '****' + phone.substring(phone.length - 3);
+        }
+
+        // Start countdown
+        var seconds = 300; // 5 minutes
+        if (countdownTimer) clearInterval(countdownTimer);
+        countdownTimer = setInterval(function() {
+          seconds--;
+          if (seconds <= 0) { clearInterval(countdownTimer); if (countdownEl) countdownEl.textContent = '00:00s'; return; }
+          var m = Math.floor(seconds / 60);
+          var s = seconds % 60;
+          if (countdownEl) countdownEl.textContent = (m < 10 ? '0' + m : m) + ':' + (s < 10 ? '0' + s : s) + 's';
+        }, 1000);
+
+        // Focus first OTP input
+        if (otpInputs[0]) otpInputs[0].focus();
+      } catch (e) {
+        hideLoading();
+        showToastMsg('❌ ' + e.message);
+      }
+    });
+  }
+
+  // ===== OTP Auto-focus =====
+  otpInputs.forEach(function(input, idx) {
+    input.addEventListener('input', function() {
+      if (this.value.length >= 1 && idx < otpInputs.length - 1) {
+        otpInputs[idx + 1].focus();
+      }
+    });
+    input.addEventListener('keydown', function(e) {
+      if (e.key === 'Backspace' && !this.value && idx > 0) {
+        otpInputs[idx - 1].focus();
+      }
+    });
+  });
+
+  // ===== Toggle password visibility =====
+  document.querySelectorAll('[data-icon="visibility_off"]').forEach(function(icon) {
+    icon.closest('button').addEventListener('click', function() {
+      var input = this.closest('.relative').querySelector('input');
+      if (input.type === 'password') {
+        input.type = 'text';
+        icon.textContent = 'visibility';
+      } else {
+        input.type = 'password';
+        icon.textContent = 'visibility_off';
+      }
+    });
+  });
+
+  // ===== Step 2: Reset Password =====
+  var resetBtn = document.querySelector('button.orange-gradient');
+  if (resetBtn) {
+    resetBtn.addEventListener('click', async function() {
+      var otp = '';
+      otpInputs.forEach(function(input) { otp += input.value; });
+      if (otp.length < 6) { showToastMsg('Vui lòng nhập đầy đủ mã OTP 6 số'); return; }
+
+      var newPass = passwordInput ? passwordInput.value : '';
+      var confirmPass = confirmInput ? confirmInput.value : '';
+      if (newPass.length < 6) { showToastMsg('Mật khẩu mới phải từ 6 ký tự'); return; }
+      if (newPass !== confirmPass) { showToastMsg('Mật khẩu xác nhận không khớp'); return; }
+      if (!storedPhone) { showToastMsg('Vui lòng nhận mã OTP trước'); return; }
+
+      showLoading();
+      try {
+        await apiFetch('/api/auth/reset-password', {
+          method: 'POST',
+          body: { phone: storedPhone, otp: otp, new_password: newPass }
+        });
+        hideLoading();
+        showToastMsg('✅ Đổi mật khẩu thành công! Đang chuyển đến đăng nhập...');
+        setTimeout(function() { window.location.href = 'dangnhap.html'; }, 2000);
+      } catch (e) {
+        hideLoading();
+        showToastMsg('❌ ' + e.message);
+      }
+    });
+  }
+})();
+</script>
 </body></html>

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700&amp;family=Inter:wght@400;600;700&amp;family=Be+Vietnam+Pro:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-container": "#596373",
+                    "outline-variant": "#ddc1ae",
+                    "surface-container": "#ffeadd",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary": "#00658f",
+                    "surface-container-high": "#f9e4d7",
+                    "on-error": "#ffffff",
+                    "secondary-container": "#d6e0f3",
+                    "on-surface-variant": "#564334",
+                    "on-surface": "#241912",
+                    "primary": "#904d00",
+                    "on-tertiary-container": "#004360",
+                    "secondary-fixed": "#d9e3f6",
+                    "outline": "#897362",
+                    "secondary-fixed-dim": "#bdc7d9",
+                    "secondary": "#555f6f",
+                    "on-secondary-fixed-variant": "#3d4756",
+                    "tertiary-fixed-dim": "#85cfff",
+                    "on-secondary": "#ffffff",
+                    "on-background": "#241912",
+                    "surface-container-low": "#fff1e9",
+                    "on-tertiary-fixed-variant": "#004c6c",
+                    "on-tertiary-fixed": "#001e2e",
+                    "surface-variant": "#f3dfd1",
+                    "on-error-container": "#93000a",
+                    "inverse-surface": "#3a2e25",
+                    "tertiary-container": "#00b5fc",
+                    "on-primary-fixed-variant": "#6e3900",
+                    "on-secondary-fixed": "#121c2a",
+                    "primary-fixed": "#ffdcc3",
+                    "tertiary-fixed": "#c7e7ff",
+                    "primary-container": "#ff8c00",
+                    "on-primary": "#ffffff",
+                    "surface": "#fff8f5",
+                    "on-primary-fixed": "#2f1500",
+                    "inverse-primary": "#ffb77d",
+                    "surface-container-highest": "#f3dfd1",
+                    "surface-bright": "#fff8f5",
+                    "primary-fixed-dim": "#ffb77d",
+                    "on-tertiary": "#ffffff",
+                    "surface-tint": "#904d00",
+                    "on-primary-container": "#623200",
+                    "surface-dim": "#ead6c9",
+                    "inverse-on-surface": "#ffede3",
+                    "error-container": "#ffdad6",
+                    "error": "#ba1a1a",
+                    "background": "#fff8f5"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "page-margin": "1rem",
+                    "stack-gap": "1rem",
+                    "section-padding": "2rem",
+                    "inline-gutter": "0.75rem",
+                    "card-padding": "1.25rem"
+            },
+            "fontFamily": {
+                    "body-sm": ["Be Vietnam Pro", "Inter", "sans-serif"],
+                    "status-badge": ["Be Vietnam Pro", "Inter", "sans-serif"],
+                    "label-caps": ["Be Vietnam Pro", "Inter", "sans-serif"],
+                    "headline-md": ["Manrope", "Be Vietnam Pro", "sans-serif"],
+                    "display-lg": ["Manrope", "Be Vietnam Pro", "sans-serif"],
+                    "body-lg": ["Be Vietnam Pro", "Inter", "sans-serif"]
+            },
+            "fontSize": {
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "status-badge": ["11px", {"lineHeight": "12px", "fontWeight": "700"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-md": ["22px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "display-lg": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Be Vietnam Pro', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .active-indicator { position: absolute; top: 0; width: 40px; height: 4px; border-radius: 0 0 4px 4px; }
+        .glass-card { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="max-w-md mx-auto shadow-2xl border-x border-gray-200 relative min-h-screen bg-surface text-on-background min-h-screen pb-32 relative overflow-x-hidden">
+<!-- Background Gradient -->
+<div class="absolute top-0 left-0 w-full h-[300px] z-0" style="background: linear-gradient(rgb(255, 126, 54) 0%, rgb(252, 249, 248) 100%);"></div>
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 right-0 z-50 h-16 w-full bg-white/80 backdrop-blur-md shadow-sm flex items-center justify-between px-page-margin">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-low transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined text-primary">menu</span>
+</button>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Danh sách Đơn (23)</h1>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-low transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined text-primary">search</span>
+</button>
+</header>
+<!-- Search & Filters -->
+<section class="mt-20 px-page-margin space-y-4 relative z-10">
+<!-- Search Input -->
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full h-12 pl-12 pr-4 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary/10 focus:border-primary outline-none transition-all placeholder:text-on-surface-variant/50 text-body-lg font-body-lg" placeholder="Tìm kiếm theo mã đơn, khách hàng..." type="text"/>
+</div>
+<!-- Horizontal Filter Chips -->
+<div class="flex overflow-x-auto pb-2 gap-2 no-scrollbar">
+<button class="px-5 py-2 rounded-full bg-primary text-white font-label-caps text-label-caps whitespace-nowrap shadow-sm active:scale-95 transition-transform">Tất cả</button>
+<button class="px-5 py-2 rounded-full bg-white border border-outline-variant text-on-surface-variant font-label-caps text-label-caps whitespace-nowrap hover:bg-surface-container-low active:scale-95 transition-all">Đang làm</button>
+<button class="px-5 py-2 rounded-full bg-white border border-outline-variant text-on-surface-variant font-label-caps text-label-caps whitespace-nowrap hover:bg-surface-container-low active:scale-95 transition-all">Sắp tới</button>
+<button class="px-5 py-2 rounded-full bg-white border border-outline-variant text-on-surface-variant font-label-caps text-label-caps whitespace-nowrap hover:bg-surface-container-low active:scale-95 transition-all">Tìm tasker</button>
+<button class="px-5 py-2 rounded-full bg-white border border-outline-variant text-on-surface-variant font-label-caps text-label-caps whitespace-nowrap hover:bg-surface-container-low active:scale-95 transition-all">Hoàn thành</button>
+</div>
+</section>
+<!-- Order List -->
+<main class="mt-6 px-page-margin space-y-4 relative z-10">
+<!-- Card 1: Đang làm -->
+<div class="bg-white rounded-xl p-card-padding shadow-[0px_4px_12px_rgba(0,0,0,0.05)] border border-outline-variant/30 flex flex-col gap-4 relative overflow-hidden group hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start">
+<div class="space-y-1">
+<span class="font-label-caps text-label-caps text-primary tracking-wider">#ORD-5829</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Dọn dẹp nhà cửa</h3>
+</div>
+<div class="bg-[#ff8c00]/10 text-[#904d00] px-3 py-1 rounded-lg font-status-badge text-status-badge uppercase tracking-wide">
+                    Đang làm
+                </div>
+</div>
+<div class="grid grid-cols-2 gap-4 py-2 border-y border-outline-variant/20">
+<div class="flex flex-col gap-1">
+<p class="text-label-caps font-label-caps text-on-secondary-container">KHÁCH HÀNG</p>
+<p class="font-body-lg text-body-lg font-semibold">Nguyễn Văn An</p>
+</div>
+<div class="flex flex-col gap-1">
+<p class="text-label-caps font-label-caps text-on-secondary-container">TASKER</p>
+<p class="font-body-lg text-body-lg font-semibold text-primary">Trần Thị Bé</p>
+</div>
+</div>
+<div class="flex justify-between items-center pt-1">
+<div class="flex items-center gap-1 text-on-secondary-container">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+<span class="text-body-sm font-body-sm">Hôm nay, 14:00</span>
+</div>
+<div class="text-right">
+<span class="font-headline-md text-headline-md text-primary font-bold">450.000đ</span>
+</div>
+</div>
+</div>
+<!-- Card 2: Tìm Tasker -->
+<div class="bg-white rounded-xl p-card-padding shadow-[0px_4px_12px_rgba(0,0,0,0.05)] border border-outline-variant/30 flex flex-col gap-4 relative overflow-hidden group hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start">
+<div class="space-y-1">
+<span class="font-label-caps text-label-caps text-primary tracking-wider">#ORD-6012</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Trông trẻ theo giờ</h3>
+</div>
+<div class="bg-[#ffdcc3] text-[#904d00] px-3 py-1 rounded-lg font-status-badge text-status-badge uppercase tracking-wide">
+                    Tìm Tasker
+                </div>
+</div>
+<div class="grid grid-cols-2 gap-4 py-2 border-y border-outline-variant/20">
+<div class="flex flex-col gap-1">
+<p class="text-label-caps font-label-caps text-on-secondary-container">KHÁCH HÀNG</p>
+<p class="font-body-lg text-body-lg font-semibold">Lê Minh Tâm</p>
+</div>
+<div class="flex flex-col gap-1">
+<p class="text-label-caps font-label-caps text-on-secondary-container">TASKER</p>
+<p class="font-body-lg text-body-lg font-semibold text-on-surface-variant/40 italic">Chưa có</p>
+</div>
+</div>
+<div class="flex justify-between items-center pt-1">
+<div class="flex items-center gap-1 text-on-secondary-container">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+<span class="text-body-sm font-body-sm">Ngày mai, 08:30</span>
+</div>
+<div class="text-right">
+<span class="font-headline-md text-headline-md text-primary font-bold">250.000đ</span>
+</div>
+</div>
+</div>
+<!-- Card 3: Sắp tới -->
+<div class="bg-white rounded-xl p-card-padding shadow-[0px_4px_12px_rgba(0,0,0,0.05)] border border-outline-variant/30 flex flex-col gap-4 relative overflow-hidden group hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start">
+<div class="space-y-1">
+<span class="font-label-caps text-label-caps text-primary tracking-wider">#ORD-5940</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Mua hộ thực phẩm</h3>
+</div>
+<div class="bg-[#d6e0f3] text-[#00658f] px-3 py-1 rounded-lg font-status-badge text-status-badge uppercase tracking-wide">
+                    Sắp tới
+                </div>
+</div>
+<div class="grid grid-cols-2 gap-4 py-2 border-y border-outline-variant/20">
+<div class="flex flex-col gap-1">
+<p class="text-label-caps font-label-caps text-on-secondary-container">KHÁCH HÀNG</p>
+<p class="font-body-lg text-body-lg font-semibold">Phạm Quỳnh Chi</p>
+</div>
+<div class="flex flex-col gap-1">
+<p class="text-label-caps font-label-caps text-on-secondary-container">TASKER</p>
+<p class="font-body-lg text-body-lg font-semibold text-primary">Hoàng Văn Nam</p>
+</div>
+</div>
+<div class="flex justify-between items-center pt-1">
+<div class="flex items-center gap-1 text-on-secondary-container">
+<span class="material-symbols-outlined text-[18px]">event</span>
+<span class="text-body-sm font-body-sm">24 Th10, 10:00</span>
+</div>
+<div class="text-right">
+<span class="font-headline-md text-headline-md text-primary font-bold">180.000đ</span>
+</div>
+</div>
+</div>
+<!-- Card 4: Hoàn thành -->
+<div class="bg-white rounded-xl p-card-padding shadow-[0px_4px_12px_rgba(0,0,0,0.05)] border border-outline-variant/30 flex flex-col gap-4 relative overflow-hidden opacity-80 group hover:opacity-100 transition-all">
+<div class="flex justify-between items-start">
+<div class="space-y-1">
+<span class="font-label-caps text-label-caps text-primary tracking-wider">#ORD-5731</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Sửa điện nước</h3>
+</div>
+<div class="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-lg font-status-badge text-status-badge uppercase tracking-wide">
+                    Hoàn thành
+                </div>
+</div>
+<div class="grid grid-cols-2 gap-4 py-2 border-y border-outline-variant/20">
+<div class="flex flex-col gap-1">
+<p class="text-label-caps font-label-caps text-on-secondary-container">KHÁCH HÀNG</p>
+<p class="font-body-lg text-body-lg font-semibold">Bùi Anh Tuấn</p>
+</div>
+<div class="flex flex-col gap-1">
+<p class="text-label-caps font-label-caps text-on-secondary-container">TASKER</p>
+<p class="font-body-lg text-body-lg font-semibold text-primary">Ngô Quốc Bảo</p>
+</div>
+</div>
+<div class="flex justify-between items-center pt-1">
+<div class="flex items-center gap-1 text-emerald-700/60">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+<span class="text-body-sm font-body-sm">Đã thanh toán</span>
+</div>
+<div class="text-right">
+<span class="font-headline-md text-headline-md text-primary font-bold">850.000đ</span>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar - Floating Pill Shape -->
+<nav class="bg-white/90 backdrop-blur-md fixed bottom-6 left-1/2 -translate-x-1/2 flex justify-around items-center h-16 w-[95%] max-w-md rounded-full shadow-xl border border-outline-variant/20 px-4 z-50">
+    <a href="../b_ng_i_u_khi_n_qu_n_tr_vi_n_pill_nav/code.html" class="text-on-secondary-container hover:text-primary flex flex-col items-center justify-center transition-all active:scale-90">
+        <span class="material-symbols-outlined text-[22px] ">dashboard</span>
+        <span class="font-label-caps text-[10px] leading-tight mt-0.5 uppercase ">Dashboard</span>
+    </a>
+    <a href="../danh_s_ch_n_h_ng_full_nav/code.html" class="text-primary relative px-3 py-1 rounded-full bg-primary/10 flex flex-col items-center justify-center transition-all active:scale-90">
+        <span class="material-symbols-outlined text-[22px] font-bold">receipt_long</span>
+        <span class="font-label-caps text-[10px] leading-tight mt-0.5 uppercase font-bold">Đơn</span>
+    </a>
+    <a href="../danh_s_ch_tasker_qu_n_tr_pill_nav/code.html" class="text-on-secondary-container hover:text-primary flex flex-col items-center justify-center transition-all active:scale-90">
+        <span class="material-symbols-outlined text-[22px] ">engineering</span>
+        <span class="font-label-caps text-[10px] leading-tight mt-0.5 uppercase ">Tasker</span>
+    </a>
+    <a href="../danh_s_ch_c_d_n_qu_n_tr_pill_nav/code.html" class="text-on-secondary-container hover:text-primary flex flex-col items-center justify-center transition-all active:scale-90">
+        <span class="material-symbols-outlined text-[22px] ">group</span>
+        <span class="font-label-caps text-[10px] leading-tight mt-0.5 uppercase ">Cư dân</span>
+    </a>
+    <a href="../v_giao_d_ch_qu_n_tr_pill_nav/code.html" class="text-on-secondary-container hover:text-primary flex flex-col items-center justify-center transition-all active:scale-90">
+        <span class="material-symbols-outlined text-[22px] ">account_balance_wallet</span>
+        <span class="font-label-caps text-[10px] leading-tight mt-0.5 uppercase ">Ví</span>
+    </a>
+    <a href="../h_p_th_admin_pill_nav/code.html" class="text-on-secondary-container hover:text-primary flex flex-col items-center justify-center transition-all active:scale-90">
+        <span class="material-symbols-outlined text-[22px] ">inbox</span>
+        <span class="font-label-caps text-[10px] leading-tight mt-0.5 uppercase ">Inbox</span>
+    </a>
+</nav>
+<!-- Floating Action Button (FAB) - Moved up to avoid overlap with new bottom nav -->
+<button class="fixed right-6 bottom-28 w-14 h-14 bg-primary text-white rounded-2xl shadow-lg flex items-center justify-center active:scale-95 transition-transform z-40">
+<span class="material-symbols-outlined text-[32px]">add</span>
+</button>
+</body></html>

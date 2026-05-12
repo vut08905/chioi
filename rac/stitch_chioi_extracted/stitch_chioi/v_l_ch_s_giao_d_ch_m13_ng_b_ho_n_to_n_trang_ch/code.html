@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+
+<html lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ví &amp; Lịch sử giao dịch</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed": "#ffdbcc",
+                    "on-secondary-fixed": "#351000",
+                    "primary-fixed-dim": "#ffb693",
+                    "on-secondary-fixed-variant": "#6d391d",
+                    "primary-container": "#ff7e36",
+                    "on-primary-container": "#642600",
+                    "secondary-fixed-dim": "#ffb693",
+                    "on-primary-fixed-variant": "#7a3000",
+                    "error-container": "#ffdad6",
+                    "surface-container-low": "#fff1eb",
+                    "on-error": "#ffffff",
+                    "on-tertiary-fixed": "#001f28",
+                    "tertiary": "#006780",
+                    "on-surface": "#241914",
+                    "on-tertiary-fixed-variant": "#004d61",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed": "#ffdbcc",
+                    "on-error-container": "#93000a",
+                    "surface-dim": "#ecd6cc",
+                    "on-surface-variant": "#584238",
+                    "surface-variant": "#f4ded5",
+                    "surface-container-high": "#fae4da",
+                    "on-primary-fixed": "#351000",
+                    "surface-tint": "#a04100",
+                    "outline": "#8b7266",
+                    "on-primary": "#ffffff",
+                    "inverse-on-surface": "#ffede6",
+                    "tertiary-fixed-dim": "#52d5ff",
+                    "secondary": "#895032",
+                    "outline-variant": "#dfc0b3",
+                    "surface-bright": "#fff8f6",
+                    "on-secondary-container": "#794226",
+                    "inverse-surface": "#3b2e28",
+                    "tertiary-fixed": "#b8eaff",
+                    "tertiary-container": "#00b1da",
+                    "on-tertiary-container": "#003f4f",
+                    "inverse-primary": "#ffb693",
+                    "error": "#ba1a1a",
+                    "on-background": "#241914",
+                    "surface": "#fff8f6",
+                    "on-secondary": "#ffffff",
+                    "secondary-container": "#feb28e",
+                    "surface-container": "#ffeae1",
+                    "on-tertiary": "#ffffff",
+                    "primary": "#a04100",
+                    "surface-container-highest": "#f4ded5",
+                    "background": "#fff8f6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-padding": "16px",
+                    "base": "4px",
+                    "xl": "32px",
+                    "md": "16px",
+                    "stack-gap": "12px",
+                    "xs": "4px",
+                    "sm": "8px",
+                    "lg": "24px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Be Vietnam Pro"],
+                    "title-sm": ["Be Vietnam Pro"],
+                    "headline-md": ["Be Vietnam Pro"],
+                    "body-sm": ["Be Vietnam Pro"],
+                    "display-lg": ["Be Vietnam Pro"],
+                    "label-caps": ["Be Vietnam Pro"]
+            },
+            "fontSize": {
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "title-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Be Vietnam Pro', sans-serif;
+            background-color: #fff8f6;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .orange-gradient {
+            background: linear-gradient(135deg, #ff7e36 0%, #a04100 100%);
+        }
+        .bg-top-gradient {
+            background: linear-gradient(180deg, rgba(255, 126, 54, 0.15) 0%, rgba(255, 248, 246, 0) 100%);
+            height: 300px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="text-on-background min-h-screen relative pb-32">
+<div class="bg-top-gradient"></div>
+<!-- TopAppBar Section -->
+<header class="bg-transparent text-on-surface sticky top-0 w-full z-50 flex justify-between items-center px-container-padding h-16">
+<div class="flex items-center">
+<button class="material-symbols-outlined text-on-surface active:scale-95 transition-all duration-200" data-icon="arrow_back">arrow_back</button>
+</div>
+<h1 class="text-title-sm font-bold text-on-surface">Ví Chị Ơi</h1>
+<div class="flex items-center">
+<button class="material-symbols-outlined text-on-surface active:scale-95 transition-all duration-200" data-icon="help_outline">help_outline</button>
+</div>
+</header>
+<main class="relative z-10 pt-base pb-8 px-container-padding space-y-md">
+<!-- Balance Card: Bento Style -->
+<section class="orange-gradient rounded-3xl p-lg shadow-xl text-on-primary space-y-md relative overflow-hidden">
+<div class="absolute -top-10 -right-10 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
+<div class="flex flex-col">
+<span class="text-label-caps font-medium opacity-90 uppercase tracking-widest">Số dư khả dụng</span>
+<span class="text-display-lg font-bold">500.000 đ</span>
+</div>
+<div class="grid grid-cols-2 gap-sm pt-base">
+<button class="bg-white/20 backdrop-blur-md text-on-primary font-semibold py-3 px-4 rounded-xl flex items-center justify-center gap-xs active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[20px]" data-icon="add_circle">add_circle</span>
+                    Nạp tiền
+                </button>
+<button class="bg-white/20 backdrop-blur-md text-on-primary font-semibold py-3 px-4 rounded-xl flex items-center justify-center gap-xs active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[20px]" data-icon="account_balance_wallet">account_balance_wallet</span>
+                    Rút tiền
+                </button>
+</div>
+</section>
+<!-- Filter Section -->
+<section class="space-y-md">
+<div class="flex items-center justify-between">
+<h2 class="text-title-sm font-bold text-on-surface">Lịch sử giao dịch</h2>
+<span class="text-body-sm text-primary font-semibold">Tất cả</span>
+</div>
+<div class="space-y-sm">
+<div class="flex gap-sm overflow-x-auto pb-1 no-scrollbar">
+<div class="bg-primary text-on-primary px-5 py-2 rounded-full text-label-caps font-bold flex-shrink-0 cursor-pointer shadow-sm">
+                        Tất cả
+                    </div>
+<div class="bg-surface-container-low text-on-surface-variant border border-outline-variant/30 px-5 py-2 rounded-full text-label-caps font-bold flex-shrink-0 cursor-pointer">
+                        Nạp tiền
+                    </div>
+<div class="bg-surface-container-low text-on-surface-variant border border-outline-variant/30 px-5 py-2 rounded-full text-label-caps font-bold flex-shrink-0 cursor-pointer">
+                        Thanh toán
+                    </div>
+<div class="bg-surface-container-low text-on-surface-variant border border-outline-variant/30 px-5 py-2 rounded-full text-label-caps font-bold flex-shrink-0 cursor-pointer">
+                        Hoàn tiền
+                    </div>
+</div>
+<div class="flex gap-sm overflow-x-auto pb-1 no-scrollbar">
+<div class="bg-surface-container-low text-on-surface-variant border border-outline-variant/30 px-5 py-2 rounded-full text-label-caps font-bold flex-shrink-0 cursor-pointer">
+                        Hôm nay
+                    </div>
+<div class="bg-surface-container-low text-on-surface-variant border border-outline-variant/30 px-5 py-2 rounded-full text-label-caps font-bold flex-shrink-0 cursor-pointer">
+                        Tháng này
+                    </div>
+<div class="bg-surface-container-low text-on-surface-variant border border-outline-variant/30 px-5 py-2 rounded-full text-label-caps font-bold flex-shrink-0 cursor-pointer flex items-center gap-xs">
+                        Tùy chọn <span class="material-symbols-outlined text-[16px]" data-icon="calendar_today">calendar_today</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Transaction List -->
+<section class="space-y-stack-gap">
+<!-- Transaction Item 1 -->
+<div class="bg-surface-container-lowest p-md rounded-2xl shadow-sm border border-surface-container flex items-center gap-md">
+<div class="w-12 h-12 rounded-full bg-primary-container/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+</div>
+<div class="flex-1">
+<h3 class="text-body-lg font-bold text-on-surface">Thanh toán dọn nhà</h3>
+<p class="text-body-sm text-on-surface-variant">14:30 - 24/10/2023</p>
+<span class="text-[11px] font-bold text-tertiary bg-tertiary-container/10 px-2 py-0.5 rounded-full uppercase tracking-wider">Thành công</span>
+</div>
+<div class="text-right">
+<span class="text-body-lg font-bold text-error">- 450.000 đ</span>
+</div>
+</div>
+<!-- Transaction Item 2 -->
+<div class="bg-surface-container-lowest p-md rounded-2xl shadow-sm border border-surface-container flex items-center gap-md">
+<div class="w-12 h-12 rounded-full bg-tertiary-container/20 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+</div>
+<div class="flex-1">
+<h3 class="text-body-lg font-bold text-on-surface">Nạp tiền vào ví</h3>
+<p class="text-body-sm text-on-surface-variant">09:15 - 23/10/2023</p>
+<span class="text-[11px] font-bold text-tertiary bg-tertiary-container/10 px-2 py-0.5 rounded-full uppercase tracking-wider">Thành công</span>
+</div>
+<div class="text-right">
+<span class="text-body-lg font-bold text-primary">+ 100.000 đ</span>
+</div>
+</div>
+<!-- Transaction Item 3 -->
+<div class="bg-surface-container-lowest p-md rounded-2xl shadow-sm border border-surface-container flex items-center gap-md">
+<div class="w-12 h-12 rounded-full bg-primary-container/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="cleaning_services">cleaning_services</span>
+</div>
+<div class="flex-1">
+<h3 class="text-body-lg font-bold text-on-surface">Dọn dẹp định kỳ</h3>
+<p class="text-body-sm text-on-surface-variant">16:00 - 20/10/2023</p>
+<span class="text-[11px] font-bold text-tertiary bg-tertiary-container/10 px-2 py-0.5 rounded-full uppercase tracking-wider">Thành công</span>
+</div>
+<div class="text-right">
+<span class="text-body-lg font-bold text-error">- 320.000 đ</span>
+</div>
+</div>
+<!-- Transaction Item 4 -->
+<div class="bg-surface-container-lowest p-md rounded-2xl shadow-sm border border-surface-container flex items-center gap-md">
+<div class="w-12 h-12 rounded-full bg-secondary-container/20 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+</div>
+<div class="flex-1">
+<h3 class="text-body-lg font-bold text-on-surface">Hoàn tiền dịch vụ</h3>
+<p class="text-body-sm text-on-surface-variant">10:00 - 18/10/2023</p>
+<span class="text-[11px] font-bold text-tertiary bg-tertiary-container/10 px-2 py-0.5 rounded-full uppercase tracking-wider">Thành công</span>
+</div>
+<div class="text-right">
+<span class="text-body-lg font-bold text-primary">+ 50.000 đ</span>
+</div>
+</div>
+</section>
+<!-- Empty State Illustration -->
+<div class="py-xl flex flex-col items-center justify-center text-center space-y-sm opacity-40">
+<div class="w-20 h-20 bg-surface-container-high rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-[40px] text-outline" data-icon="receipt_long">receipt_long</span>
+</div>
+<p class="text-body-sm font-medium max-w-[200px]">Đã hiển thị toàn bộ giao dịch trong 30 ngày qua</p>
+</div>
+</main>
+<!-- Floating Navigation Bar: Pill-shape, Shadow đậm, Hoàn toàn Tiếng Việt -->
+<nav class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[92%] max-w-md bg-white border border-white/20 rounded-full shadow-[0_12px_40px_rgba(160,65,0,0.2)] flex justify-between items-center px-2 py-2 z-50">
+<a class="flex flex-col items-center gap-0.5 flex-1 py-1 text-on-surface-variant active:scale-95 transition-all" href="#">
+<span class="material-symbols-outlined text-[24px]" data-icon="home">home</span>
+<span class="text-[10px] font-bold">Trang chủ</span>
+</a>
+<a class="flex flex-col items-center gap-0.5 flex-1 py-1 text-on-surface-variant active:scale-95 transition-all" href="#">
+<span class="material-symbols-outlined text-[24px]" data-icon="explore">explore</span>
+<span class="text-[10px] font-bold">Hoạt động</span>
+</a>
+<a class="flex flex-col items-center gap-0.5 flex-1 py-1 text-on-surface-variant active:scale-95 transition-all" href="#">
+<span class="material-symbols-outlined text-[24px]" data-icon="notifications">notifications</span>
+<span class="text-[10px] font-bold">Thông báo</span>
+</a>
+<!-- Active Tab: Tài khoản -->
+<a class="flex flex-col items-center gap-0.5 flex-1 py-2 bg-primary rounded-full text-on-primary active:scale-95 transition-all mx-1" href="#">
+<span class="material-symbols-outlined text-[24px] fill-1" data-icon="person">person</span>
+<span class="text-[10px] font-bold">Tài khoản</span>
+</a>
+</nav>
+</body></html>

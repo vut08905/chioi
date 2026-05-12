@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html lang="vi"><head>
 <meta charset="utf-8"/>
@@ -189,4 +189,94 @@
 </a>
 </nav>
 </div>
+
+<script src="../shared/api.js"></script>
+<script>
+(async function() {
+  if (!ChiOiAuth.requireAuth('dangnhap.html')) return;
+
+  var params = new URLSearchParams(window.location.search);
+  var orderId = params.get('order_id');
+
+  // ===== Star Rating Logic =====
+  var rating = 0;
+  var stars = document.querySelectorAll('.flex.gap-sm .material-symbols-outlined');
+  var feedbackMsg = document.querySelector('.bg-surface-container-low p');
+
+  var ratingMessages = {
+    1: 'Rất tiếc về trải nghiệm của bạn. Chị Ơi sẽ xử lý sự cố này.',
+    2: 'Rất tiếc về trải nghiệm của bạn. Chị Ơi sẽ xử lý sự cố này.',
+    3: 'Cảm ơn góp ý! Chúng tôi sẽ cải thiện dịch vụ.',
+    4: 'Tuyệt vời! Cảm ơn bạn đã đánh giá.',
+    5: 'Xuất sắc! Chúng tôi rất vui vì bạn hài lòng!'
+  };
+
+  stars.forEach(function(star, idx) {
+    star.style.cursor = 'pointer';
+    star.addEventListener('click', function() {
+      rating = idx + 1;
+      stars.forEach(function(s, i) {
+        if (i < rating) {
+          s.classList.remove('text-outline-variant');
+          s.classList.add('text-primary-container');
+          s.style.fontVariationSettings = "'FILL' 1";
+        } else {
+          s.classList.remove('text-primary-container');
+          s.classList.add('text-outline-variant');
+          s.style.fontVariationSettings = "'FILL' 0";
+        }
+      });
+      if (feedbackMsg) feedbackMsg.textContent = ratingMessages[rating] || '';
+    });
+  });
+
+  // ===== Quick Tag Selection =====
+  var selectedTags = [];
+  var tagButtons = document.querySelectorAll('section.flex.flex-wrap button');
+  tagButtons.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var tag = btn.textContent.trim();
+      var idx = selectedTags.indexOf(tag);
+      if (idx === -1) {
+        selectedTags.push(tag);
+        btn.classList.add('bg-primary-container', 'text-white', 'border-primary-container');
+        btn.classList.remove('bg-white', 'text-on-secondary-container', 'border-outline-variant');
+      } else {
+        selectedTags.splice(idx, 1);
+        btn.classList.remove('bg-primary-container', 'text-white', 'border-primary-container');
+        btn.classList.add('bg-white', 'text-on-secondary-container', 'border-outline-variant');
+      }
+    });
+  });
+
+  // ===== Submit Review =====
+  var submitBtn = document.querySelector('button.orange-gradient');
+  if (submitBtn) {
+    submitBtn.addEventListener('click', async function() {
+      if (!orderId) { showToastMsg('Không tìm thấy mã đơn hàng. Vui lòng mở từ lịch sử đơn.'); return; }
+      if (rating === 0) { showToastMsg('Vui lòng chọn số sao đánh giá'); return; }
+
+      var textarea = document.getElementById('feedback');
+      var comment = (textarea ? textarea.value.trim() : '');
+      if (selectedTags.length > 0) {
+        comment = selectedTags.join(', ') + (comment ? '. ' + comment : '');
+      }
+
+      showLoading();
+      try {
+        await apiFetch('/api/orders/' + orderId + '/review', {
+          method: 'POST',
+          body: { rating: rating, comment: comment }
+        });
+        hideLoading();
+        showToastMsg('✅ Cảm ơn bạn đã đánh giá!');
+        setTimeout(function() { window.location.href = 'lichsuhoatdong.html'; }, 2000);
+      } catch (e) {
+        hideLoading();
+        showToastMsg('❌ ' + e.message);
+      }
+    });
+  }
+})();
+</script>
 </body></html>

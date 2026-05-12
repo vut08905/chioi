@@ -1,0 +1,47 @@
+# BÁO CÁO NGHIỆP VỤ HỆ THỐNG QUẢN TRỊ CHỊ ƠI! (ADMIN DASHBOARD)
+
+**Mục đích:** Tài liệu này tổng hợp toàn bộ các usecase và luồng hoạt động (workflow) của quản trị viên (Admin) trên hệ thống Chị Ơi!, dựa trên dữ liệu trích xuất từ trang quản trị `https://app.chioi.vn/admin.php`.
+
+---
+
+## 1. TỔNG QUAN DASHBOARD (BẢNG ĐIỀU KHIỂN)
+Dashboard là trung tâm kiểm soát, cung cấp các chỉ số quan trọng theo thời gian thực để Admin theo dõi nhanh tình hình hoạt động kinh doanh:
+- **Chỉ số doanh thu:** Hiển thị tổng số đơn hàng trong ngày, tổng doanh thu đạt được và tổng phí nền tảng đã thu.
+- **Trạng thái vận hành:** Thống kê số lượng người giúp việc đang online sẵn sàng nhận việc, số lượng đơn đăng ký mới của người giúp việc hoặc cư dân đang chờ phê duyệt.
+
+---
+
+## 2. CHI TIẾT CÁC MODULE & USE CASES (Usecase nghiệp vụ)
+
+Dưới đây là danh sách toàn bộ các phân hệ chức năng mà Admin có quyền thao tác trên hệ thống:
+
+| Tên Module | Chức năng chính (Usecases) | Luồng hoạt động (Workflow) |
+| :--- | :--- | :--- |
+| **Phê duyệt người dùng** | Duyệt đơn đăng ký của Người giúp việc và Cư dân. | Tiếp nhận đơn đăng ký mới -> Kiểm tra thông tin, hồ sơ đính kèm -> Ra quyết định Phê duyệt hoặc Từ chối hồ sơ. |
+| **Hộp thư Hỗ trợ** | Kênh giao tiếp, chat trực tiếp với Khách hàng (Cư dân) và Người giúp việc. | Nhận yêu cầu hỗ trợ/khiếu nại -> Trò chuyện, giải đáp thắc mắc, xử lý sự cố -> Đóng yêu cầu khi vấn đề hoàn tất. |
+| **Lịch sử Đơn hàng** | Quản lý toàn bộ giao dịch và trạng thái các đơn dịch vụ trên hệ thống. | Theo dõi luồng đơn hàng -> Lọc đơn hàng theo mốc thời gian (Ngày/Tuần/Tháng) -> Tra cứu chi tiết theo mã đơn hàng. |
+| **Yêu cầu Hoàn tiền** | Xử lý các yêu cầu hoàn tiền cho các gói dịch vụ bị hủy hoặc khiếu cụ. | Tiếp nhận yêu cầu hoàn tiền -> Kiểm tra, xác minh số tài khoản ngân hàng của khách -> Thực hiện lệnh hoàn tiền -> Cập nhật trạng thái hoàn thành. |
+| **Ví Doanh Thu** | Quản lý lợi nhuận, doanh thu nền tảng và dòng tiền của hệ thống. | Theo dõi biến động số dư -> Xem lịch sử các giao dịch nạp tiền, thanh toán qua mã QR -> Cấu hình thông tin ngân hàng nhận tiền -> Thực hiện rút tiền. |
+| **Quản lý Người dùng** | Kiểm soát danh sách toàn bộ người dùng (Cư dân & Người giúp việc). | Tra cứu thông tin người dùng -> Xem lịch sử hoạt động, điểm đánh giá (Rating) -> Thực hiện khóa/mở khóa tài khoản hoặc xóa người dùng vi phạm. |
+| **Gói ưu đãi** | Thiết lập và quản lý các combo/gói dịch vụ khuyến mãi. | Tạo gói ưu đãi mới -> Cấu hình mức giá, mô tả chi tiết -> Bật/Tắt trạng thái hiển thị -> Đánh dấu gói "Nổi bật" để thu hút khách hàng. |
+| **Cấu hình Dịch vụ** | Thiết lập biểu giá dịch vụ và chính sách phí sàn. | Cấu hình tỷ lệ % hoa hồng nền tảng thu từ người giúp việc -> Cấu hình giá cơ bản theo giờ cho từng hạng mục dịch vụ cụ thể (Dọn cả nhà, Trông trẻ, Đi chợ, v.v.). |
+| **Nội dung & Banner** | Quản lý nội dung bài viết, FAQ (Câu hỏi thường gặp) và hình ảnh Banner. | Soạn thảo, đăng tải bài viết hướng dẫn -> Thêm/Sửa/Xóa các bộ FAQ -> Cập nhật, thay thế hình ảnh Banner quảng cáo/khuyến mãi trên giao diện trang chủ ứng dụng. |
+
+---
+
+## 3. PHÂN TÍCH LUỒNG NGHIỆP VỤ (WORKFLOW ANALYSIS)
+
+Hệ thống quản trị Chị Ơi! được xây dựng theo mô hình **Quản trị tập trung (Centralized Admin)**. Hệ thống cho phép người quản trị kiểm soát toàn bộ vòng đời của một dịch vụ từ đầu đến cuối thông qua 4 trụ cột nghiệp vụ chính:
+
+1. **Quản trị Đầu vào (Onboarding & Access Control):** 
+   - Kiểm soát chất lượng nguồn cung (Người giúp việc) và cầu (Cư dân) ngay từ khâu đăng ký thông qua tính năng phê duyệt hồ sơ và quản lý tài khoản người dùng (khóa/mở khóa).
+2. **Quản trị Vận hành (Operations & Support):** 
+   - Theo dõi sát sao tiến độ hoàn thành dịch vụ qua Lịch sử Đơn hàng.
+   - Hỗ trợ giải quyết các sự cố phát sinh ngay lập tức qua Hộp thư Hỗ trợ.
+3. **Quản trị Tài chính (Finance & Revenue):** 
+   - Nắm bắt chính xác dòng tiền vào/ra thông qua Ví Doanh Thu, xử lý các Yêu cầu Hoàn tiền minh bạch, cài đặt chiết khấu (hoa hồng) và cấu hình giá dịch vụ một cách linh hoạt.
+4. **Quản trị Marketing & Growth:** 
+   - Chủ động kích cầu bằng cách tạo ra các Gói ưu đãi hấp dẫn, cập nhật tin tức, FAQ và Banner quảng cáo trực quan nhằm nâng cao trải nghiệm người dùng và tăng tỷ lệ chuyển đổi.
+
+---
+*Tài liệu được trích xuất tự động qua luồng nghiệp vụ trên trình duyệt theo thời gian thực.*

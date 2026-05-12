@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+
+<html lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Danh sách Cư dân - Quản trị viên</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&amp;family=Inter:wght@400;600;700&amp;family=Be+Vietnam+Pro:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Be Vietnam Pro', sans-serif;
+            background-color: #fff8f5;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom scrollbar for clean UI */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ddc1ae;
+            border-radius: 10px;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary": "#555f6f",
+                        "primary-fixed": "#ffdcc3",
+                        "on-tertiary-container": "#004360",
+                        "error": "#ba1a1a",
+                        "surface-tint": "#904d00",
+                        "on-surface": "#241912",
+                        "tertiary": "#00658f",
+                        "secondary-container": "#d6e0f3",
+                        "on-primary-fixed-variant": "#6e3900",
+                        "on-background": "#241912",
+                        "surface-container-highest": "#f3dfd1",
+                        "on-secondary-fixed-variant": "#3d4756",
+                        "on-secondary-container": "#596373",
+                        "surface-container": "#ffeadd",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed": "#c7e7ff",
+                        "surface-variant": "#f3dfd1",
+                        "on-primary-fixed": "#2f1500",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed-dim": "#ffb77d",
+                        "surface-container-low": "#fff1e9",
+                        "on-tertiary-fixed-variant": "#004c6c",
+                        "inverse-primary": "#ffb77d",
+                        "surface-dim": "#ead6c9",
+                        "on-tertiary-fixed": "#001e2e",
+                        "on-surface-variant": "#564334",
+                        "inverse-on-surface": "#ffede3",
+                        "tertiary-fixed-dim": "#85cfff",
+                        "tertiary-container": "#00b5fc",
+                        "primary": "#904d00",
+                        "on-secondary-fixed": "#121c2a",
+                        "on-primary-container": "#623200",
+                        "on-error-container": "#93000a",
+                        "surface-container-lowest": "#ffffff",
+                        "outline": "#897362",
+                        "surface-container-high": "#f9e4d7",
+                        "secondary-fixed-dim": "#bdc7d9",
+                        "error-container": "#ffdad6",
+                        "background": "#fff8f5",
+                        "on-tertiary": "#ffffff",
+                        "surface-bright": "#fff8f5",
+                        "primary-container": "#ff8c00",
+                        "secondary-fixed": "#d9e3f6",
+                        "surface": "#fff8f5",
+                        "inverse-surface": "#3a2e25",
+                        "outline-variant": "#ddc1ae",
+                        "on-error": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "page-margin": "1rem",
+                        "section-padding": "2rem",
+                        "card-padding": "1.25rem",
+                        "inline-gutter": "0.75rem",
+                        "stack-gap": "1rem"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Manrope"],
+                        "label-caps": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "status-badge": ["Inter"],
+                        "display-lg": ["Manrope"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["22px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "status-badge": ["11px", {"lineHeight": "12px", "fontWeight": "700"}],
+                        "display-lg": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="max-w-md mx-auto shadow-2xl border-x border-gray-200 relative min-h-screen bg-surface text-on-background min-h-screen flex flex-col relative overflow-x-hidden">
+<!-- Top Gradient -->
+<div class="absolute top-0 left-0 w-full h-[300px] z-0" style="background: linear-gradient(rgb(255, 126, 54) 0%, rgb(252, 249, 248) 100%);"></div>
+<!-- Top AppBar -->
+<header class="bg-surface/80 backdrop-blur-md dark:bg-on-surface shadow-sm docked full-width top-0 z-50 fixed flex items-center justify-between px-page-margin h-16 w-full relative z-10">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-2xl">menu</span>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Danh sách Cư dân</h1>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+<span class="material-symbols-outlined text-primary">search</span>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-grow pt-20 pb-32 px-page-margin max-w-2xl mx-auto w-full relative z-10">
+<!-- Search & Filter Section -->
+<section class="mb-6">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full pl-12 pr-4 py-3 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary-container focus:border-primary outline-none transition-all shadow-sm text-body-lg" placeholder="Tìm tên hoặc số điện thoại..." type="text"/>
+</div>
+<div class="flex gap-2 mt-3 overflow-x-auto pb-2 no-scrollbar">
+<button class="bg-primary text-on-primary px-4 py-1.5 rounded-full text-status-badge whitespace-nowrap">Tất cả (1,240)</button>
+<button class="bg-white border border-outline-variant text-on-surface-variant px-4 py-1.5 rounded-full text-status-badge whitespace-nowrap">Đang hoạt động</button>
+<button class="bg-white border border-outline-variant text-on-surface-variant px-4 py-1.5 rounded-full text-status-badge whitespace-nowrap">Mới tham gia</button>
+<button class="bg-white border border-outline-variant text-on-surface-variant px-4 py-1.5 rounded-full text-status-badge whitespace-nowrap">Đã khóa</button>
+</div>
+</section>
+<!-- Resident List -->
+<div class="flex flex-col gap-4">
+<!-- Resident Card 1 -->
+<article class="bg-white rounded-xl shadow-[0px_4px_12px_rgba(0,0,0,0.05)] border border-outline-variant/30 overflow-hidden">
+<div class="p-card-padding">
+<div class="flex items-center gap-4 mb-4">
+<div class="w-14 h-14 rounded-full overflow-hidden bg-primary-fixed flex-shrink-0">
+<img alt="Nguyen Thi Lan" class="w-full h-full object-cover" data-alt="A professional headshot of a Vietnamese middle-aged woman with friendly expression, styled in a minimalist and modern vector art. The background is a soft peach gradient matching a professional CRM dashboard aesthetic. High clarity, clean lines, and soft directional lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCD0EX6pHC6aiI_3OqLWsh8uAtiqgLAex_cBO4zYOyZKPAy0JK0WDqsCfIxmLCr25KjgDuRnQxijK_9ce6I4e-zd4AgczYy2AiYSlW0Tr8gTPRtkJ8T7CVKVWhBrIrmHi6jGGg6e_UOrgqBPyzXSv6B-QCc-C9OEXQ__rShDcatAeDwDbxs7ocqdM-MnBAwsTTMtezdpmO1nKz7rPLDnajKHNlxewVdeVHtBs551UEF2z1AwIHLbqInZSxDTwVtQR-sECYLo4jiYw-b"/>
+</div>
+<div class="flex-grow">
+<h2 class="text-body-lg font-bold text-on-surface">Nguyễn Thị Lan</h2>
+<p class="text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">call</span>
+                                0908 123 456
+                            </p>
+</div>
+<span class="bg-green-100 text-green-700 px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider">Active</span>
+</div>
+<div class="grid grid-cols-2 gap-4 py-3 border-y border-outline-variant/20 mb-4">
+<div>
+<p class="text-label-caps text-on-surface-variant uppercase mb-1">Số đơn hàng</p>
+<p class="text-body-lg font-semibold text-primary">12 đơn</p>
+</div>
+<div>
+<p class="text-label-caps text-on-surface-variant uppercase mb-1">Tổng chi tiêu</p>
+<p class="text-body-lg font-semibold text-on-surface">2.500.000đ</p>
+</div>
+</div>
+<div class="flex gap-3">
+<button class="flex-1 py-2.5 rounded-lg border border-primary text-primary font-semibold text-body-sm hover:bg-primary-fixed-dim transition-colors active:scale-95 duration-200">
+                            Lịch sử đơn
+                        </button>
+<button class="flex-1 py-2.5 rounded-lg bg-error text-on-error font-semibold text-body-sm hover:opacity-90 transition-colors active:scale-95 duration-200">
+                            Khóa tài khoản
+                        </button>
+</div>
+</div>
+</article>
+<!-- Resident Card 2 -->
+<article class="bg-white rounded-xl shadow-[0px_4px_12px_rgba(0,0,0,0.05)] border border-outline-variant/30 overflow-hidden">
+<div class="p-card-padding">
+<div class="flex items-center gap-4 mb-4">
+<div class="w-14 h-14 rounded-full overflow-hidden bg-primary-fixed flex-shrink-0">
+<img alt="Tran Minh Hoang" class="w-full h-full object-cover" data-alt="Modern vector illustration of a young Vietnamese man, looking professional with black hair and glasses. The visual style is clean, high-contrast, and minimalist, set against a soft warm white background. Soft studio lighting feel suitable for a premium corporate admin interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEuxVn5n5E7n1LU7ShsDFcOUVMz2V21_prjX4XIjugxhaUhNkAQFVZ73OUz3RMUhWr5fuJHWPfGMSwJPHB0oWwdAbvgH9iT9Ph-VEl2mbpsouskkifV76LLAEUYy5ZqbV24HhuYMAvEmPspvIrM2KDnKvNKmFEfvF1pGtfaZba5gceds8iesZO1qYoqDe8I4JUm8eQ9bKLav1CnqgU3amTZxQM91QJFUn9WBFNQROKk-OiUgagrQX3VWgeBLCqGvzz_zIGjRpEXNTE"/>
+</div>
+<div class="flex-grow">
+<h2 class="text-body-lg font-bold text-on-surface">Trần Minh Hoàng</h2>
+<p class="text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">call</span>
+                                0912 345 678
+                            </p>
+</div>
+<span class="bg-green-100 text-green-700 px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider">Active</span>
+</div>
+<div class="grid grid-cols-2 gap-4 py-3 border-y border-outline-variant/20 mb-4">
+<div>
+<p class="text-label-caps text-on-surface-variant uppercase mb-1">Số đơn hàng</p>
+<p class="text-body-lg font-semibold text-primary">45 đơn</p>
+</div>
+<div>
+<p class="text-label-caps text-on-surface-variant uppercase mb-1">Tổng chi tiêu</p>
+<p class="text-body-lg font-semibold text-on-surface">15.200.000đ</p>
+</div>
+</div>
+<div class="flex gap-3">
+<button class="flex-1 py-2.5 rounded-lg border border-primary text-primary font-semibold text-body-sm hover:bg-primary-fixed-dim transition-colors active:scale-95 duration-200">
+                            Lịch sử đơn
+                        </button>
+<button class="flex-1 py-2.5 rounded-lg bg-error text-on-error font-semibold text-body-sm hover:opacity-90 transition-colors active:scale-95 duration-200">
+                            Khóa tài khoản
+                        </button>
+</div>
+</div>
+</article>
+<!-- Resident Card 3 (Locked State Example) -->
+<article class="bg-surface-container-low/50 rounded-xl shadow-[0px_4px_12px_rgba(0,0,0,0.05)] border border-outline-variant/30 overflow-hidden opacity-80">
+<div class="p-card-padding">
+<div class="flex items-center gap-4 mb-4">
+<div class="w-14 h-14 rounded-full overflow-hidden bg-secondary-fixed flex-shrink-0 grayscale">
+<img alt="Le Anh Tu" class="w-full h-full object-cover" data-alt="A stylized vector portrait of a young adult, featuring a neutral expression. The art style is modern and clean with a focus on geometric simplicity. The lighting is flat and professional, set against a cool-toned gray background that conveys a deactivated or locked status in a software application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLhyjy86BzpljW1v_uY5HESRQ0-8n-AtGeCXvI_cXrVea1TrxUbVGN4nkajhh1r1F5PneXTgquOLx6aZZtgVOZTg3dp4ImA6bx2pMGwM6iXDJUbPt0TLzyMGo4X8dzNtiXWr8hzW31pav602D0I9HPQ-boIUB9tnOTye4uMKrA_wHJuY_sP8dAKOhZrH-GcRiszVSEFrxhlmsIEcvgs2PAsIP6e8H6SvwfAoqOtj1DoQprFsvEWZ6cB9FMHH56drVShoYd01Z3Vp7M"/>
+</div>
+<div class="flex-grow">
+<h2 class="text-body-lg font-bold text-on-surface">Lê Anh Tú</h2>
+<p class="text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">call</span>
+                                0988 777 999
+                            </p>
+</div>
+<span class="bg-error-container text-on-error-container px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider">Blocked</span>
+</div>
+<div class="grid grid-cols-2 gap-4 py-3 border-y border-outline-variant/20 mb-4">
+<div>
+<p class="text-label-caps text-on-surface-variant uppercase mb-1">Số đơn hàng</p>
+<p class="text-body-lg font-semibold text-primary">0 đơn</p>
+</div>
+<div>
+<p class="text-label-caps text-on-surface-variant uppercase mb-1">Tổng chi tiêu</p>
+<p class="text-body-lg font-semibold text-on-surface">0đ</p>
+</div>
+</div>
+<div class="flex gap-3">
+<button class="flex-1 py-2.5 rounded-lg border border-outline text-on-surface-variant font-semibold text-body-sm active:scale-95 duration-200">
+                            Lịch sử đơn
+                        </button>
+<button class="flex-1 py-2.5 rounded-lg bg-primary-container text-on-primary font-semibold text-body-sm active:scale-95 duration-200">
+                            Mở tài khoản
+                        </button>
+</div>
+</div>
+</article>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="bg-white/90 backdrop-blur-md fixed bottom-6 left-1/2 -translate-x-1/2 flex justify-around items-center h-16 w-[95%] max-w-md rounded-full shadow-xl border border-outline-variant/20 px-4 z-50">
+    <a href="../b_ng_i_u_khi_n_qu_n_tr_vi_n_pill_nav/code.html" class="text-on-secondary-container hover:text-primary flex flex-col items-center justify-center transition-all active:scale-90">
+        <span class="material-symbols-outlined text-[22px] ">dashboard</span>
+        <span class="font-label-caps text-[10px] leading-tight mt-0.5 uppercase ">Dashboard</span>
+    </a>
+    <a href="../danh_s_ch_n_h_ng_full_nav/code.html" class="text-on-secondary-container hover:text-primary flex flex-col items-center justify-center transition-all active:scale-90">
+        <span class="material-symbols-outlined text-[22px] ">receipt_long</span>
+        <span class="font-label-caps text-[10px] leading-tight mt-0.5 uppercase ">Đơn</span>
+    </a>
+    <a href="../danh_s_ch_tasker_qu_n_tr_pill_nav/code.html" class="text-on-secondary-container hover:text-primary flex flex-col items-center justify-center transition-all active:scale-90">
+        <span class="material-symbols-outlined text-[22px] ">engineering</span>
+        <span class="font-label-caps text-[10px] leading-tight mt-0.5 uppercase ">Tasker</span>
+    </a>
+    <a href="../danh_s_ch_c_d_n_qu_n_tr_pill_nav/code.html" class="text-primary relative px-3 py-1 rounded-full bg-primary/10 flex flex-col items-center justify-center transition-all active:scale-90">
+        <span class="material-symbols-outlined text-[22px] font-bold">group</span>
+        <span class="font-label-caps text-[10px] leading-tight mt-0.5 uppercase font-bold">Cư dân</span>
+    </a>
+    <a href="../v_giao_d_ch_qu_n_tr_pill_nav/code.html" class="text-on-secondary-container hover:text-primary flex flex-col items-center justify-center transition-all active:scale-90">
+        <span class="material-symbols-outlined text-[22px] ">account_balance_wallet</span>
+        <span class="font-label-caps text-[10px] leading-tight mt-0.5 uppercase ">Ví</span>
+    </a>
+    <a href="../h_p_th_admin_pill_nav/code.html" class="text-on-secondary-container hover:text-primary flex flex-col items-center justify-center transition-all active:scale-90">
+        <span class="material-symbols-outlined text-[22px] ">inbox</span>
+        <span class="font-label-caps text-[10px] leading-tight mt-0.5 uppercase ">Inbox</span>
+    </a>
+</nav>
+</body></html>

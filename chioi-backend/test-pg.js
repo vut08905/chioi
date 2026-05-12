@@ -1,0 +1,1 @@
+const { Client } = require('pg'); const client = new Client({ connectionString: 'postgresql://postgres:postgres@localhost:5432/chioi?schema=public', connectionTimeoutMillis: 5000 }); async function main() { await client.connect(); console.log('Connected to localhost!'); await client.end(); } main().catch(console.error);

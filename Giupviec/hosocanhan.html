@@ -1,0 +1,251 @@
+﻿<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Chị Ơi! - Hồ sơ Cá nhân</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#52d5ff",
+                        "on-primary-container": "#642600",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface-variant": "#584238",
+                        "secondary-fixed": "#ffdbcc",
+                        "primary-fixed-dim": "#ffb693",
+                        "surface-bright": "#fff8f6",
+                        "tertiary-fixed": "#b8eaff",
+                        "secondary-fixed-dim": "#ffb693",
+                        "on-error": "#ffffff",
+                        "tertiary-container": "#00b1da",
+                        "surface-container": "#ffeae1",
+                        "on-tertiary-container": "#003f4f",
+                        "on-primary-fixed": "#351000",
+                        "surface-container-high": "#fae4da",
+                        "on-error-container": "#93000a",
+                        "on-surface": "#241914",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#004d61",
+                        "background": "#fff8f6",
+                        "inverse-on-surface": "#ffede6",
+                        "surface-container-low": "#fff1eb",
+                        "primary-fixed": "#ffdbcc",
+                        "on-primary-fixed-variant": "#7a3000",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed": "#351000",
+                        "on-tertiary-fixed": "#001f28",
+                        "on-secondary-fixed-variant": "#6d391d",
+                        "on-secondary-container": "#794226",
+                        "error": "#ba1a1a",
+                        "surface-tint": "#a04100",
+                        "surface-dim": "#ecd6cc",
+                        "secondary-container": "#feb28e",
+                        "surface-container-highest": "#f4ded5",
+                        "primary": "#a04100",
+                        "on-primary": "#ffffff",
+                        "tertiary": "#006780",
+                        "primary-container": "#ff7e36",
+                        "inverse-surface": "#3b2e28",
+                        "secondary": "#895032",
+                        "outline-variant": "#dfc0b3",
+                        "inverse-primary": "#ffb693",
+                        "surface": "#fff8f6",
+                        "surface-variant": "#f4ded5",
+                        "outline": "#8b7266",
+                        "on-background": "#241914",
+                        "on-secondary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-padding": "16px",
+                        "stack-gap": "12px",
+                        "md": "16px",
+                        "xl": "32px",
+                        "base": "4px",
+                        "xs": "4px",
+                        "sm": "8px",
+                        "lg": "24px"
+                    },
+                    "fontFamily": {
+                        "title-sm": ["Be Vietnam Pro"],
+                        "label-caps": ["Be Vietnam Pro"],
+                        "headline-md": ["Be Vietnam Pro"],
+                        "display-lg": ["Be Vietnam Pro"],
+                        "body-sm": ["Be Vietnam Pro"],
+                        "body-lg": ["Be Vietnam Pro"]
+                    },
+                    "fontSize": {
+                        "title-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "label-sm": ["11px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Be Vietnam Pro', sans-serif; background-color: #fff8f6; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .primary-gradient { background: linear-gradient(135deg, #a04100 0%, #ff7e36 100%); }
+        .level-1-card { background: white; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04); border: 1px solid #ffdbcc; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+          body { font-family: 'Be Vietnam Pro', sans-serif; }
+        .orange-gradient {
+            background: linear-gradient(135deg, #ff7e36 0%, #a04100 100%);
+        }
+        .teal-gradient {
+            background: linear-gradient(135deg, #00b1da 0%, #006780 100%);
+        }
+        .soft-shadow {
+            box-shadow: 0 4px 12px rgba(255, 126, 54, 0.08);
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        /* Smooth transitions */
+        a, button { transition: all 0.2s ease; }
+        /* Card hover effect */
+        .card-hover:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+    </style>
+</head>
+<body class="text-on-surface">
+<div class="absolute top-0 left-0 w-full h-[300px] z-0" style="background: linear-gradient(180deg, rgba(255,126,54,0.9) 0%, rgba(255,126,54,0) 100%); pointer-events: none;"></div>
+
+<!-- TopAppBar -->
+<header class="sticky top-0 z-50  dark:-dim shadow-sm flex justify-between items-center w-full px-md h-16 bg-transparent relative z-40">
+<div class="flex items-center gap-sm">
+<button class="transition-colors duration-200 active:scale-95 text-primary dark:text-primary-fixed-dim">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md text-white">Cá nhân</h1>
+</div>
+<button class="transition-colors duration-200 active:scale-95 text-primary dark:text-primary-fixed-dim font-bold px-4 py-2 hover:/10">
+            Lưu
+        </button>
+</header>
+<main class="pb-24 px-container-padding space-y-lg pt-md relative z-10">
+<!-- Basic Info Section -->
+<section class="flex flex-col items-center justify-center">
+<div class="relative group">
+<div class="w-28 h-28 rounded-full overflow-hidden border-2 border-secondary-fixed ring-4 ring-primary-fixed/20 shadow-lg">
+<img class="w-full h-full object-cover" data-alt="A professional and friendly Vietnamese tasker in her 30s, smiling warmly at the camera. She has her hair neatly tied back and is wearing a clean, professional uniform. The background is a brightly lit, modern minimalist apartment with soft orange and white tones, reflecting a clean and trustworthy home environment. High-key lighting highlights her professional demeanor." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYq7i4J5bIMDFDzLtWCKxvSdSs2buECaavm4ZYvxBB_j8Y1qw6ygVFIqtT2Y11vZBxh24CVGGAxTpdwDDxQp9eRgmryfWeysjWkuGQiN3uKyidOUhMZ2m_SvptyPq-pN8OF126iPa97leayNlQZh8OxtqvIccbwhTvI_BObXW6V5NyFFU2D_LCJhymXRGzvjd7nMo_g9j9tclfDJOmfjwWFyIbFPPzSP9rGDAmNyYxQWORJ42reruIrIQ2QjCLqo9acWzCOZR4Ycs"/>
+</div>
+<button class="absolute bottom-0 right-0 p-2 primary-gradient rounded-full text-on-surface shadow-md active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-sm" data-icon="photo_camera">photo_camera</span>
+</button>
+</div>
+<div class="text-center mt-md">
+<h2 class="font-title-sm text-title-sm text-on-surface">Nguyễn Thị Lan</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">0901***888</p>
+</div>
+</section>
+<!-- Edit Form Section -->
+<section class="space-y-md">
+<div class="space-y-sm">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase">Mô tả bản thân</label>
+<textarea class="w-full level-1-card rounded-xl p-md font-body-lg text-body-lg focus:ring-1.5 focus:ring-primary focus:outline-none border-none resize-none" placeholder="Nhập mô tả của bạn..." rows="3">Có 3 năm kinh nghiệm dọn dẹp căn hộ cao cấp và nấu ăn gia đình theo khẩu vị 3 miền. Tận tâm, trung thực và sạch sẽ.</textarea>
+</div>
+<div class="space-y-sm">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase">Khu vực hoạt động</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-primary" data-icon="location_on">location_on</span>
+<input class="w-full level-1-card rounded-xl pl-12 pr-md py-3 font-body-lg text-body-lg focus:ring-1.5 focus:ring-primary focus:outline-none border-none" type="text" value="Quận 1, Quận Bình Thạnh"/>
+</div>
+</div>
+</section>
+<!-- Service Management Section -->
+<section class="space-y-md">
+<h3 class="font-title-sm text-title-sm text-on-surface">Dịch vụ cung cấp</h3>
+<div class="space-y-stack-gap">
+<div class="level-1-card rounded-xl p-md flex justify-between items-center transition-all active:scale-[0.98]">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary" data-icon="check_circle" data-weight="fill" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body-lg text-body-lg">Dọn dẹp nhà cửa</span>
+</div>
+<span class="material-symbols-outlined text-outline" data-icon="chevron_right">chevron_right</span>
+</div>
+<div class="level-1-card rounded-xl p-md flex justify-between items-center transition-all active:scale-[0.98]">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary" data-icon="check_circle" data-weight="fill" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body-lg text-body-lg">Trông trẻ</span>
+</div>
+<span class="material-symbols-outlined text-outline" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+<button class="w-full border-2 border-dashed border-primary/40 rounded-xl py-4 flex items-center justify-center gap-sm text-primary font-title-sm transition-colors hover:bg-primary/5">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+                Thêm dịch vụ mới
+            </button>
+<div class="flex items-start gap-sm bg-error-container/20 p-md rounded-xl border border-errorbg-surface-container/40">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="warning">warning</span>
+<p class="font-body-sm text-body-sm text-on-secondarybg-surface-container">Dịch vụ mới cần Admin phê duyệt.</p>
+</div>
+</section>
+<!-- KYC Verification Section -->
+<section class="space-y-sm">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase">Xác thực danh tính (KYC)</label>
+<div class="bg-surface-container-high/50 border border-outline-variant/30 rounded-xl p-md space-y-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="lock">lock</span>
+<div>
+<p class="font-body-lg text-body-lg font-semibold">CCCD: 079***888</p>
+<p class="text-xs text-primary font-bold">Đã xác thực</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary" data-icon="verified" data-weight="fill" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<div class="h-[1px] bg-outline-variant/30 w-full"></div>
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="assignment_turned_in">assignment_turned_in</span>
+<p class="font-body-lg text-body-lg font-semibold">Lý lịch tư pháp: <span class="text-on-secondarybg-surface-container">Hợp lệ</span></p>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+
+<!-- Navigation Shell -->
+<nav class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[92%] max-w-md z-50 flex justify-around items-center px-4 py-3 rounded-full bg-white shadow-xl border border-surface-container-high">
+    <!-- Trang chủ -->
+    <a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary active:scale-95 transition-transform" href="trangchutasker.html">
+        <span class="material-symbols-outlined text-[28px]" >home</span>
+        <span class="text-label-sm font-label-sm">Trang chủ</span>
+    </a>
+    <!-- Lịch sử -->
+    <a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary active:scale-95 transition-colors" href="lichsudonhang.html">
+        <span class="material-symbols-outlined text-[28px]" >history</span>
+        <span class="text-label-sm font-label-sm font-medium">Lịch sử</span>
+    </a>
+    <!-- Thống kê -->
+    <a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary active:scale-95 transition-colors" href="thunhapvathongke.html">
+        <span class="material-symbols-outlined text-[28px]" >monitoring</span>
+        <span class="text-label-sm font-label-sm font-medium">Thống kê</span>
+    </a>
+    <!-- Tài khoản -->
+    <a class="flex flex-col items-center justify-center text-primary active:scale-95 transition-colors" href="hosocanhan.html">
+        <span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">person</span>
+        <span class="text-label-sm font-label-sm font-medium">Cá nhân</span>
+    </a>
+</nav>
+
+</body></html>

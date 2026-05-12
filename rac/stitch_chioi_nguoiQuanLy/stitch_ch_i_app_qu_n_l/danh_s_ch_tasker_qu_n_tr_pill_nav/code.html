@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&amp;family=Inter:wght@400;600;700&amp;family=Be+Vietnam+Pro:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary": "#ffffff",
+                    "secondary-fixed-dim": "#bdc7d9",
+                    "secondary-container": "#d6e0f3",
+                    "secondary-fixed": "#d9e3f6",
+                    "surface": "#fff8f5",
+                    "on-primary": "#ffffff",
+                    "on-surface-variant": "#564334",
+                    "on-secondary": "#ffffff",
+                    "on-secondary-container": "#596373",
+                    "primary-container": "#ff8c00",
+                    "surface-container-highest": "#f3dfd1",
+                    "outline-variant": "#ddc1ae",
+                    "surface-tint": "#904d00",
+                    "on-primary-fixed": "#2f1500",
+                    "error-container": "#ffdad6",
+                    "tertiary": "#00658f",
+                    "on-primary-fixed-variant": "#6e3900",
+                    "inverse-surface": "#3a2e25",
+                    "on-error-container": "#93000a",
+                    "primary-fixed-dim": "#ffb77d",
+                    "tertiary-fixed-dim": "#85cfff",
+                    "on-tertiary-fixed-variant": "#004c6c",
+                    "inverse-on-surface": "#ffede3",
+                    "primary-fixed": "#ffdcc3",
+                    "primary": "#904d00",
+                    "surface-bright": "#fff8f5",
+                    "on-error": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-primary": "#ffb77d",
+                    "on-background": "#241912",
+                    "on-tertiary-fixed": "#001e2e",
+                    "on-secondary-fixed": "#121c2a",
+                    "background": "#fff8f5",
+                    "tertiary-container": "#00b5fc",
+                    "surface-container-high": "#f9e4d7",
+                    "surface-variant": "#f3dfd1",
+                    "surface-container": "#ffeadd",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed": "#c7e7ff",
+                    "outline": "#897362",
+                    "surface-dim": "#ead6c9",
+                    "on-secondary-fixed-variant": "#3d4756",
+                    "on-primary-container": "#623200",
+                    "surface-container-low": "#fff1e9",
+                    "secondary": "#555f6f",
+                    "on-tertiary-container": "#004360",
+                    "on-surface": "#241912"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-gap": "1rem",
+                    "card-padding": "1.25rem",
+                    "inline-gutter": "0.75rem",
+                    "section-padding": "2rem",
+                    "page-margin": "1rem"
+            },
+            "fontFamily": {
+                    "status-badge": ["Inter"],
+                    "label-caps": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-md": ["Manrope"],
+                    "body-sm": ["Inter"],
+                    "display-lg": ["Manrope"],
+                    "be-vietnam": ["Be Vietnam Pro"]
+            },
+            "fontSize": {
+                    "status-badge": ["11px", {"lineHeight": "12px", "fontWeight": "700"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-md": ["22px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "display-lg": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Be Vietnam Pro', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-tab-border {
+            box-shadow: inset 0 -3px 0 0 #904d00;
+        }
+    </style>
+<style>
+        body {
+          min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="max-w-md mx-auto shadow-2xl border-x border-gray-200 relative min-h-screen bg-surface text-on-surface antialiased pb-32 relative min-h-screen">
+<!-- Background Gradient -->
+<div class="absolute top-0 left-0 w-full h-[300px] z-0" style="background: linear-gradient(rgb(255, 126, 54) 0%, rgb(252, 249, 248) 100%);"></div>
+<!-- TopAppBar -->
+<header class="bg-white/80 backdrop-blur-sm border-b border-outline-variant/30 flex items-center justify-between px-page-margin h-16 w-full fixed top-0 z-40 relative z-10">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary cursor-pointer transition-colors duration-200 hover:bg-surface-container-highest/50 p-2 rounded-full">menu</span>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Danh sách Tasker</h1>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary cursor-pointer transition-colors duration-200 hover:bg-surface-container-highest/50 p-2 rounded-full">search</span>
+</div>
+</header>
+<!-- Content Area -->
+<main class="pt-20 px-page-margin max-w-4xl mx-auto relative z-10">
+<!-- Tabs Section -->
+<div class="flex border-b border-outline-variant bg-surface/50 backdrop-blur-sm mb-6 sticky top-16 z-30 rounded-t-xl">
+<button class="flex-1 py-4 text-primary font-bold active-tab-border text-center transition-all">
+                Đang hoạt động
+            </button>
+<button class="flex-1 py-4 text-on-surface-variant font-medium text-center hover:bg-surface-container-low transition-all">
+                Chờ duyệt hồ sơ
+            </button>
+</div>
+<!-- Section Label -->
+<div class="flex items-center justify-between mb-4">
+<h2 class="text-body-lg font-bold">Tất cả Tasker (128)</h2>
+<button class="text-primary font-semibold flex items-center gap-1 text-body-sm bg-white/50 px-3 py-1 rounded-full border border-outline-variant/30">
+<span class="material-symbols-outlined text-[18px]">filter_list</span> Bộ lọc
+            </button>
+</div>
+<!-- Tasker List Grid -->
+<div class="space-y-4">
+<!-- Card 1: Hoạt động -->
+<div class="bg-surface-container-lowest p-card-padding rounded-xl shadow-[0px_4px_12px_rgba(0,0,0,0.05)] border border-outline-variant/30 transition-transform active:scale-[0.99]">
+<div class="flex gap-4">
+<img alt="Avatar" class="w-16 h-16 rounded-full object-cover border-2 border-primary-fixed" data-alt="A professional headshot of a friendly Vietnamese male professional in his late 20s. He is wearing a clean orange polo shirt that matches the corporate branding. The background is a soft, out-of-focus modern office setting with warm daylight. The lighting is high-key and flattering, emphasizing a bright and trustworthy professional image." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkOpZ8aQwZ4wwhTeiYDqOLUQ2H_om9vDwswGoUnnjVBOg8Us1eCUZtLgepfJMYxQTPrUZyOPuUyf8T29STtChUx2Gg4DBoPS5w4X_w7VIVPHXnkp_JiDbREg1brHH24M568o5phrs9VsCmxijpCvDeHjYyG6eMzqifpcqxM0Du3XrVf-HCHxwYGHI26JMckTJO_O4eQi5Zy1yrxk3NV3VxQMFmy2sqrDx7oreEnpCby0f4lPpyEdBWMZEMcccd7ikdWB21QurAuHec"/>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-body-lg font-bold text-on-surface">Nguyễn Văn An</h3>
+<p class="text-body-sm text-on-surface-variant">0901 234 567</p>
+</div>
+<span class="bg-green-100 text-green-700 px-2 py-0.5 rounded-full text-status-badge font-status-badge flex items-center">
+                                Hoạt động
+                            </span>
+</div>
+<div class="flex items-center gap-4 mt-2">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-body-sm font-bold">4.8</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-secondary text-[18px]">task_alt</span>
+<span class="text-body-sm">150 đơn</span>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-4 pt-4 border-t border-outline-variant/30 flex justify-end">
+<button class="px-4 py-2 border-2 border-error text-error rounded-lg font-bold text-body-sm hover:bg-error/5 transition-colors">
+                        Khóa tài khoản
+                    </button>
+</div>
+</div>
+<!-- Card 2: Hoạt động -->
+<div class="bg-surface-container-lowest p-card-padding rounded-xl shadow-[0px_4px_12px_rgba(0,0,0,0.05)] border border-outline-variant/30">
+<div class="flex gap-4">
+<img alt="Avatar" class="w-16 h-16 rounded-full object-cover border-2 border-primary-fixed" data-alt="A smiling Vietnamese female service professional with her hair tied back, wearing a neat orange uniform. The lighting is bright and natural, suggesting a reliable and energetic personality. The portrait style is modern corporate with a clean, high-brightness aesthetic that fits seamlessly into a professional administration dashboard." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLIWusl4b2mjtW5FbhwqQCCXV8xBNCHBPlbC36rDpZOzNgmXHQojq8jo5aFTncaTfNpVOc6bAGSjVRcDTAKFW4TWiyu9yS9nGweHYxtwXdkAabOfs9aknaXhyV4hWlHyib3CswqALXt473PIKFj8b26yjLOp-5NkTyCYy3pyzjCA61la5xCiaX5rzAtMHY9qtSzhSAA4rPZLl4qjS3cyotR-GbpKS4PS1PicCGk4My0sgfk_3CRi1XLkr0sZ69UB70lAVkDOPxCv82"/>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-body-lg font-bold text-on-surface">Trần Thị Mai</h3>
+<p class="text-body-sm text-on-surface-variant">0988 777 666</p>
+</div>
+<span class="bg-green-100 text-green-700 px-2 py-0.5 rounded-full text-status-badge font-status-badge flex items-center">
+                                Hoạt động
+                            </span>
+</div>
+<div class="flex items-center gap-4 mt-2">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-body-sm font-bold">4.9</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-secondary text-[18px]">task_alt</span>
+<span class="text-body-sm">212 đơn</span>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-4 pt-4 border-t border-outline-variant/30 flex justify-end">
+<button class="px-4 py-2 border-2 border-error text-error rounded-lg font-bold text-body-sm hover:bg-error/5 transition-colors">
+                        Khóa tài khoản
+                    </button>
+</div>
+</div>
+<!-- Card 3: Tạm khóa -->
+<div class="bg-surface-container-low p-card-padding rounded-xl border border-outline-variant/30 opacity-80">
+<div class="flex gap-4">
+<img alt="Avatar" class="w-16 h-16 rounded-full object-cover border-2 border-outline grayscale" data-alt="A portrait of a male worker with a neutral expression, photographed in soft overcast outdoor lighting. The image style is clean and professional, but the muted tones and slightly desaturated colors represent an inactive or locked state in a high-end UI layout. The background shows a modern urban residential area." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlVl3SzPLfcTPFCMb4VIdDyn2hMtSmTKIZ9XCALltr2YGZHec9e2VOHn6SRAk04G4pyP7XnV0HoMKWrdNTqmLclMDlX9AY2G-C_98xnbMtAjsyraJp0YZGBzWkhrNMplcP1RLn5yDxFi9BZzg4HrN7mpJXssJpjYx0ElZYZyyh5jBPhS-f8gFm0d3cfo8ZNCjGKYQJqKwb43qmrA-OdiEBaVTdeUn39l9MQ296XACsn3GvYoJV5-Pch8kk6nCIwKW9LsDVvAGVB6ez"/>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-body-lg font-bold text-on-surface">Lê Hoàng Nam</h3>
+<p class="text-body-sm text-on-surface-variant">0912 333 444</p>
+</div>
+<span class="bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded-full text-status-badge font-status-badge flex items-center">
+                                Tạm khóa
+                            </span>
+</div>
+<div class="flex items-center gap-4 mt-2">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-body-sm font-bold">4.2</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-secondary text-[18px]">task_alt</span>
+<span class="text-body-sm">45 đơn</span>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-4 pt-4 border-t border-outline-variant/30 flex justify-end">
+<button class="px-4 py-2 bg-primary text-white rounded-lg font-bold text-body-sm hover:opacity-90 transition-all">
+                        Mở khóa
+                    </button>
+</div>
+</div>
+<!-- Wait for Approval Section Mockup -->
+<div class="mt-8 mb-4">
+<h2 class="text-body-lg font-bold text-secondary">Chờ duyệt hồ sơ (3)</h2>
+</div>
+<!-- Card 4: Chờ duyệt -->
+<div class="bg-surface-container-highest/30 p-card-padding rounded-xl border-2 border-dashed border-primary-fixed-dim backdrop-blur-sm">
+<div class="flex gap-4">
+<img alt="Avatar" class="w-16 h-16 rounded-full object-cover border-2 border-primary-fixed-dim" data-alt="A bright and optimistic portrait of a young Vietnamese woman applying for a tasker position. She is lit by soft window light in a clean, minimalist room. The visual style is crisp and modern light-mode, with a high-energy vibe provided by subtle orange accents in her accessories, designed for an administration dashboard profile." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3s_S4WmmeDgqaimAA0-9SnKBsCGYfW2_mAQ8za6gcPqUm5sb-A1vouG2sm-Vprehqi0cfmH8AYBj4cjmvV70ZuHZWRIs8dXARZvQTqDWs67dk0IivmRjtUn82PBkSfmhmvXTexigow5J2cKgNqxANfJqDbpatmWdjOvozhgIuDrQspUMTRuXkh13OHXwFA4YQMZajbJBuYoFPLjRfhRAAVmhu9I6gwg13mm1XZI3JoSjX66SojuD_-jJHTWQmAR75Nb5NUMIP72VU"/>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-body-lg font-bold text-on-surface">Phạm Thanh Thủy</h3>
+<p class="text-body-sm text-on-surface-variant">0977 111 222</p>
+</div>
+<span class="bg-primary-fixed text-primary px-2 py-0.5 rounded-full text-status-badge font-status-badge flex items-center">
+                                Chờ duyệt
+                            </span>
+</div>
+<p class="text-body-sm mt-2 italic text-on-surface-variant">"Mong muốn được hỗ trợ dọn dẹp nhà cửa..."</p>
+</div>
+</div>
+<div class="mt-4 pt-4 border-t border-outline-variant/30 flex gap-2 justify-end">
+<button class="flex-1 max-w-[120px] px-4 py-2 border-2 border-outline text-on-surface-variant rounded-lg font-bold text-body-sm hover:bg-surface-container-high transition-colors">
+                        Từ chối
+                    </button>
+<button class="flex-1 max-w-[120px] px-4 py-2 bg-primary text-white rounded-lg font-bold text-body-sm shadow-md hover:bg-primary/90 transition-all active:scale-95">
+                        Duyệt
+                    </button>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Pill Bottom Navigation -->
+<nav class="bg-white/90 backdrop-blur-md fixed bottom-6 left-1/2 -translate-x-1/2 flex justify-around items-center h-16 w-[95%] max-w-md rounded-full shadow-xl border border-outline-variant/20 px-4 z-50">
+    <a href="../b_ng_i_u_khi_n_qu_n_tr_vi_n_pill_nav/code.html" class="text-on-secondary-container hover:text-primary flex flex-col items-center justify-center transition-all active:scale-90">
+        <span class="material-symbols-outlined text-[22px] ">dashboard</span>
+        <span class="font-label-caps text-[10px] leading-tight mt-0.5 uppercase ">Dashboard</span>
+    </a>
+    <a href="../danh_s_ch_n_h_ng_full_nav/code.html" class="text-on-secondary-container hover:text-primary flex flex-col items-center justify-center transition-all active:scale-90">
+        <span class="material-symbols-outlined text-[22px] ">receipt_long</span>
+        <span class="font-label-caps text-[10px] leading-tight mt-0.5 uppercase ">Đơn</span>
+    </a>
+    <a href="../danh_s_ch_tasker_qu_n_tr_pill_nav/code.html" class="text-primary relative px-3 py-1 rounded-full bg-primary/10 flex flex-col items-center justify-center transition-all active:scale-90">
+        <span class="material-symbols-outlined text-[22px] font-bold">engineering</span>
+        <span class="font-label-caps text-[10px] leading-tight mt-0.5 uppercase font-bold">Tasker</span>
+    </a>
+    <a href="../danh_s_ch_c_d_n_qu_n_tr_pill_nav/code.html" class="text-on-secondary-container hover:text-primary flex flex-col items-center justify-center transition-all active:scale-90">
+        <span class="material-symbols-outlined text-[22px] ">group</span>
+        <span class="font-label-caps text-[10px] leading-tight mt-0.5 uppercase ">Cư dân</span>
+    </a>
+    <a href="../v_giao_d_ch_qu_n_tr_pill_nav/code.html" class="text-on-secondary-container hover:text-primary flex flex-col items-center justify-center transition-all active:scale-90">
+        <span class="material-symbols-outlined text-[22px] ">account_balance_wallet</span>
+        <span class="font-label-caps text-[10px] leading-tight mt-0.5 uppercase ">Ví</span>
+    </a>
+    <a href="../h_p_th_admin_pill_nav/code.html" class="text-on-secondary-container hover:text-primary flex flex-col items-center justify-center transition-all active:scale-90">
+        <span class="material-symbols-outlined text-[22px] ">inbox</span>
+        <span class="font-label-caps text-[10px] leading-tight mt-0.5 uppercase ">Inbox</span>
+    </a>
+</nav>
+</body></html>

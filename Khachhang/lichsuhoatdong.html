@@ -252,4 +252,79 @@
 <span class="text-label-sm font-label-sm font-medium">Tài khoản</span>
 </a>
 </nav>
+
+<script src="../shared/api.js"></script>
+<script>
+(async function() {
+  if (!ChiOiAuth.requireAuth('dangnhap.html')) return;
+
+  try {
+    var orders = await apiFetch('/api/orders/customer/history');
+    var listContainer = document.querySelector('.space-y-4:last-of-type');
+    if (listContainer) {
+      listContainer.innerHTML = '';
+      if (orders && orders.length > 0) {
+
+      var statusMap = {
+        'COMPLETED': { label: '✅ Hoàn thành', bg: 'bg-green-100', text: 'text-green-700' },
+        'IN_PROGRESS': { label: '🔵 Đang thực hiện', bg: 'bg-blue-100', text: 'text-blue-700' },
+        'TASKER_ARRIVED': { label: '📍 Tasker đã đến', bg: 'bg-blue-100', text: 'text-blue-700' },
+        'ACCEPTED': { label: '✅ Đã nhận', bg: 'bg-green-100', text: 'text-green-700' },
+        'SEARCHING': { label: '🔍 Đang tìm Tasker', bg: 'bg-yellow-100', text: 'text-yellow-700' },
+        'PENDING': { label: '⏳ Chờ xử lý', bg: 'bg-yellow-100', text: 'text-yellow-700' },
+        'CANCELLED': { label: '🔴 Đã hủy', bg: 'bg-red-100', text: 'text-red-700' },
+      };
+
+      var iconMap = ['cleaning_services', 'child_care', 'shopping_cart', 'home_repair_service'];
+
+      orders.forEach(function(order, idx) {
+        var status = statusMap[order.status] || { label: order.status, bg: 'bg-gray-100', text: 'text-gray-700' };
+        var icon = iconMap[idx % iconMap.length];
+        var isCancelled = order.status === 'CANCELLED';
+
+        var div = document.createElement('div');
+        div.className = 'bg-white p-4 rounded-xl shadow-[0_4px_15px_rgba(0,0,0,0.04)] border border-surface-container transition-all hover:shadow-md cursor-pointer' + (isCancelled ? ' opacity-80' : '');
+        div.onclick = function() { window.location.href = 'theodoidon.html?orderId=' + order.order_id; };
+
+        var serviceName = (order.services && order.services.name) ? order.services.name : 'Dịch vụ #' + order.order_id;
+        var taskerName = (order.taskers && order.taskers.users && order.taskers.users.full_name) ? order.taskers.users.full_name : 'Chưa phân công';
+        var priceClass = isCancelled ? 'font-bold text-on-surface-variant line-through' : 'font-bold text-primary';
+
+        div.innerHTML = '<div class="flex justify-between items-start mb-4">' +
+          '<div class="flex gap-4">' +
+          '<div class="w-12 h-12 bg-primary-container/20 rounded-lg flex items-center justify-center text-primary">' +
+          '<span class="material-symbols-outlined">' + icon + '</span></div>' +
+          '<div><h3 class="font-title-sm text-title-sm text-on-surface">' + serviceName + '</h3>' +
+          '<p class="text-body-sm text-on-surface-variant">' + formatDateTime(order.created_at) + '</p></div></div>' +
+          '<span class="' + status.bg + ' ' + status.text + ' px-3 py-1 rounded-full text-[12px] font-bold flex items-center gap-1">' + status.label + '</span></div>' +
+          '<div class="flex items-center justify-between pt-4 border-t border-surface-variant">' +
+          '<span class="text-body-sm text-on-surface-variant">Tasker: <span class="font-semibold text-on-surface">' + taskerName + '</span></span>' +
+          '<span class="' + priceClass + '">' + formatVND(order.total_price) + '</span></div>';
+
+        listContainer.appendChild(div);
+      });
+      } else {
+        listContainer.innerHTML = '<div class="text-center text-on-surface-variant text-sm py-8">Bạn chưa có đơn hàng nào</div>';
+      }
+    }
+  } catch (e) {
+    console.warn('[LichSu] Không thể load:', e.message);
+  }
+
+  // ===== SOCKET.IO REAL-TIME UPDATES =====
+  var socket = connectSocket();
+  if (socket) {
+    socket.on('order_accepted', function(data) {
+      showToastMsg('🎉 ' + data.message);
+      // Reload page to fetch updated list
+      setTimeout(function() { location.reload(); }, 2000);
+    });
+
+    socket.on('order_status_updated', function(data) {
+      showToastMsg('🔔 ' + data.message);
+      setTimeout(function() { location.reload(); }, 2000);
+    });
+  }
+})();
+</script>
 </body></html>

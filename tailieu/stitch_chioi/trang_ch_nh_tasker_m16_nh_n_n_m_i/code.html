@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+
+<html lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed-dim": "#ffb693",
+                    "surface-container": "#ffeae1",
+                    "tertiary-fixed-dim": "#52d5ff",
+                    "inverse-surface": "#3b2e28",
+                    "error-container": "#ffdad6",
+                    "secondary": "#895032",
+                    "tertiary": "#006780",
+                    "primary-fixed": "#ffdbcc",
+                    "on-tertiary-fixed-variant": "#004d61",
+                    "background": "#fff8f6",
+                    "surface-dim": "#ecd6cc",
+                    "on-secondary-fixed-variant": "#6d391d",
+                    "on-primary": "#ffffff",
+                    "surface-tint": "#a04100",
+                    "inverse-primary": "#ffb693",
+                    "surface-container-high": "#fae4da",
+                    "surface-container-highest": "#f4ded5",
+                    "outline": "#8b7266",
+                    "on-error-container": "#93000a",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-container": "#ff7e36",
+                    "inverse-on-surface": "#ffede6",
+                    "error": "#ba1a1a",
+                    "primary": "#a04100",
+                    "on-tertiary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "secondary-fixed": "#ffdbcc",
+                    "tertiary-container": "#00b1da",
+                    "on-background": "#241914",
+                    "surface-container-low": "#fff1eb",
+                    "on-secondary": "#ffffff",
+                    "on-surface-variant": "#584238",
+                    "on-primary-container": "#642600",
+                    "primary-fixed-dim": "#ffb693",
+                    "outline-variant": "#dfc0b3",
+                    "on-surface": "#241914",
+                    "on-primary-fixed": "#351000",
+                    "secondary-container": "#feb28e",
+                    "surface-bright": "#fff8f6",
+                    "on-tertiary-fixed": "#001f28",
+                    "on-secondary-container": "#794226",
+                    "on-primary-fixed-variant": "#7a3000",
+                    "tertiary-fixed": "#b8eaff",
+                    "surface": "#fff8f6",
+                    "on-tertiary-container": "#003f4f",
+                    "surface-variant": "#f4ded5",
+                    "on-secondary-fixed": "#351000"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "md": "16px",
+                    "base": "4px",
+                    "xs": "4px",
+                    "stack-gap": "12px",
+                    "container-padding": "16px",
+                    "xl": "32px",
+                    "sm": "8px",
+                    "lg": "24px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Be Vietnam Pro"],
+                    "headline-md": ["Be Vietnam Pro"],
+                    "body-sm": ["Be Vietnam Pro"],
+                    "label-caps": ["Be Vietnam Pro"],
+                    "display-lg": ["Be Vietnam Pro"],
+                    "title-sm": ["Be Vietnam Pro"]
+            },
+            "fontSize": {
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "title-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .gradient-primary {
+        background: linear-gradient(135deg, #ff7e36 0%, #a04100 100%);
+      }
+      .blur-background {
+        backdrop-filter: blur(8px);
+        background-color: rgba(255, 248, 246, 0.6);
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background font-body-lg text-on-background min-h-screen flex flex-col">
+<!-- Top App Bar -->
+<header class="bg-primary-container dark:bg-primary shadow-md flex justify-between items-center w-full px-container-padding h-16 sticky top-0 z-50">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full border-2 border-white/30 overflow-hidden">
+<img alt="Lan Nguyễn" class="w-full h-full object-cover" data-alt="A professional close-up portrait of a friendly Vietnamese woman with a warm smile, set against a soft, bright interior cleaning environment. The lighting is natural and high-key, emphasizing a clean and trustworthy persona. The overall aesthetic is modern and professional, aligning with the warm orange and white brand palette of the home cleaning service." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdx_l7OLqkJhx3t8XNX3oPsNEZ_ogskiGRnrfncigojiUmOhgUgCBnzOtjAoqTw0VT8UhEJeg1dX9XGQ4Bv8H31CgwgWYchWXUkhmmRML2MH3UPlx8xcg7dwkz6qPuZ01IJyV4QcESVQIkgQGRLOgvy5_M9Iog2G7TdbmVv4W8YhbHeWC-14TUAIAeQf2cR_E1-AFVlyhYV578lUAfzmC9A7difRggk60mNGZ5r1AuzpEC7WSjzVzYTLk_lUCDfPp6S7TStIoHLIs"/>
+</div>
+<h1 class="text-on-primary font-headline-md text-headline-md tracking-tight">Chào, Lan Nguyễn 👋</h1>
+</div>
+<div class="flex items-center gap-3">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-tertiary-container"></div>
+</label>
+<span class="material-symbols-outlined text-on-primary" data-icon="chat_bubble">chat_bubble</span>
+</div>
+</header>
+<!-- Main Content Area with Map Backdrop -->
+<main class="flex-grow relative flex items-center justify-center overflow-hidden">
+<!-- Mock Map Background -->
+<div class="absolute inset-0 z-0">
+<img alt="Map view" class="w-full h-full object-cover" data-alt="A detailed overhead city map of Ho Chi Minh City, showing clean, minimalist street layouts with soft pastel colors. The map includes Vinhomes Central Park area, with subtle markers for navigation. The lighting is bright and clear, maintaining a modern light-mode feel that contrasts beautifully with the primary UI elements." data-location="Ho Chi Minh City" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAK-8vGHUSnwheRf36bf1I31_oFpLczOP50uTG6kHxuaTDdjyKp_-6YSD5XycdX2FwdHD7LkeD4b9uG7JnCRYW7N7jWlcBpAszoFxeL5DjDupTr47P3Z_5vyrLEkyrq3_XSMERIdYiVYX4edLOntEFPQYBC9ScEHTNSV-bCth77QIy8IRWYn8kAbURvTKuFighj8yNK4KO9Bvn3htY33RcSq9a4TSONhZkI600o8MHBSwmFy1KmBwsalyUQo0dd-RjtJdM-G9N0CE8"/>
+<div class="absolute inset-0 blur-background"></div>
+</div>
+<!-- Task Notification Modal -->
+<div class="relative z-10 w-full max-w-sm px-md">
+<div class="bg-surface-container-lowest rounded-[24px] shadow-lg border border-surface-container-high overflow-hidden animate-in fade-in zoom-in duration-300">
+<div class="gradient-primary p-4 text-center">
+<h2 class="text-on-primary font-title-sm text-title-sm flex items-center justify-center gap-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">notifications_active</span>
+                        ĐƠN DỌN NHÀ MỚI
+                    </h2>
+</div>
+<div class="p-md space-y-stack-gap">
+<!-- Location -->
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary-container" data-icon="location_on" style="font-variation-settings: 'FILL' 1;">location_on</span>
+<div>
+<p class="font-title-sm text-on-surface">Vinhomes Central Park</p>
+<p class="text-body-sm text-on-surface-variant">Cách bạn 1.2km</p>
+</div>
+</div>
+<!-- Time -->
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-container" data-icon="schedule" style="font-variation-settings: 'FILL' 1;">schedule</span>
+<p class="text-body-lg font-title-sm text-on-surface">Hôm nay, 14:00 (3 giờ)</p>
+</div>
+<!-- Price -->
+<div class="bg-surface-container-low rounded-xl p-md flex justify-between items-center">
+<p class="text-on-surface-variant font-label-caps">THU NHẬP</p>
+<p class="text-display-lg font-display-lg text-primary">150.000 đ</p>
+</div>
+<!-- Timer -->
+<div class="flex flex-col items-center gap-1">
+<p class="text-error font-label-caps flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="timer">timer</span>
+                            Tự động bỏ qua sau: 00:58
+                        </p>
+<div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+<div class="bg-error h-full w-[80%] rounded-full"></div>
+</div>
+</div>
+<!-- Actions -->
+<div class="flex gap-3 pt-2">
+<button class="flex-1 py-3 px-4 rounded-full border-2 border-outline-variant text-on-surface-variant font-title-sm hover:bg-surface-container transition-all active:scale-95">
+                            BỎ QUA
+                        </button>
+<button class="flex-1 py-3 px-4 rounded-full gradient-primary text-on-primary font-title-sm shadow-md hover:brightness-110 transition-all active:scale-95">
+                            NHẬN ĐƠN
+                        </button>
+</div>
+<p class="text-center text-[11px] text-on-surface-variant italic">
+                        * Bỏ qua &gt;30% sẽ giảm đơn.
+                    </p>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-6 left-md right-md z-50 flex justify-around items-center h-16 max-w-md mx-auto bg-surface-container shadow-lg backdrop-blur-sm rounded-full">
+<!-- Home (Active) -->
+<a class="flex flex-col items-center justify-center bg-primary text-on-primary rounded-full px-4 py-2 scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="home" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="text-label-caps font-label-caps">Trang chủ</span>
+</a>
+<!-- History -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:bg-primary-fixed-dim/20 px-4 py-2 rounded-full transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="text-label-caps font-label-caps">Lịch sử</span>
+</a>
+<!-- Statistics -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:bg-primary-fixed-dim/20 px-4 py-2 rounded-full transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="monitoring">monitoring</span>
+<span class="text-label-caps font-label-caps">Thống kê</span>
+</a>
+<!-- Profile -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:bg-primary-fixed-dim/20 px-4 py-2 rounded-full transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="text-label-caps font-label-caps">Cá nhân</span>
+</a>
+</nav>
+<!-- FAB Suppression Logic as per Mandate: No FAB rendered here as it overlaps with the Order Modal flow -->
+</body></html>

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+
+<html lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Thống kê - Tasker</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "tertiary-fixed": "#b8eaff",
+                "on-secondary-fixed-variant": "#6d391d",
+                "on-secondary": "#ffffff",
+                "on-secondary-container": "#794226",
+                "background": "#fff8f6",
+                "on-tertiary": "#ffffff",
+                "inverse-surface": "#3b2e28",
+                "tertiary": "#006780",
+                "primary-fixed-dim": "#ffb693",
+                "surface-tint": "#a04100",
+                "error-container": "#ffdad6",
+                "primary-fixed": "#ffdbcc",
+                "tertiary-container": "#00b1da",
+                "secondary": "#895032",
+                "on-error-container": "#93000a",
+                "on-tertiary-container": "#003f4f",
+                "tertiary-fixed-dim": "#52d5ff",
+                "on-surface-variant": "#584238",
+                "surface-container-high": "#fae4da",
+                "on-tertiary-fixed-variant": "#004d61",
+                "on-surface": "#241914",
+                "on-background": "#241914",
+                "surface-bright": "#fff8f6",
+                "surface-container-lowest": "#ffffff",
+                "inverse-on-surface": "#ffede6",
+                "surface-dim": "#ecd6cc",
+                "on-primary": "#ffffff",
+                "surface-variant": "#f4ded5",
+                "on-error": "#ffffff",
+                "surface-container-low": "#fff1eb",
+                "on-primary-fixed": "#351000",
+                "error": "#ba1a1a",
+                "secondary-fixed-dim": "#ffb693",
+                "secondary-fixed": "#ffdbcc",
+                "surface-container-highest": "#f4ded5",
+                "outline-variant": "#dfc0b3",
+                "on-secondary-fixed": "#351000",
+                "surface-container": "#ffeae1",
+                "secondary-container": "#feb28e",
+                "on-primary-container": "#642600",
+                "on-primary-fixed-variant": "#7a3000",
+                "inverse-primary": "#ffb693",
+                "primary": "#a04100",
+                "outline": "#8b7266",
+                "surface": "#fff8f6",
+                "on-tertiary-fixed": "#001f28",
+                "primary-container": "#ff7e36"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "sm": "8px",
+                "container-padding": "16px",
+                "xs": "4px",
+                "xl": "32px",
+                "base": "4px",
+                "stack-gap": "12px",
+                "md": "16px",
+                "lg": "24px"
+            },
+            "fontFamily": {
+                "label-caps": ["Be Vietnam Pro"],
+                "title-sm": ["Be Vietnam Pro"],
+                "headline-md": ["Be Vietnam Pro"],
+                "display-lg": ["Be Vietnam Pro"],
+                "body-sm": ["Be Vietnam Pro"],
+                "body-lg": ["Be Vietnam Pro"]
+            },
+            "fontSize": {
+                "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                "title-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Be Vietnam Pro', sans-serif; background-color: #fff8f6; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .chart-bar { transition: height 0.3s ease; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="flex items-center justify-between px-md h-16 w-full fixed top-0 z-50 bg-gradient-to-r from-primary to-primary-container shadow-md">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-on-primary text-headline-md active:scale-95 transition-all cursor-pointer">menu</span>
+<h1 class="font-headline-md text-headline-md text-on-primary">Thống kê</h1>
+</div>
+<button class="flex items-center gap-xs px-3 py-1 bg-white/20 rounded-full text-on-primary hover:opacity-90 active:scale-95 transition-all">
+<span class="font-label-caps text-label-caps">Tháng này</span>
+<span class="material-symbols-outlined text-[18px]">filter_list</span>
+</button>
+</header>
+<main class="pt-20 px-container-padding space-y-md">
+<!-- Wallet Card -->
+<div class="bg-surface-container-lowest border border-primary-fixed p-lg rounded-xl shadow-[0_4px_15px_rgba(0,0,0,0.04)]">
+<div class="flex flex-col gap-sm">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Số dư khả dụng</span>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary text-[28px]">account_balance_wallet</span>
+<span class="font-display-lg text-display-lg text-on-surface">1,500,000 đ</span>
+</div>
+<button class="mt-md w-full py-4 bg-gradient-to-r from-primary to-primary-container text-on-primary font-title-sm text-title-sm rounded-full shadow-lg active:scale-95 transition-all">
+                    YÊU CẦU RÚT TIỀN
+                </button>
+<p class="text-[11px] text-on-surface-variant leading-tight mt-sm">
+                    * T+1 · Min 100k · Khấu trừ TNCN 10% nếu &gt;2tr
+                </p>
+</div>
+</div>
+<!-- KPI Grid 2x2 -->
+<div class="grid grid-cols-2 gap-md">
+<!-- Total Income -->
+<div class="bg-surface-container-lowest p-md rounded-xl border border-primary-fixed shadow-[0_4px_15px_rgba(0,0,0,0.04)]">
+<span class="font-label-caps text-label-caps text-on-surface-variant">TỔNG THU NHẬP</span>
+<p class="font-title-sm text-title-sm text-primary mt-xs">2.5M đ</p>
+</div>
+<!-- Orders -->
+<div class="bg-surface-container-lowest p-md rounded-xl border border-primary-fixed shadow-[0_4px_15px_rgba(0,0,0,0.04)]">
+<span class="font-label-caps text-label-caps text-on-surface-variant">HOÀN THÀNH</span>
+<p class="font-title-sm text-title-sm text-primary mt-xs">12 đơn</p>
+</div>
+<!-- Completion Rate -->
+<div class="bg-surface-container-lowest p-md rounded-xl border border-primary-fixed shadow-[0_4px_15px_rgba(0,0,0,0.04)]">
+<span class="font-label-caps text-label-caps text-on-surface-variant">TỶ LỆ HOÀN THÀNH</span>
+<p class="font-title-sm text-title-sm text-primary mt-xs">95%</p>
+</div>
+<!-- Rating -->
+<div class="bg-surface-container-lowest p-md rounded-xl border border-primary-fixed shadow-[0_4px_15px_rgba(0,0,0,0.04)]">
+<span class="font-label-caps text-label-caps text-on-surface-variant">ĐÁNH GIÁ</span>
+<div class="flex items-center gap-xs mt-xs">
+<p class="font-title-sm text-title-sm text-primary">4.9</p>
+<span class="material-symbols-outlined text-[18px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+</div>
+<!-- Bar Chart Section -->
+<div class="bg-surface-container-lowest p-lg rounded-xl border border-primary-fixed shadow-[0_4px_15px_rgba(0,0,0,0.04)]">
+<h3 class="font-title-sm text-title-sm text-on-surface mb-lg">Xu hướng thu nhập</h3>
+<div class="flex items-end justify-between h-40 gap-sm">
+<div class="flex flex-col items-center gap-xs flex-1">
+<div class="w-full bg-primary-fixed rounded-t-lg h-24"></div>
+<span class="text-[10px] font-label-caps">T2</span>
+</div>
+<div class="flex flex-col items-center gap-xs flex-1">
+<div class="w-full bg-primary-fixed rounded-t-lg h-32"></div>
+<span class="text-[10px] font-label-caps">T3</span>
+</div>
+<div class="flex flex-col items-center gap-xs flex-1">
+<div class="w-full bg-primary-container rounded-t-lg h-16 shadow-md"></div>
+<span class="text-[10px] font-label-caps text-primary">T4</span>
+</div>
+<div class="flex flex-col items-center gap-xs flex-1">
+<div class="w-full bg-primary-fixed rounded-t-lg h-28"></div>
+<span class="text-[10px] font-label-caps">T5</span>
+</div>
+<div class="flex flex-col items-center gap-xs flex-1">
+<div class="w-full bg-primary-fixed rounded-t-lg h-36"></div>
+<span class="text-[10px] font-label-caps">T6</span>
+</div>
+<div class="flex flex-col items-center gap-xs flex-1">
+<div class="w-full bg-primary-fixed rounded-t-lg h-20"></div>
+<span class="text-[10px] font-label-caps">T7</span>
+</div>
+<div class="flex flex-col items-center gap-xs flex-1">
+<div class="w-full bg-primary-fixed rounded-t-lg h-12"></div>
+<span class="text-[10px] font-label-caps">CN</span>
+</div>
+</div>
+</div>
+<!-- History Section -->
+<div class="space-y-sm">
+<h3 class="font-title-sm text-title-sm text-on-surface px-xs">Lịch sử thu nhập</h3>
+<!-- Item 1 -->
+<div class="bg-surface-container-lowest p-md rounded-xl border border-primary-fixed shadow-[0_4px_15px_rgba(0,0,0,0.04)] flex justify-between items-center">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-lg bg-light-orange overflow-hidden flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">cleaning_services</span>
+</div>
+<div>
+<p class="font-title-sm text-[16px] text-on-surface">Dọn dẹp nhà cửa</p>
+<p class="text-body-sm text-on-surface-variant">20/10/2023 · 14:30</p>
+<p class="text-[11px] text-secondary italic">Đã trừ 15% phí nền tảng</p>
+</div>
+</div>
+<p class="font-title-sm text-title-sm text-primary">+255,000 đ</p>
+</div>
+<!-- Item 2 -->
+<div class="bg-surface-container-lowest p-md rounded-xl border border-primary-fixed shadow-[0_4px_15px_rgba(0,0,0,0.04)] flex justify-between items-center">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-lg bg-light-orange overflow-hidden flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">air</span>
+</div>
+<div>
+<p class="font-title-sm text-[16px] text-on-surface">Vệ sinh máy lạnh</p>
+<p class="text-body-sm text-on-surface-variant">19/10/2023 · 09:00</p>
+<p class="text-[11px] text-secondary italic">Đã trừ 15% phí nền tảng</p>
+</div>
+</div>
+<p class="font-title-sm text-title-sm text-primary">+425,000 đ</p>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-container-padding py-2 bg-surface dark:bg-surface-container-low shadow-lg border-t border-outline-variant rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-surface-variant/50 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-caps text-label-caps">Trang chủ</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-surface-variant/50 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="font-label-caps text-label-caps">Lịch sử</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">bar_chart</span>
+<span class="font-label-caps text-label-caps">Thống kê</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-surface-variant/50 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-caps text-label-caps">Cá nhân</span>
+</a>
+</nav>
+</body></html>

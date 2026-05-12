@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html class="light" lang="vi"><head>
 <meta charset="utf-8"/>
@@ -247,4 +247,112 @@
 <span class="text-label-sm font-label-sm font-medium">Tài khoản</span>
 </a>
 </nav>
+
+<!-- Socket.IO + API -->
+<script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+<script src="../shared/api.js"></script>
+<script>
+(async function() {
+  if (!ChiOiAuth.requireAuth('dangnhap.html')) return;
+  var user = ChiOiAuth.getUser();
+
+  // Lấy orderId từ URL params (ví dụ: chatvoitasker.html?orderId=5)
+  var params = new URLSearchParams(window.location.search);
+  var orderId = params.get('orderId');
+
+  // Load lịch sử chat nếu có orderId
+  if (orderId) {
+    try {
+      var messages = await apiFetch('/api/orders/chat/' + orderId);
+      var chatArea = document.querySelector('.flex-1.p-container-padding');
+      if (chatArea && messages && messages.length > 0) {
+        // Giữ lại timestamp header, xóa các tin nhắn mẫu
+        var timestampDiv = chatArea.querySelector('.flex.justify-center');
+        chatArea.innerHTML = '';
+        if (timestampDiv) chatArea.appendChild(timestampDiv);
+
+        messages.forEach(function(msg) {
+          var isMine = msg.sender_id === user.user_id;
+          var div = document.createElement('div');
+          if (isMine) {
+            div.className = 'flex flex-col items-end gap-1';
+            div.innerHTML = '<div class="message-gradient text-on-primary p-3 rounded-2xl rounded-br-none shadow-md max-w-[80%]">' +
+              '<p class="text-body-lg">' + msg.content + '</p>' +
+              '<div class="flex items-center justify-end gap-1 mt-1">' +
+              '<p class="text-[10px] text-on-primary/80">' + formatDateTime(msg.created_at) + '</p>' +
+              '<span class="material-symbols-outlined text-[14px]">done_all</span></div></div>';
+          } else {
+            div.className = 'flex items-end gap-2 max-w-[85%]';
+            div.innerHTML = '<div class="w-8 h-8 rounded-full overflow-hidden flex-shrink-0 bg-surface-variant"></div>' +
+              '<div class="bg-surface-container-high text-on-surface p-3 rounded-2xl rounded-bl-none shadow-sm">' +
+              '<p class="text-body-lg">' + msg.content + '</p>' +
+              '<p class="text-[10px] text-on-surface-variant mt-1">' + formatDateTime(msg.created_at) + '</p></div>';
+          }
+          chatArea.appendChild(div);
+        });
+        chatArea.scrollTop = chatArea.scrollHeight;
+      }
+    } catch (e) {
+      console.warn('[Chat] Không thể load lịch sử:', e.message);
+    }
+  }
+
+  // Kết nối Socket
+  var socket = connectSocket();
+  if (socket) {
+    // Nhận tin nhắn realtime
+    socket.on('receive_message', function(msg) {
+      var chatArea = document.querySelector('.flex-1.p-container-padding');
+      if (chatArea) {
+        var div = document.createElement('div');
+        div.className = 'flex items-end gap-2 max-w-[85%]';
+        div.innerHTML = '<div class="w-8 h-8 rounded-full overflow-hidden flex-shrink-0 bg-surface-variant"></div>' +
+          '<div class="bg-surface-container-high text-on-surface p-3 rounded-2xl rounded-bl-none shadow-sm">' +
+          '<p class="text-body-lg">' + msg.content + '</p>' +
+          '<p class="text-[10px] text-on-surface-variant mt-1">Vừa xong</p></div>';
+        chatArea.appendChild(div);
+        chatArea.scrollTop = chatArea.scrollHeight;
+      }
+    });
+  }
+
+  // Gửi tin nhắn
+  var sendBtn = document.querySelector('.bg-primary.text-on-primary.rounded-full');
+  var input = document.querySelector('input[placeholder="Nhập tin nhắn..."]');
+  if (sendBtn && input) {
+    function sendChatMessage() {
+      var text = input.value.trim();
+      if (!text) return;
+
+      // Hiển thị trên UI ngay
+      var chatArea = document.querySelector('.flex-1.p-container-padding');
+      var div = document.createElement('div');
+      div.className = 'flex flex-col items-end gap-1';
+      div.innerHTML = '<div class="message-gradient text-on-primary p-3 rounded-2xl rounded-br-none shadow-md max-w-[80%]">' +
+        '<p class="text-body-lg">' + text + '</p>' +
+        '<div class="flex items-center justify-end gap-1 mt-1">' +
+        '<p class="text-[10px] text-on-primary/80">Vừa xong</p>' +
+        '<span class="material-symbols-outlined text-[14px]">done</span></div></div>';
+      chatArea.appendChild(div);
+      chatArea.scrollTop = chatArea.scrollHeight;
+
+      // Gửi qua socket
+      if (socket && orderId) {
+        socket.emit('send_message', {
+          orderId: parseInt(orderId),
+          receiverId: parseInt(params.get('receiverId') || 0),
+          content: text
+        });
+      }
+
+      input.value = '';
+    }
+
+    sendBtn.addEventListener('click', sendChatMessage);
+    input.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') sendChatMessage();
+    });
+  }
+})();
+</script>
 </body></html>

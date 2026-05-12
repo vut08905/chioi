@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .headline-font { font-family: 'Manrope', sans-serif; }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface": "#fff8f5",
+                      "surface-container": "#ffeadd",
+                      "primary-container": "#ff8c00",
+                      "on-error": "#ffffff",
+                      "surface-container-low": "#fff1e9",
+                      "primary-fixed": "#ffdcc3",
+                      "on-tertiary": "#ffffff",
+                      "outline": "#897362",
+                      "on-tertiary-container": "#004360",
+                      "tertiary-fixed": "#c7e7ff",
+                      "secondary-container": "#d6e0f3",
+                      "primary-fixed-dim": "#ffb77d",
+                      "tertiary": "#00658f",
+                      "on-secondary-fixed": "#121c2a",
+                      "on-error-container": "#93000a",
+                      "on-primary-container": "#623200",
+                      "surface-variant": "#f3dfd1",
+                      "on-primary-fixed": "#2f1500",
+                      "on-background": "#241912",
+                      "on-surface": "#241912",
+                      "on-surface-variant": "#564334",
+                      "secondary-fixed-dim": "#bdc7d9",
+                      "secondary-fixed": "#d9e3f6",
+                      "error": "#ba1a1a",
+                      "tertiary-container": "#00b5fc",
+                      "primary": "#904d00",
+                      "inverse-primary": "#ffb77d",
+                      "outline-variant": "#ddc1ae",
+                      "surface-dim": "#ead6c9",
+                      "tertiary-fixed-dim": "#85cfff",
+                      "on-tertiary-fixed": "#001e2e",
+                      "on-tertiary-fixed-variant": "#004c6c",
+                      "surface-container-high": "#f9e4d7",
+                      "error-container": "#ffdad6",
+                      "surface-bright": "#fff8f5",
+                      "on-secondary-fixed-variant": "#3d4756",
+                      "on-secondary": "#ffffff",
+                      "background": "#fff8f5",
+                      "surface-container-highest": "#f3dfd1",
+                      "inverse-on-surface": "#ffede3",
+                      "surface-tint": "#904d00",
+                      "secondary": "#555f6f",
+                      "on-primary-fixed-variant": "#6e3900",
+                      "surface-container-lowest": "#ffffff",
+                      "on-primary": "#ffffff",
+                      "on-secondary-container": "#596373",
+                      "inverse-surface": "#3a2e25"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "inline-gutter": "0.75rem",
+                      "page-margin": "1rem",
+                      "section-padding": "2rem",
+                      "card-padding": "1.25rem",
+                      "stack-gap": "1rem"
+              },
+              "fontFamily": {
+                      "headline-md": ["Manrope"],
+                      "display-lg": ["Manrope"],
+                      "label-caps": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "body-sm": ["Inter"],
+                      "status-badge": ["Inter"]
+              },
+              "fontSize": {
+                      "headline-md": ["22px", {"lineHeight": "28px", "fontWeight": "600"}],
+                      "display-lg": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "status-badge": ["11px", {"lineHeight": "12px", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="max-w-md mx-auto shadow-2xl border-x border-gray-200 relative min-h-screen bg-surface text-on-surface min-h-screen pb-32 relative overflow-x-hidden">
+<!-- Gradient Background -->
+<div class="absolute top-0 left-0 w-full h-[300px] z-0" style="background: linear-gradient(rgb(255, 126, 54) 0%, rgb(252, 249, 248) 100%);"></div>
+<header class="bg-transparent border-b border-white/20 flex items-center justify-between px-page-margin h-16 w-full sticky top-0 z-[100] backdrop-blur-sm">
+<div class="flex items-center gap-4 relative z-10">
+<span class="material-symbols-outlined text-white cursor-pointer">menu</span>
+<h1 class="font-headline-md text-headline-md font-bold text-white">Khiếu nại (2)</h1>
+</div>
+<div class="flex items-center gap-3 relative z-10">
+<span class="material-symbols-outlined text-white">search</span>
+<span class="material-symbols-outlined text-white">notifications</span>
+</div>
+</header>
+<main class="max-w-5xl mx-auto p-page-margin relative z-10">
+<div class="flex items-center space-x-1 mb-8 p-1 bg-white/20 backdrop-blur-md rounded-xl w-fit">
+<button class="px-6 py-2.5 rounded-lg font-label-caps text-label-caps bg-primary text-white shadow-lg transition-all">Đang chờ xử lý</button>
+<button class="px-6 py-2.5 rounded-lg font-label-caps text-label-caps text-on-primary-fixed hover:bg-white/30 transition-all">Đã xử lý</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-gap">
+<!-- Complaint Card 1 -->
+<div class="bg-surface-container-lowest rounded-xl shadow-[0px_4px_12px_rgba(0,0,0,0.05)] border border-outline-variant overflow-hidden flex flex-col">
+<div class="p-card-padding border-b border-outline-variant flex justify-between items-start">
+<div>
+<span class="font-label-caps text-label-caps text-primary tracking-wider mb-1 block">#BK0144</span>
+<h3 class="font-headline-md text-headline-md">Tasker đến trễ</h3>
+</div>
+<span class="bg-error-container text-on-error-container font-status-badge text-status-badge px-2.5 py-1 rounded-full uppercase">Mới</span>
+</div>
+<div class="p-card-padding flex-grow space-y-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant">person</span>
+</div>
+<div>
+<p class="text-body-sm text-on-surface-variant">Cư dân</p>
+<p class="font-body-lg text-body-lg font-semibold">Trần Anh Tuấn</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-body-sm text-on-surface-variant">Tasker</p>
+<p class="font-body-lg text-body-lg font-semibold">Lê Văn B</p>
+</div>
+</div>
+<p class="text-body-sm text-on-surface-variant leading-relaxed">
+                        Khách hàng báo cáo Tasker đến muộn 45 phút so với lịch hẹn mà không thông báo trước. Yêu cầu bồi hoàn phí dịch vụ.
+                    </p>
+</div>
+<div class="p-card-padding bg-surface-container-low flex gap-3">
+<button class="flex-1 py-2.5 border border-primary text-primary font-label-caps text-label-caps rounded-lg hover:bg-primary hover:text-white transition-colors duration-200 uppercase">Xem chi tiết</button>
+<button class="flex-1 py-2.5 bg-primary text-white font-label-caps text-label-caps rounded-lg shadow-sm hover:brightness-110 active:scale-95 transition-all uppercase">Giải quyết</button>
+</div>
+</div>
+<!-- Complaint Card 2 -->
+<div class="bg-surface-container-lowest rounded-xl shadow-[0px_4px_12px_rgba(0,0,0,0.05)] border border-outline-variant overflow-hidden flex flex-col">
+<div class="p-card-padding border-b border-outline-variant flex justify-between items-start">
+<div>
+<span class="font-label-caps text-label-caps text-primary tracking-wider mb-1 block">#BK0152</span>
+<h3 class="font-headline-md text-headline-md">Làm hư hỏng đồ</h3>
+</div>
+<span class="bg-primary-fixed text-on-primary-container font-status-badge text-status-badge px-2.5 py-1 rounded-full uppercase">Đang xử lý</span>
+</div>
+<div class="p-card-padding flex-grow space-y-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant">person</span>
+</div>
+<div>
+<p class="text-body-sm text-on-surface-variant">Cư dân</p>
+<p class="font-body-lg text-body-lg font-semibold">Nguyễn Thị Mai</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-body-sm text-on-surface-variant">Tasker</p>
+<p class="font-body-lg text-body-lg font-semibold">Phạm Hùng</p>
+</div>
+</div>
+<p class="text-body-sm text-on-surface-variant leading-relaxed">
+                        Tasker vô ý làm vỡ bình hoa sứ trong quá trình dọn dẹp. Cư dân đã gửi ảnh minh chứng thiệt hại.
+                    </p>
+</div>
+<div class="p-card-padding bg-surface-container-low flex gap-3">
+<button class="flex-1 py-2.5 border border-primary text-primary font-label-caps text-label-caps rounded-lg hover:bg-primary hover:text-white transition-colors duration-200 uppercase">Xem chi tiết</button>
+<button class="flex-1 py-2.5 bg-primary text-white font-label-caps text-label-caps rounded-lg shadow-sm hover:brightness-110 active:scale-95 transition-all uppercase">Giải quyết</button>
+</div>
+</div>
+</div>
+<!-- Quick Resolve Section -->
+<section class="mt-12 bg-white rounded-xl p-card-padding shadow-[0px_4px_12px_rgba(0,0,0,0.05)] border border-outline-variant">
+<div class="flex items-center justify-between mb-6">
+<h2 class="font-headline-md text-headline-md text-on-surface">Phương thức giải quyết nhanh</h2>
+<span class="material-symbols-outlined text-primary cursor-help">info</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div class="group p-6 rounded-xl bg-surface-container-low border border-transparent hover:border-primary-container transition-all cursor-pointer">
+<div class="flex items-center gap-4 mb-4">
+<div class="w-12 h-12 rounded-lg bg-primary-container text-white flex items-center justify-center shadow-md">
+<span class="material-symbols-outlined text-[28px]">payments</span>
+</div>
+<div>
+<h4 class="font-body-lg text-body-lg font-bold">Hoàn tiền</h4>
+<p class="text-body-sm text-on-surface-variant">Bồi hoàn toàn bộ hoặc một phần</p>
+</div>
+</div>
+<button class="w-full py-2 bg-white text-primary font-label-caps text-label-caps rounded-lg border border-outline-variant group-hover:bg-primary group-hover:text-white transition-all uppercase">Áp dụng ngay</button>
+</div>
+<div class="group p-6 rounded-xl bg-surface-container-low border border-transparent hover:border-primary-container transition-all cursor-pointer">
+<div class="flex items-center gap-4 mb-4">
+<div class="w-12 h-12 rounded-lg bg-error text-white flex items-center justify-center shadow-md">
+<span class="material-symbols-outlined text-[28px]">warning</span>
+</div>
+<div>
+<h4 class="font-body-lg text-body-lg font-bold">Cảnh cáo Tasker</h4>
+<p class="text-body-sm text-on-surface-variant">Ghi nhận vi phạm vào hồ sơ</p>
+</div>
+</div>
+<button class="w-full py-2 bg-white text-error font-label-caps text-label-caps rounded-lg border border-outline-variant group-hover:bg-error group-hover:text-white transition-all uppercase">Áp dụng ngay</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Modal (Keep functionality verbatim) -->
+<div class="fixed inset-0 bg-black/40 backdrop-blur-sm z-[200] flex items-center justify-center p-4">
+<div class="bg-white w-full max-w-md rounded-2xl shadow-2xl overflow-hidden border border-outline-variant">
+<div class="p-6 border-b border-outline-variant flex justify-between items-center bg-surface">
+<h3 class="font-headline-md text-headline-md font-bold text-on-surface">Giải quyết khiếu nại</h3>
+<button class="p-1 hover:bg-surface-variant rounded-full transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="p-6 space-y-6">
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-4 uppercase tracking-wider">Lựa chọn giải pháp</p>
+<div class="space-y-3">
+<label class="flex items-center p-4 border border-outline-variant rounded-xl cursor-pointer hover:bg-surface-container-low transition-colors">
+<input class="w-5 h-5 text-primary border-outline-variant focus:ring-primary" name="resolve_option" type="radio"/>
+<div class="ml-4">
+<p class="font-body-lg text-body-lg font-bold">Hoàn tiền (Refund)</p>
+<p class="text-body-sm text-on-surface-variant">Hoàn lại 100% chi phí cho cư dân</p>
+</div>
+</label>
+<label class="flex items-center p-4 border border-outline-variant rounded-xl cursor-pointer hover:bg-surface-container-low transition-colors">
+<input class="w-5 h-5 text-primary border-outline-variant focus:ring-primary" name="resolve_option" type="radio"/>
+<div class="ml-4">
+<p class="font-body-lg text-body-lg font-bold">Cảnh cáo Tasker (Warn)</p>
+<p class="text-body-sm text-on-surface-variant">Trừ điểm uy tín và gửi thông báo vi phạm</p>
+</div>
+</label>
+</div>
+</div>
+<div>
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-2 uppercase tracking-wider">Ghi chú xử lý</label>
+<textarea class="w-full h-24 p-3 border border-outline-variant rounded-lg bg-surface focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all resize-none" placeholder="Nhập lý do hoặc hướng dẫn chi tiết..."></textarea>
+</div>
+</div>
+<div class="p-6 bg-surface border-t border-outline-variant flex gap-3">
+<button class="flex-1 py-3 text-secondary font-label-caps text-label-caps border border-outline-variant rounded-xl hover:bg-surface-variant transition-colors uppercase">Hủy bỏ</button>
+<button class="flex-1 py-3 bg-primary text-white font-label-caps text-label-caps rounded-xl shadow-lg hover:brightness-110 active:scale-95 transition-all uppercase">Xác nhận</button>
+</div>
+</div>
+</div>
+<!-- Restyled Floating Navigation -->
+<nav class="bg-white/90 backdrop-blur-md fixed bottom-6 left-1/2 -translate-x-1/2 flex justify-around items-center h-16 w-[95%] max-w-md rounded-full shadow-xl border border-outline-variant/20 px-4 z-50">
+    <a href="../b_ng_i_u_khi_n_qu_n_tr_vi_n_pill_nav/code.html" class="text-primary relative px-3 py-1 rounded-full bg-primary/10 flex flex-col items-center justify-center transition-all active:scale-90">
+        <span class="material-symbols-outlined text-[22px] font-bold">dashboard</span>
+        <span class="font-label-caps text-[10px] leading-tight mt-0.5 uppercase font-bold">Dashboard</span>
+    </a>
+    <a href="../danh_s_ch_n_h_ng_full_nav/code.html" class="text-on-secondary-container hover:text-primary flex flex-col items-center justify-center transition-all active:scale-90">
+        <span class="material-symbols-outlined text-[22px] ">receipt_long</span>
+        <span class="font-label-caps text-[10px] leading-tight mt-0.5 uppercase ">Đơn</span>
+    </a>
+    <a href="../danh_s_ch_tasker_qu_n_tr_pill_nav/code.html" class="text-on-secondary-container hover:text-primary flex flex-col items-center justify-center transition-all active:scale-90">
+        <span class="material-symbols-outlined text-[22px] ">engineering</span>
+        <span class="font-label-caps text-[10px] leading-tight mt-0.5 uppercase ">Tasker</span>
+    </a>
+    <a href="../danh_s_ch_c_d_n_qu_n_tr_pill_nav/code.html" class="text-on-secondary-container hover:text-primary flex flex-col items-center justify-center transition-all active:scale-90">
+        <span class="material-symbols-outlined text-[22px] ">group</span>
+        <span class="font-label-caps text-[10px] leading-tight mt-0.5 uppercase ">Cư dân</span>
+    </a>
+    <a href="../v_giao_d_ch_qu_n_tr_pill_nav/code.html" class="text-on-secondary-container hover:text-primary flex flex-col items-center justify-center transition-all active:scale-90">
+        <span class="material-symbols-outlined text-[22px] ">account_balance_wallet</span>
+        <span class="font-label-caps text-[10px] leading-tight mt-0.5 uppercase ">Ví</span>
+    </a>
+    <a href="../h_p_th_admin_pill_nav/code.html" class="text-on-secondary-container hover:text-primary flex flex-col items-center justify-center transition-all active:scale-90">
+        <span class="material-symbols-outlined text-[22px] ">inbox</span>
+        <span class="font-label-caps text-[10px] leading-tight mt-0.5 uppercase ">Inbox</span>
+    </a>
+</nav>
+</body></html>

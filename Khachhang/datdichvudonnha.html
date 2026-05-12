@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html lang="vi"><head>
 <meta charset="utf-8"/>
@@ -261,4 +261,144 @@
 <span class="text-label-sm font-label-sm font-medium">Tài khoản</span>
 </a>
 </nav>
+
+<script src="../shared/api.js"></script>
+<script>
+(async function() {
+  if (!ChiOiAuth.requireAuth('dangnhap.html')) return;
+
+  // ===== State =====
+  var state = {
+    serviceType: 'Dọn tiêu chuẩn',
+    serviceId: null,
+    date: '',
+    time: '10:00',
+    hours: 3,
+    pricePerHour: 150000,
+    note: ''
+  };
+
+  // ===== Load service_id from URL or services API =====
+  try {
+    var params = new URLSearchParams(window.location.search);
+    state.serviceId = params.get('service_id') ? parseInt(params.get('service_id')) : null;
+    if (!state.serviceId) {
+      var services = await apiFetch('/api/services');
+      if (services && services.length > 0) {
+        state.serviceId = services[0].service_id;
+        state.pricePerHour = services[0].base_price || 150000;
+      }
+    }
+  } catch (e) { console.warn('[Đặt DV] Không load được services:', e.message); }
+
+  // ===== Date Input =====
+  var dateInput = document.querySelector('input[type="text"][readonly]');
+  if (dateInput) {
+    // Convert to real date picker
+    var realDate = document.createElement('input');
+    realDate.type = 'date';
+    realDate.className = dateInput.className;
+    realDate.value = new Date().toISOString().split('T')[0];
+    state.date = realDate.value;
+    dateInput.parentNode.replaceChild(realDate, dateInput);
+    realDate.addEventListener('change', function() { state.date = this.value; updateSummary(); });
+  }
+
+  // ===== Service Type Buttons =====
+  var typeButtons = document.querySelectorAll('section:first-of-type .flex.flex-wrap button');
+  typeButtons.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      typeButtons.forEach(function(b) {
+        b.className = 'px-4 py-2 rounded-full border border-outline-variant bg-white text-on-surface-variant font-medium text-body-sm active:scale-95 transition-all';
+      });
+      btn.className = 'px-4 py-2 rounded-full border-1.5 border-primary bg-surface-container-low text-primary font-semibold text-body-sm shadow-sm active:scale-95 transition-all';
+      state.serviceType = btn.textContent.trim();
+      updateSummary();
+    });
+  });
+
+  // ===== Time Slots =====
+  var timeButtons = document.querySelectorAll('.grid.grid-cols-3 button');
+  timeButtons.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      timeButtons.forEach(function(b) {
+        b.className = 'h-10 rounded-xl border border-outline-variant bg-white text-on-surface-variant text-body-sm font-semibold active:bg-primary-container active:text-white transition-colors';
+      });
+      btn.className = 'h-10 rounded-xl border-2 border-primary-container bg-surface-container-low text-primary-container text-body-sm font-bold';
+      state.time = btn.textContent.trim();
+      updateSummary();
+    });
+  });
+
+  // ===== Hour +/- Buttons =====
+  var hourDisplay = document.querySelector('.flex.items-center.gap-4 span.text-title-sm');
+  var minusBtn = document.querySelector('.flex.items-center.gap-4 button:first-child');
+  var plusBtn = document.querySelector('.flex.items-center.gap-4 button:last-child');
+  if (minusBtn) minusBtn.addEventListener('click', function() { if (state.hours > 1) { state.hours--; updateSummary(); } });
+  if (plusBtn) plusBtn.addEventListener('click', function() { if (state.hours < 12) { state.hours++; updateSummary(); } });
+
+  // ===== Update Summary =====
+  function updateSummary() {
+    var total = state.hours * state.pricePerHour;
+    if (hourDisplay) hourDisplay.textContent = state.hours;
+
+    // Update "Tạm tính"
+    var tempPrice = document.querySelector('.text-body-sm.text-primary.font-semibold');
+    if (tempPrice) tempPrice.textContent = 'Tạm tính: ' + formatVND(total);
+
+    // Update Summary Section
+    var summaryItems = document.querySelectorAll('.space-y-sm .flex.justify-between span:last-child');
+    if (summaryItems[0]) summaryItems[0].textContent = state.serviceType;
+    if (summaryItems[1]) summaryItems[1].textContent = (state.date || '—') + ' - ' + state.time;
+    if (summaryItems[2]) summaryItems[2].textContent = state.hours + ' giờ';
+
+    // Total
+    var totalEl = document.querySelector('.border-t .text-primary-container');
+    if (totalEl) totalEl.textContent = formatVND(total);
+
+    // Bottom button
+    var submitBtn = document.querySelector('.fixed.bottom-24 button');
+    if (submitBtn) submitBtn.innerHTML = '<span>Đặt dịch vụ — ' + formatVND(total) + '</span>';
+  }
+
+  // ===== Submit Order =====
+  var submitBtn = document.querySelector('.fixed.bottom-24 button');
+  if (submitBtn) {
+    submitBtn.addEventListener('click', async function() {
+      if (!state.date) { showToastMsg('Vui lòng chọn ngày'); return; }
+      if (!state.serviceId) { showToastMsg('Không tìm thấy dịch vụ'); return; }
+
+      var textarea = document.querySelector('textarea');
+      state.note = textarea ? textarea.value.trim() : '';
+
+      var scheduledTime = state.date + 'T' + state.time + ':00';
+      var totalPrice = state.hours * state.pricePerHour;
+
+      showLoading();
+      try {
+        var result = await apiFetch('/api/orders/book', {
+          method: 'POST',
+          body: {
+            service_id: state.serviceId,
+            scheduled_time: scheduledTime,
+            address: 'Địa chỉ từ ứng dụng',
+            total_price: totalPrice,
+            longitude: 106.6297,
+            latitude: 10.8231,
+            note: state.note
+          }
+        });
+        hideLoading();
+        showToastMsg('✅ Đặt đơn thành công! Đang tìm Tasker...');
+        setTimeout(function() { window.location.href = 'lichsuhoatdong.html'; }, 2000);
+      } catch (e) {
+        hideLoading();
+        showToastMsg('❌ ' + e.message);
+      }
+    });
+  }
+
+  updateSummary();
+})();
+</script>
 </body></html>

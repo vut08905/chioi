@@ -1,0 +1,1 @@
+const { Client } = require('pg'); const client = new Client({ connectionString: 'postgresql://postgres:postgres@172.30.4.202:5432/chioi?schema=public', connectionTimeoutMillis: 3000 }); async function main() { try { await client.connect(); console.log('Connected to 172.30.4.202!'); await client.end(); } catch(e) { console.error('Failed:', e.message); } } main();

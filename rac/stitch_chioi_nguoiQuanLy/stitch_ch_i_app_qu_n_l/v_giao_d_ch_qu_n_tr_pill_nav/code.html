@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Ví &amp; Giao dịch - Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Manrope:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed": "#c7e7ff",
+                        "secondary-container": "#d6e0f3",
+                        "primary-fixed-dim": "#ffb77d",
+                        "tertiary": "#00658f",
+                        "surface": "#fff8f5",
+                        "surface-container": "#ffeadd",
+                        "primary-container": "#ff8c00",
+                        "on-error": "#ffffff",
+                        "surface-container-low": "#fff1e9",
+                        "primary-fixed": "#ffdcc3",
+                        "on-tertiary": "#ffffff",
+                        "outline": "#897362",
+                        "on-tertiary-container": "#004360",
+                        "secondary-fixed-dim": "#bdc7d9",
+                        "secondary-fixed": "#d9e3f6",
+                        "error": "#ba1a1a",
+                        "tertiary-container": "#00b5fc",
+                        "primary": "#904d00",
+                        "on-secondary-fixed": "#121c2a",
+                        "on-error-container": "#93000a",
+                        "on-primary-container": "#623200",
+                        "surface-variant": "#f3dfd1",
+                        "on-primary-fixed": "#2f1500",
+                        "on-background": "#241912",
+                        "on-surface": "#241912",
+                        "on-surface-variant": "#564334",
+                        "tertiary-fixed-dim": "#85cfff",
+                        "on-tertiary-fixed": "#001e2e",
+                        "inverse-primary": "#ffb77d",
+                        "outline-variant": "#ddc1ae",
+                        "surface-dim": "#ead6c9",
+                        "surface-tint": "#904d00",
+                        "secondary": "#555f6f",
+                        "on-primary-fixed-variant": "#6e3900",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "on-secondary-container": "#596373",
+                        "inverse-surface": "#3a2e25",
+                        "on-tertiary-fixed-variant": "#004c6c",
+                        "surface-container-high": "#f9e4d7",
+                        "error-container": "#ffdad6",
+                        "surface-bright": "#fff8f5",
+                        "on-secondary-fixed-variant": "#3d4756",
+                        "on-secondary": "#ffffff",
+                        "background": "#fff8f5",
+                        "surface-container-highest": "#f3dfd1",
+                        "inverse-on-surface": "#ffede3"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "inline-gutter": "0.75rem",
+                        "page-margin": "1rem",
+                        "stack-gap": "1rem",
+                        "section-padding": "2rem",
+                        "card-padding": "1.25rem"
+                    },
+                    "fontFamily": {
+                        "body-sm": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "display-lg": ["Manrope"],
+                        "headline-md": ["Manrope"],
+                        "status-badge": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "display-lg": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["22px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "status-badge": ["11px", {"lineHeight": "12px", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .card-shadow {
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        .nav-shadow {
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.15);
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="max-w-md mx-auto shadow-2xl border-x border-gray-200 relative min-h-screen font-body-lg text-on-background min-h-screen pb-32 bg-surface relative">
+<!-- Top Background Gradient -->
+<div class="absolute top-0 left-0 w-full h-[300px] z-0" style="background: linear-gradient(rgb(255, 126, 54) 0%, rgb(252, 249, 248) 100%);"></div>
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-md dark:bg-surface-dim/80 border-b border-outline-variant/30 dark:border-outline flex justify-between items-center px-page-margin py-4 relative z-10">
+<div class="flex items-center gap-4">
+<button class="hover:bg-primary-container/10 transition-colors p-2 rounded-full active:scale-95 duration-100 ease-in-out">
+<span class="material-symbols-outlined text-primary">menu</span>
+</button>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Ví &amp; Giao dịch</h1>
+</div>
+<button class="hover:bg-primary-container/10 transition-colors p-2 rounded-full active:scale-95 duration-100 ease-in-out relative">
+<span class="material-symbols-outlined text-primary">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+</header>
+<main class="pt-20 px-page-margin max-w-4xl mx-auto relative z-10">
+<!-- Filter Tabs -->
+<div class="flex gap-2 mb-stack-gap overflow-x-auto no-scrollbar pb-2">
+<button class="px-6 py-2 rounded-full bg-primary-container text-on-primary-container font-label-caps text-label-caps whitespace-nowrap active:scale-95 transition-all">
+                Tổng quan
+            </button>
+<button class="px-6 py-2 rounded-full bg-surface-container text-on-surface-variant font-label-caps text-label-caps whitespace-nowrap hover:bg-surface-container-high active:scale-95 transition-all">
+                Giao dịch
+            </button>
+<button class="px-6 py-2 rounded-full bg-surface-container text-on-surface-variant font-label-caps text-label-caps whitespace-nowrap hover:bg-surface-container-high active:scale-95 transition-all">
+                Yêu cầu rút tiền
+            </button>
+</div>
+<!-- Stats Grid (Bento Style) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+<div class="bg-surface-container-lowest p-card-padding rounded-xl card-shadow border border-outline-variant/30 flex flex-col justify-between min-h-[140px]">
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-1">Số dư hệ thống</p>
+<h2 class="font-display-lg text-display-lg text-primary">1.250.000.000đ</h2>
+</div>
+<div class="flex items-center text-green-600 font-body-sm text-body-sm mt-2">
+<span class="material-symbols-outlined text-sm mr-1">trending_up</span>
+<span>+12.5% so với tháng trước</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-card-padding rounded-xl card-shadow border border-outline-variant/30 flex flex-col justify-between min-h-[140px]">
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-1">Tổng doanh thu</p>
+<h2 class="font-headline-md text-headline-md text-on-surface">850.000.000đ</h2>
+</div>
+<div class="mt-4 bg-tertiary-fixed/30 h-1.5 rounded-full overflow-hidden">
+<div class="bg-tertiary h-full w-[70%]"></div>
+</div>
+</div>
+<div class="bg-primary-container p-card-padding rounded-xl card-shadow border border-primary/20 flex flex-col justify-between min-h-[140px] text-on-primary-container">
+<div>
+<div class="flex justify-between items-start">
+<p class="font-label-caps text-label-caps opacity-90 mb-1">Phí hoa hồng (15%)</p>
+<span class="material-symbols-outlined opacity-80">account_balance_wallet</span>
+</div>
+<h2 class="font-headline-md text-headline-md font-bold">127.500.000đ</h2>
+</div>
+<p class="font-body-sm text-body-sm opacity-80 italic">Đã khấu trừ tự động</p>
+</div>
+</div>
+<!-- Withdrawal Requests Section -->
+<section>
+<div class="flex justify-between items-center mb-4">
+<h3 class="font-headline-md text-headline-md text-on-surface">Yêu cầu rút tiền mới nhất</h3>
+<button class="text-primary font-label-caps text-label-caps hover:underline">Xem tất cả</button>
+</div>
+<div class="space-y-4">
+<!-- Request Card 1 -->
+<div class="bg-surface-container-lowest p-card-padding rounded-xl card-shadow border border-outline-variant/30 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container">
+<img alt="Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAK1dgSn1mA4i2SyHAZnKMviS5phXclADsJnlcAMQi5vTjDEC_x4szIDL5QSJGTF7ucJJylOrUIHZmr0UTYzaYimfEYX_QZgY6EkYxUDQdYHeTTjcMmXUYqwGa2AxNSpFEjPnN-fMLQLpFU9WJl8JsuDh3WhFvNDrexRg6h4iDXyXrFJ1qZVtp4P30H2JQAHe7eX7bi5zAW_yEmtzR9UmtvT1m6SorkMC9aA2ZFjNnnexRiZT3ykpHps7MEcVubRMNKcMH9h5QwvXFC"/>
+</div>
+<div>
+<h4 class="font-body-lg text-body-lg font-bold text-on-surface">Nguyễn Văn An</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Vietcombank - 1023456789</p>
+</div>
+</div>
+<div class="flex flex-col items-end gap-2">
+<span class="font-headline-md text-headline-md text-primary">2.000.000đ</span>
+<div class="flex gap-2">
+<button class="px-4 py-1.5 rounded-lg border border-primary text-primary font-label-caps text-label-caps hover:bg-primary/5 transition-colors">
+                                Từ chối
+                            </button>
+<button class="px-6 py-1.5 rounded-lg bg-primary-container text-on-primary-container font-label-caps text-label-caps hover:brightness-110 transition-all active:scale-95">
+                                Duyệt
+                            </button>
+</div>
+</div>
+</div>
+<!-- Request Card 2 -->
+<div class="bg-surface-container-lowest p-card-padding rounded-xl card-shadow border border-outline-variant/30 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container">
+<img alt="Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJ_rVBbnAzpX82-ksUqZhKNnNBlxQSHpL6kwrhBflnO-jgrVy9LgI-t_vK3jntZpjsa1znpBh1icqHi7_fpEfPOKfnBM6YJrXQz5CBYawnnWEEtCXRPNfMB57lmJNYBRo4phpaSvGyZoZvoDDjhpLgZE7bxeLz31TkkpkrD0jx6N-VDpyBdiOhRA2Tu1PQUOO36w3g7l1p_0Ir43FgUN7DSwtLvCZkTDewjxfYZDLyFFBwf2RGfR5nK2WoRV27EWyfUIT0H3oV27xH"/>
+</div>
+<div>
+<h4 class="font-body-lg text-body-lg font-bold text-on-surface">Trần Thị Bé</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Techcombank - 19022345678012</p>
+</div>
+</div>
+<div class="flex flex-col items-end gap-2">
+<span class="font-headline-md text-headline-md text-primary">5.500.000đ</span>
+<div class="flex gap-2">
+<button class="px-4 py-1.5 rounded-lg border border-primary text-primary font-label-caps text-label-caps hover:bg-primary/5 transition-colors">
+                                Từ chối
+                            </button>
+<button class="px-6 py-1.5 rounded-lg bg-primary-container text-on-primary-container font-label-caps text-label-caps hover:brightness-110 transition-all active:scale-95">
+                                Duyệt
+                            </button>
+</div>
+</div>
+</div>
+<!-- Request Card 3 -->
+<div class="bg-surface-container-lowest p-card-padding rounded-xl card-shadow border border-outline-variant/30 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container">
+<img alt="Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtT9Sz6oZG5ciPlLevacnOEedogLj2nrdYdJ_6WDOuG9XFK8jbXF852cTRG6FTvE5KcfEJ9pNqFiKk6qtIJ6D9_Gqf3EyvIIIqZK6p9SaH0ZagkJQ4WWLoVYtFkgN81DLN0flRi22QBkAcrbzRP_sWvZqCWXHaZh7UB4vdCDiqtEX_NWzjxqjdvXVNwsec78xZnpeC1zfRq7lwCsQmI8FG9uVVhmSfraE4kqiqkC0w2vUixwFxTy-svSoKqbVe3m9Qf2qbOZGKnSb3"/>
+</div>
+<div>
+<h4 class="font-body-lg text-body-lg font-bold text-on-surface">Lê Hoàng Nam</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">MB Bank - 9988776655</p>
+</div>
+</div>
+<div class="flex flex-col items-end gap-2">
+<span class="font-headline-md text-headline-md text-primary">1.200.000đ</span>
+<div class="flex gap-2">
+<button class="px-4 py-1.5 rounded-lg border border-primary text-primary font-label-caps text-label-caps hover:bg-primary/5 transition-colors">
+                                Từ chối
+                            </button>
+<button class="px-6 py-1.5 rounded-lg bg-primary-container text-on-primary-container font-label-caps text-label-caps hover:brightness-110 transition-all active:scale-95">
+                                Duyệt
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="bg-white/90 backdrop-blur-md fixed bottom-6 left-1/2 -translate-x-1/2 flex justify-around items-center h-16 w-[95%] max-w-md rounded-full shadow-xl border border-outline-variant/20 px-4 z-50">
+    <a href="../b_ng_i_u_khi_n_qu_n_tr_vi_n_pill_nav/code.html" class="text-on-secondary-container hover:text-primary flex flex-col items-center justify-center transition-all active:scale-90">
+        <span class="material-symbols-outlined text-[22px] ">dashboard</span>
+        <span class="font-label-caps text-[10px] leading-tight mt-0.5 uppercase ">Dashboard</span>
+    </a>
+    <a href="../danh_s_ch_n_h_ng_full_nav/code.html" class="text-on-secondary-container hover:text-primary flex flex-col items-center justify-center transition-all active:scale-90">
+        <span class="material-symbols-outlined text-[22px] ">receipt_long</span>
+        <span class="font-label-caps text-[10px] leading-tight mt-0.5 uppercase ">Đơn</span>
+    </a>
+    <a href="../danh_s_ch_tasker_qu_n_tr_pill_nav/code.html" class="text-on-secondary-container hover:text-primary flex flex-col items-center justify-center transition-all active:scale-90">
+        <span class="material-symbols-outlined text-[22px] ">engineering</span>
+        <span class="font-label-caps text-[10px] leading-tight mt-0.5 uppercase ">Tasker</span>
+    </a>
+    <a href="../danh_s_ch_c_d_n_qu_n_tr_pill_nav/code.html" class="text-on-secondary-container hover:text-primary flex flex-col items-center justify-center transition-all active:scale-90">
+        <span class="material-symbols-outlined text-[22px] ">group</span>
+        <span class="font-label-caps text-[10px] leading-tight mt-0.5 uppercase ">Cư dân</span>
+    </a>
+    <a href="../v_giao_d_ch_qu_n_tr_pill_nav/code.html" class="text-primary relative px-3 py-1 rounded-full bg-primary/10 flex flex-col items-center justify-center transition-all active:scale-90">
+        <span class="material-symbols-outlined text-[22px] font-bold">account_balance_wallet</span>
+        <span class="font-label-caps text-[10px] leading-tight mt-0.5 uppercase font-bold">Ví</span>
+    </a>
+    <a href="../h_p_th_admin_pill_nav/code.html" class="text-on-secondary-container hover:text-primary flex flex-col items-center justify-center transition-all active:scale-90">
+        <span class="material-symbols-outlined text-[22px] ">inbox</span>
+        <span class="font-label-caps text-[10px] leading-tight mt-0.5 uppercase ">Inbox</span>
+    </a>
+</nav>
+</body></html>

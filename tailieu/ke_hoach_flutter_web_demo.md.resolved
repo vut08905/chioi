@@ -1,0 +1,274 @@
+# 📋 Kế hoạch: Flutter Web PWA — Demo giao diện cho khách
+
+> **Mục tiêu**: Build giao diện Flutter Web (HTML renderer) từ 15 mockup HTML hiện có.
+> Chỉ làm UI, dùng mock data, để cho khách xem và duyệt thiết kế.
+> **Không cần**: Backend, API, Database, Authentication thật.
+
+---
+
+## 🎯 Phạm vi công việc (ĐÃ CẮT GỌN)
+
+| Cần làm ✅ | KHÔNG cần làm ❌ |
+|-----------|-----------------|
+| Cài Flutter SDK | ~~Firebase / Supabase~~ |
+| Tạo project Flutter Web | ~~Authentication thật~~ |
+| Chuyển 15 màn hình HTML → Flutter Widget | ~~REST API / HTTP calls~~ |
+| Design System (màu, font, spacing) | ~~Database~~ |
+| Navigation giữa các màn hình | ~~Push Notification~~ |
+| Mock data cứng (hardcode) | ~~State management phức tạp~~ |
+| Build với HTML renderer | ~~CanvasKit renderer~~ |
+| Deploy static lên hosting miễn phí | ~~CI/CD pipeline~~ |
+
+---
+
+## PHASE 1: CÀI MÔI TRƯỜNG (~30 phút)
+
+### Việc cần làm:
+- [ ] **1.1** Cài Flutter SDK (nếu chưa có)
+- [ ] **1.2** Chạy `flutter doctor` — fix hết lỗi
+- [ ] **1.3** Bật web support: `flutter config --enable-web`
+- [ ] **1.4** Cài VS Code + Extension Flutter & Dart
+
+### Phần mềm bắt buộc:
+| Phần mềm | Tải ở đâu |
+|-----------|-----------|
+| Flutter SDK ≥ 3.22 | https://docs.flutter.dev/get-started/install/windows/web |
+| Git | https://git-scm.com/download/win |
+| VS Code | https://code.visualstudio.com/ |
+| Chrome | Đã có sẵn |
+
+### Kiểm tra xong phải thấy:
+```
+flutter doctor
+✓ Flutter
+✓ Chrome - develop for the web
+✓ VS Code
+```
+
+> [!NOTE]
+> Vì chỉ build **web** (không build Android/iOS), mày **không cần** cài Android Studio hay Xcode. Chỉ cần Flutter SDK + Chrome là đủ.
+
+---
+
+## PHASE 2: TẠO PROJECT + CẤU TRÚC (~1 giờ)
+
+### Việc cần làm:
+- [ ] **2.1** Tạo project Flutter mới
+  ```powershell
+  cd d:\chioi
+  flutter create --org com.chioi --project-name chioi_customer --platforms web chioi_customer
+  ```
+- [ ] **2.2** Xóa code mẫu mặc định (counter app)
+- [ ] **2.3** Tạo cấu trúc thư mục theo danh sách dưới
+- [ ] **2.4** Thêm dependencies vào `pubspec.yaml`
+- [ ] **2.5** Chạy thử `flutter run -d chrome` — phải thấy trang trắng không lỗi
+
+### Cấu trúc thư mục (đã tinh gọn cho demo):
+```
+lib/
+├── main.dart                         ← Entry point
+├── app.dart                          ← MaterialApp + GoRouter
+├── theme/
+│   ├── app_colors.dart               ← 30 màu từ mockup
+│   └── app_theme.dart                ← ThemeData + TextStyle
+├── routes/
+│   └── app_router.dart               ← Định nghĩa routes
+├── widgets/                          ← Components dùng chung
+│   ├── bottom_nav_shell.dart         ← Bottom navigation bar
+│   ├── gradient_header.dart          ← Header gradient cam
+│   ├── service_icon_card.dart        ← Icon dịch vụ
+│   └── tasker_card.dart              ← Card tasker
+├── screens/                          ← 15 màn hình
+│   ├── trang_chu/
+│   │   └── trang_chu_screen.dart
+│   ├── dang_nhap/
+│   │   └── dang_nhap_screen.dart
+│   ├── quen_mat_khau/
+│   │   └── quen_mat_khau_screen.dart
+│   ├── dat_dich_vu/
+│   │   ├── don_nha_screen.dart
+│   │   ├── trong_tre_screen.dart
+│   │   └── mua_ho_screen.dart
+│   ├── goi_gia_dinh/
+│   │   └── goi_gia_dinh_screen.dart
+│   ├── theo_doi_don/
+│   │   └── theo_doi_don_screen.dart
+│   ├── lich_su/
+│   │   ├── hoat_dong_screen.dart
+│   │   └── vi_screen.dart
+│   ├── chat/
+│   │   └── chat_screen.dart
+│   ├── danh_gia/
+│   │   └── danh_gia_screen.dart
+│   ├── thong_bao/
+│   │   └── thong_bao_screen.dart
+│   ├── tai_khoan/
+│   │   └── tai_khoan_screen.dart
+│   └── nap_tien/
+│       └── nap_tien_screen.dart
+└── data/
+    └── mock_data.dart                ← Dữ liệu giả (tên, avatar, đơn hàng mẫu...)
+```
+
+### Dependencies cần thiết (chỉ cho demo):
+```yaml
+dependencies:
+  flutter:
+    sdk: flutter
+  go_router: ^14.0.0           # Navigation
+  google_fonts: ^6.2.0         # Font Be Vietnam Pro
+```
+
+> [!IMPORTANT]
+> Chỉ cần **3 dependencies** thôi! Không cần dio, firebase, provider hay gì cả. Giữ gọn nhất có thể cho demo.
+
+---
+
+## PHASE 3: DESIGN SYSTEM (~2-3 giờ)
+
+> Đây là bước **quan trọng nhất** — làm đúng ở đây thì 15 màn hình sau sẽ build rất nhanh.
+
+### Việc cần làm:
+- [ ] **3.1** Tạo `app_colors.dart` — copy 30 màu từ Tailwind config trong mockup
+- [ ] **3.2** Tạo `app_theme.dart` — ThemeData với:
+  - ColorScheme từ app_colors
+  - TextTheme với 6 style (h1-display, h2-section, body-lg, body-md, label-sm, caption)
+  - Font Be Vietnam Pro
+  - AppBar theme, Card theme, Input theme, Button theme
+- [ ] **3.3** Tạo gradient cam + soft shadow dùng chung
+- [ ] **3.4** Test theme bằng cách render 1 màn hình đơn giản
+
+### Bảng chuyển đổi Tailwind → Flutter:
+
+| Tailwind (trong mockup) | Flutter (cần tạo) |
+|--------------------------|-------------------|
+| `text-primary` (#a04100) | `ColorScheme.primary` |
+| `bg-primary-container` (#ff7e36) | `ColorScheme.primaryContainer` |
+| `bg-surface` (#fcf9f8) | `ColorScheme.surface` |
+| `text-h2-section` (18px/700) | `TextTheme.titleMedium` |
+| `text-body-md` (14px/400) | `TextTheme.bodyMedium` |
+| `text-label-sm` (12px/600) | `TextTheme.labelSmall` |
+| `rounded-2xl` (16px) | `BorderRadius.circular(16)` |
+| `px-container-padding` (20px) | `EdgeInsets.symmetric(horizontal: 20)` |
+| `gap-md` (16px) | `SizedBox(width: 16)` hoặc `spacing: 16` |
+
+---
+
+## PHASE 4: BUILD 15 MÀN HÌNH (~3-5 ngày)
+
+> Thứ tự ưu tiên: Làm những màn khách thấy đầu tiên → rồi mới đến flow sâu.
+
+### Đợt 1 — Luồng chính (Ngày 1-2):
+| # | Màn hình | File HTML gốc | Ghi chú |
+|---|----------|---------------|---------|
+| 1 | **Bottom Nav Shell** | (dùng chung) | Làm đầu tiên, bọc tất cả màn hình |
+| 2 | **Trang chủ** | `trangchu.html` | Header gradient + 4 dịch vụ + Tasker cards |
+| 3 | **Đăng nhập** | `dangnhap.html` | Form đơn giản, bấm → chuyển trang chủ |
+| 4 | **Quên mật khẩu** | `quenmatkhau.html` | Form nhập SĐT/Email |
+
+### Đợt 2 — Đặt dịch vụ (Ngày 2-3):
+| # | Màn hình | File HTML gốc | Ghi chú |
+|---|----------|---------------|---------|
+| 5 | **Đặt dọn nhà** | `datdichvudonnha.html` | Form chọn ngày/giờ/địa chỉ |
+| 6 | **Đặt trông trẻ** | `datdichvutrongtre.html` | Tương tự dọn nhà + thêm tuổi trẻ |
+| 7 | **Đặt mua hộ** | `datdichvumuaho.html` | Chọn cửa hàng + danh sách mua |
+| 8 | **Gói gia đình** | `goigiadinh.html` | Bảng giá + chọn gói |
+
+### Đợt 3 — Theo dõi & lịch sử (Ngày 3-4):
+| # | Màn hình | File HTML gốc | Ghi chú |
+|---|----------|---------------|---------|
+| 9 | **Theo dõi đơn** | `theodoidon.html` | Timeline trạng thái đơn |
+| 10 | **Lịch sử hoạt động** | `lichsuhoatdong.html` | Danh sách đơn đã đặt |
+| 11 | **Ví & lịch sử** | `vivalichsu.html` | Lịch sử giao dịch ví |
+
+### Đợt 4 — Còn lại (Ngày 4-5):
+| # | Màn hình | File HTML gốc | Ghi chú |
+|---|----------|---------------|---------|
+| 12 | **Chat** | `chatvoitasker.html` | UI chat giả (tin nhắn mock) |
+| 13 | **Đánh giá Tasker** | `danhgiatasker.html` | Form chấm sao + nhận xét |
+| 14 | **Thông báo** | `thongbao.html` | Danh sách thông báo mock |
+| 15 | **Tài khoản** | `taikhoan.html` | Profile + menu cài đặt |
+| 16 | **Nạp tiền QR** | `naptienqr.html` | Hiển thị QR giả |
+
+### Mẹo để làm nhanh:
+> [!TIP]
+> - Mỗi màn hình HTML mockup đã có sẵn layout → **dịch 1:1 sang Flutter Widget**
+> - Dùng mock data cứng: tên "Đinh Cường", số dư "0 đ", tasker "Nguyễn Lan"...
+> - Bấm nút → chỉ cần `GoRouter.go('/route')`, không cần logic thật
+> - Form input → chỉ hiển thị UI, không cần validate hay submit thật
+
+---
+
+## PHASE 5: CẤU HÌNH PWA + BUILD (~2 giờ)
+
+### Việc cần làm:
+- [ ] **5.1** Chỉnh `web/manifest.json`:
+  - `name`: "Chị Ơi - Dịch vụ gia đình"
+  - `short_name`: "Chị Ơi"
+  - `theme_color`: "#FF7E36"
+  - `background_color`: "#FCF9F8"
+  - `display`: "standalone"
+- [ ] **5.2** Tạo icon app (192x192 + 512x512)
+- [ ] **5.3** Chỉnh `web/index.html`:
+  - Title: "Chị Ơi"
+  - Meta viewport cho mobile
+  - Apple meta tags (iOS)
+- [ ] **5.4** Build production:
+  ```powershell
+  flutter build web --release --web-renderer html
+  ```
+- [ ] **5.5** Test local:
+  ```powershell
+  cd build/web
+  python -m http.server 8080
+  # Mở Chrome → localhost:8080
+  ```
+
+---
+
+## PHASE 6: DEPLOY LÊN HOSTING (~30 phút)
+
+### Khuyến nghị dùng **Firebase Hosting** (miễn phí, nhanh nhất):
+- [ ] **6.1** Cài Firebase CLI: `npm install -g firebase-tools`
+- [ ] **6.2** Đăng nhập: `firebase login`
+- [ ] **6.3** Khởi tạo: `firebase init hosting`
+  - Public directory: `build/web`
+  - Single page app: Yes
+- [ ] **6.4** Deploy: `firebase deploy --only hosting`
+- [ ] **6.5** Lấy URL → gửi cho khách xem
+
+### Kết quả:
+```
+✅ Khách nhận được link, ví dụ: https://chioi-customer.web.app
+✅ Mở trên điện thoại → bấm "Thêm vào màn hình" → có icon app
+✅ Mở lại → load nhanh nhờ cache
+✅ Giao diện giống hệt mockup HTML đã duyệt
+```
+
+---
+
+## ⏱️ TỔNG THỜI GIAN ƯỚC TÍNH
+
+| Phase | Thời gian |
+|-------|-----------|
+| 1. Cài môi trường | 30 phút |
+| 2. Tạo project | 1 giờ |
+| 3. Design System | 2-3 giờ |
+| **4. Build 15 màn hình** | **3-5 ngày** |
+| 5. PWA + Build | 2 giờ |
+| 6. Deploy | 30 phút |
+| **TỔNG** | **~4-6 ngày** |
+
+> [!IMPORTANT]
+> So với kế hoạch ban đầu (8-12 ngày), đã **giảm gần một nửa** vì:
+> - Bỏ toàn bộ backend/API
+> - Bỏ state management phức tạp
+> - Bỏ authentication thật
+> - Dùng HTML renderer (nhẹ, build nhanh)
+> - Chỉ mock data cứng
+
+---
+
+## 🔑 TÓM TẮT 1 CÂU
+
+**Cài Flutter → Tạo project → Copy design system từ mockup → Dịch 15 file HTML sang Flutter Widget → Cấu hình PWA → Build `--web-renderer html` → Deploy Firebase → Gửi link cho khách.**

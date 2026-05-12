@@ -1,0 +1,1 @@
+const { Pool } = require('pg'); const pool = new Pool({ connectionString: 'postgresql://postgres:postgres@172.30.4.202:5432/chioi?schema=public' }); async function main() { try { const client = await pool.connect(); console.log('Pool Connected!'); await client.query('SELECT 1'); client.release(); await pool.end(); } catch(e) { console.error('Failed:', e.message); } } main();

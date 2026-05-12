@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;family=Inter:wght@400;600;700&amp;family=Manrope:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline-variant": "#ddc1ae",
+                    "secondary-fixed": "#d9e3f6",
+                    "on-tertiary-fixed": "#001e2e",
+                    "inverse-surface": "#3a2e25",
+                    "surface-container-highest": "#f3dfd1",
+                    "tertiary-fixed": "#c7e7ff",
+                    "primary": "#904d00",
+                    "background": "#fff8f5",
+                    "on-background": "#241912",
+                    "surface-bright": "#fff8f5",
+                    "inverse-on-surface": "#ffede3",
+                    "on-tertiary-fixed-variant": "#004c6c",
+                    "on-primary": "#ffffff",
+                    "inverse-primary": "#ffb77d",
+                    "on-secondary-fixed": "#121c2a",
+                    "on-tertiary-container": "#004360",
+                    "on-surface": "#241912",
+                    "surface-dim": "#ead6c9",
+                    "on-primary-container": "#623200",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed-dim": "#ffb77d",
+                    "primary-fixed": "#ffdcc3",
+                    "on-surface-variant": "#564334",
+                    "secondary-container": "#d6e0f3",
+                    "on-secondary-fixed-variant": "#3d4756",
+                    "tertiary-fixed-dim": "#85cfff",
+                    "secondary": "#555f6f",
+                    "error": "#ba1a1a",
+                    "surface-container-low": "#fff1e9",
+                    "surface-container": "#ffeadd",
+                    "surface-variant": "#f3dfd1",
+                    "primary-container": "#ff8c00",
+                    "surface": "#fff8f5",
+                    "on-primary-fixed-variant": "#6e3900",
+                    "tertiary-container": "#00b5fc",
+                    "surface-tint": "#904d00",
+                    "on-tertiary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "on-secondary-container": "#596373",
+                    "surface-container-high": "#f9e4d7",
+                    "outline": "#897362",
+                    "on-error": "#ffffff",
+                    "tertiary": "#00658f",
+                    "on-secondary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "secondary-fixed-dim": "#bdc7d9",
+                    "on-primary-fixed": "#2f1500"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "page-margin": "1rem",
+                    "inline-gutter": "0.75rem",
+                    "section-padding": "2rem",
+                    "card-padding": "1.25rem",
+                    "stack-gap": "1rem"
+            },
+            "fontFamily": {
+                    "status-badge": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "label-caps": ["Inter"],
+                    "headline-md": ["Manrope"],
+                    "display-lg": ["Manrope"],
+                    "body-lg": ["Inter"],
+                    "primary-ui": ["Be Vietnam Pro"]
+            },
+            "fontSize": {
+                    "status-badge": ["11px", {"lineHeight": "12px", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-md": ["22px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "display-lg": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Be Vietnam Pro', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+    .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="max-w-md mx-auto shadow-2xl border-x border-gray-200 relative min-h-screen bg-surface text-on-background min-h-screen font-primary-ui relative">
+<!-- Top Background Gradient -->
+<div class="absolute top-0 left-0 w-full h-[300px] z-0" style="background: linear-gradient(rgb(255, 126, 54) 0%, rgb(252, 249, 248) 100%);"></div>
+<!-- TopAppBar -->
+<header class="bg-surface/10 backdrop-blur-sm w-full sticky top-0 z-40 border-b border-outline-variant/20 dark:border-outline flex items-center justify-between px-page-margin h-16 w-full relative z-10">
+<div class="flex items-center gap-4">
+<button class="active:scale-95 duration-100 p-2 rounded-full hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed">menu</span>
+</button>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">Inbox</h1>
+</div>
+<div class="flex items-center gap-2">
+<button class="active:scale-95 duration-100 p-2 rounded-full hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed">search</span>
+</button>
+</div>
+</header>
+<main class="pb-32 relative z-10">
+<!-- Search Bar Section -->
+<div class="px-page-margin py-4">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors">search</span>
+<input class="w-full h-12 pl-12 pr-4 bg-surface-container-lowest border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary/10 focus:border-primary outline-none transition-all placeholder:text-on-surface-variant/60" placeholder="Search conversations..." type="text"/>
+</div>
+</div>
+<!-- Filter Chips (High-End Interaction) -->
+<div class="flex gap-2 px-page-margin mb-6 overflow-x-auto no-scrollbar">
+<button class="px-4 py-2 bg-primary text-on-primary rounded-full text-label-caps font-label-caps whitespace-nowrap shadow-sm">All Messages</button>
+<button class="px-4 py-2 bg-surface-container-high text-on-surface-variant rounded-full text-label-caps font-label-caps whitespace-nowrap hover:bg-surface-variant transition-colors border border-outline-variant/30">Residents</button>
+<button class="px-4 py-2 bg-surface-container-high text-on-surface-variant rounded-full text-label-caps font-label-caps whitespace-nowrap hover:bg-surface-variant transition-colors border border-outline-variant/30">Taskers</button>
+<button class="px-4 py-2 bg-surface-container-high text-on-surface-variant rounded-full text-label-caps font-label-caps whitespace-nowrap hover:bg-surface-variant transition-colors border border-outline-variant/30">Unread</button>
+</div>
+<!-- Inbox List (Asymmetric/Bento Inspired Cards) -->
+<div class="px-page-margin flex flex-col gap-3">
+<!-- Conversation Item 1 (Unread) -->
+<div class="bg-surface-container-lowest p-card-padding rounded-xl shadow-[0px_4px_12px_rgba(0,0,0,0.05)] border border-outline-variant/20 flex items-center gap-4 active:scale-[0.98] transition-transform cursor-pointer relative overflow-hidden group">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary"></div>
+<div class="relative flex-shrink-0">
+<img alt="Marcus" class="w-14 h-14 rounded-full bg-surface-container" data-alt="A professional headshot of a friendly young man with short dark hair and a warm smile, set against a clean, softly lit interior background that matches a high-end corporate lifestyle aesthetic. The lighting is bright and natural, emphasizing clarity and approachability in a modern residential management app context." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAUVBPFP5XdoIDlTD7atySRkLPRv3L95p3xf3MatB829Eprj7TmM_hDEYtGx5IdAmaVkB21yA-vk6oIIyjgtmxwUMeMJ4qKHsGFzlIBKOoIb9lyTOWNaVdyQvTkpImijE86N0KaM5_VvhMHqehDU6aAgzftmNUgmDNGwLtY7FsUMCk1K6UPEl0A_ZPm-vpmM6yn8wIh_BjFarjp6QIyNn_kXY5JU3g3lobGIA_hSHuQ75yNRf_rhbjUXXKJRopBHdnrP3-VOIwg4DJ"/>
+<div class="absolute bottom-0 right-0 w-4 h-4 bg-green-500 border-2 border-surface rounded-full"></div>
+</div>
+<div class="flex-grow min-w-0">
+<div class="flex justify-between items-center mb-1">
+<h3 class="font-primary-ui font-semibold text-on-surface truncate">Marcus Chen</h3>
+<span class="text-label-caps font-label-caps text-primary">10:42 AM</span>
+</div>
+<p class="text-body-sm text-on-surface font-semibold truncate">Hey, the kitchen sink is leaking again. Could you please send someone today?</p>
+</div>
+<div class="flex flex-col items-end gap-2">
+<span class="bg-primary-container text-on-primary-container px-2 py-1 rounded-full text-status-badge font-status-badge">2</span>
+<span class="text-[10px] uppercase font-bold text-on-surface-variant/40 tracking-widest">Resident</span>
+</div>
+</div>
+<!-- Conversation Item 2 -->
+<div class="bg-surface-container-lowest p-card-padding rounded-xl shadow-[0px_4px_12px_rgba(0,0,0,0.05)] border border-outline-variant/20 flex items-center gap-4 active:scale-[0.98] transition-transform cursor-pointer group">
+<div class="relative flex-shrink-0">
+<img alt="Sarah" class="w-14 h-14 rounded-full bg-surface-container" data-alt="A portrait of a professional female service contractor wearing a clean uniform, captured in a bright and airy modern environment. The image uses soft, diffused lighting and a sophisticated palette of neutral tones with subtle orange accents, conveying reliability and expertise for a high-performance administration dashboard." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1e1H8h2TzAeoqR-b-GwZn5DWOMv7zLkj46DzFmF1HYyudo62eOUqoiSx0ePDWlSebpG-l8yTOhZtM91VqEj8ZC_Ka5HHfy-uLdx3stdsMkGz4XDVKdeKhb8oOFNTlFOw9O84AxgspCDBmS83RPhAShtlYlkPIHN4n4K2KFLzVjGA-asHZ2mtl45R4mT3qpDs1OzIlI1esRnkPXcRx9B-_jABBTHNFDXb4SEY69ioIY3oJsg6nxzw_rXR9UiaEUVIK-AZcYyWaJktp"/>
+</div>
+<div class="flex-grow min-w-0">
+<div class="flex justify-between items-center mb-1">
+<h3 class="font-primary-ui font-semibold text-on-surface truncate">Sarah Williams</h3>
+<span class="text-label-caps font-label-caps text-on-surface-variant">Yesterday</span>
+</div>
+<p class="text-body-sm text-on-surface-variant truncate">The electrical inspection at Unit 402 is complete. Photos are attached.</p>
+</div>
+<div class="flex flex-col items-end gap-2">
+<span class="text-[10px] uppercase font-bold text-on-surface-variant/40 tracking-widest">Tasker</span>
+</div>
+</div>
+<!-- Conversation Item 3 (Unread) -->
+<div class="bg-surface-container-lowest p-card-padding rounded-xl shadow-[0px_4px_12px_rgba(0,0,0,0.05)] border border-outline-variant/20 flex items-center gap-4 active:scale-[0.98] transition-transform cursor-pointer relative overflow-hidden group">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary"></div>
+<div class="relative flex-shrink-0">
+<img alt="Jordan" class="w-14 h-14 rounded-full bg-surface-container" data-alt="A portrait of a resident with a modern, professional look, set against a minimalist urban background. The lighting is high-key and soft, creating a bright and clean aesthetic. The visual style is polished and sophisticated, aligning with a premium property management interface that uses warm orange highlights." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmXOWfI8_PQv2es2CXnfR4-M5RtcF0lrGuoN51imM92DKvKTBoqN75e0cxCJST0jBU8MlzXIWSuI8lrqt_A4jLPS-bpws7Ulbf6-HxU7jHxk9LesiWpPvpW1rTrVQguNtN6n3LATq59swBVRb9X60wLiV81J7CKYmwsUGUsoSG7L_Ejk-eiHIodULTwnUf61H4hXvsL3zO2eqHPxbA65koaCXZr7vb0iJEKHUtM6T1T1FK-Bow9r_G0zg8An9qmRIGqTDWZZlPV4Vz"/>
+</div>
+<div class="flex-grow min-w-0">
+<div class="flex justify-between items-center mb-1">
+<h3 class="font-primary-ui font-semibold text-on-surface truncate">Jordan Smith</h3>
+<span class="text-label-caps font-label-caps text-primary">8:15 AM</span>
+</div>
+<p class="text-body-sm text-on-surface font-semibold truncate">Is the gym open for the holiday weekend? Thanks!</p>
+</div>
+<div class="flex flex-col items-end gap-2">
+<span class="bg-primary-container text-on-primary-container px-2 py-1 rounded-full text-status-badge font-status-badge">1</span>
+<span class="text-[10px] uppercase font-bold text-on-surface-variant/40 tracking-widest">Resident</span>
+</div>
+</div>
+<!-- Conversation Item 4 -->
+<div class="bg-surface-container-lowest p-card-padding rounded-xl shadow-[0px_4px_12px_rgba(0,0,0,0.05)] border border-outline-variant/20 flex items-center gap-4 active:scale-[0.98] transition-transform cursor-pointer group">
+<div class="relative flex-shrink-0">
+<img alt="Leo" class="w-14 h-14 rounded-full bg-surface-container" data-alt="A portrait of a male technician with a focused and professional expression, wearing a high-quality service vest. The scene is bright, modern, and trustworthy, with high-key lighting and a professional color palette of white, gray, and pops of energetic orange, conveying high-performance and reliability." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEWhEL-e0CVHs8OjYsFl6gz2ZaUdxT6dJHp5RHzGlKdRTxWRWHVLc5BHg7AJZleR63FAs_UZNLv3kbpvXrJj4Vss3Nw6XpkjmEwTicZfvN76ctvuWGnUugLAesO9ZCGXiYHNJIzoYxb7wYxxD_fCRWo8QyzYQZBxnxQiSQ9MeoZ7dXBkS564agZOxg6PwYaMA4dUaoQDp8NVkfdKjGmxCEskY0toBn5SYG38Kraafy9UsERVhADIDv46JdjUEzsdheMAv03h5uHuwX"/>
+</div>
+<div class="flex-grow min-w-0">
+<div class="flex justify-between items-center mb-1">
+<h3 class="font-primary-ui font-semibold text-on-surface truncate">Leo Rodriguez</h3>
+<span class="text-label-caps font-label-caps text-on-surface-variant">Wednesday</span>
+</div>
+<p class="text-body-sm text-on-surface-variant truncate">I'll be on-site for the HVAC maintenance by 9 AM tomorrow.</p>
+</div>
+<div class="flex flex-col items-end gap-2">
+<span class="text-[10px] uppercase font-bold text-on-surface-variant/40 tracking-widest">Tasker</span>
+</div>
+</div>
+<!-- Conversation Item 5 -->
+<div class="bg-surface-container-lowest p-card-padding rounded-xl shadow-[0px_4px_12px_rgba(0,0,0,0.05)] border border-outline-variant/20 flex items-center gap-4 active:scale-[0.98] transition-transform cursor-pointer group">
+<div class="relative flex-shrink-0">
+<img alt="Elena" class="w-14 h-14 rounded-full bg-surface-container" data-alt="A bright, high-key portrait of a female resident with a friendly and confident demeanor. The style is clean and modern corporate, featuring a soft-focus background of a contemporary apartment lobby. The lighting is pristine and balanced, reinforcing a sense of security and professional administration." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGtcjEmmeFgraByOF6VsT7pTHjwkVjpB0QBBhmsX8sMUggnSArd5KtJ6iI58WUvVvUc2vLRNv1mAvJoSbKeKxYzZYpJTHPDkPZchfLAExO15nvWUYO6QhnBqYJDGWkbIRAwsSqEuJ21D-kpsZBXEzc4TB4Hbxtbt0cX4saMgfkkz5jHmTKxymIztDeMpWFU0pHe2EruoJWLMSjcRFHeCzLc4qp1BFEsI7PFoD-4rr4P8GfYGmKMbibSclxKToDDYM9Hfwyp6-HPwoh"/>
+</div>
+<div class="flex-grow min-w-0">
+<div class="flex justify-between items-center mb-1">
+<h3 class="font-primary-ui font-semibold text-on-surface truncate">Elena Vance</h3>
+<span class="text-label-caps font-label-caps text-on-surface-variant">Monday</span>
+</div>
+<p class="text-body-sm text-on-surface-variant truncate">Thank you for resolving the noise complaint so quickly!</p>
+</div>
+<div class="flex flex-col items-end gap-2">
+<span class="text-[10px] uppercase font-bold text-on-surface-variant/40 tracking-widest">Resident</span>
+</div>
+</div>
+</div>
+</main>
+<!-- FAB -->
+<button class="fixed bottom-28 right-6 w-14 h-14 bg-primary text-on-primary rounded-full shadow-lg flex items-center justify-center active:scale-90 transition-transform z-40">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add_comment</span>
+</button>
+<!-- BottomNavBar -->
+<nav class="bg-white/90 backdrop-blur-md fixed bottom-6 left-1/2 -translate-x-1/2 flex justify-around items-center h-16 w-[95%] max-w-md rounded-full shadow-xl border border-outline-variant/20 px-4 z-50">
+    <a href="../b_ng_i_u_khi_n_qu_n_tr_vi_n_pill_nav/code.html" class="text-on-secondary-container hover:text-primary flex flex-col items-center justify-center transition-all active:scale-90">
+        <span class="material-symbols-outlined text-[22px] ">dashboard</span>
+        <span class="font-label-caps text-[10px] leading-tight mt-0.5 uppercase ">Dashboard</span>
+    </a>
+    <a href="../danh_s_ch_n_h_ng_full_nav/code.html" class="text-on-secondary-container hover:text-primary flex flex-col items-center justify-center transition-all active:scale-90">
+        <span class="material-symbols-outlined text-[22px] ">receipt_long</span>
+        <span class="font-label-caps text-[10px] leading-tight mt-0.5 uppercase ">Đơn</span>
+    </a>
+    <a href="../danh_s_ch_tasker_qu_n_tr_pill_nav/code.html" class="text-on-secondary-container hover:text-primary flex flex-col items-center justify-center transition-all active:scale-90">
+        <span class="material-symbols-outlined text-[22px] ">engineering</span>
+        <span class="font-label-caps text-[10px] leading-tight mt-0.5 uppercase ">Tasker</span>
+    </a>
+    <a href="../danh_s_ch_c_d_n_qu_n_tr_pill_nav/code.html" class="text-on-secondary-container hover:text-primary flex flex-col items-center justify-center transition-all active:scale-90">
+        <span class="material-symbols-outlined text-[22px] ">group</span>
+        <span class="font-label-caps text-[10px] leading-tight mt-0.5 uppercase ">Cư dân</span>
+    </a>
+    <a href="../v_giao_d_ch_qu_n_tr_pill_nav/code.html" class="text-on-secondary-container hover:text-primary flex flex-col items-center justify-center transition-all active:scale-90">
+        <span class="material-symbols-outlined text-[22px] ">account_balance_wallet</span>
+        <span class="font-label-caps text-[10px] leading-tight mt-0.5 uppercase ">Ví</span>
+    </a>
+    <a href="../h_p_th_admin_pill_nav/code.html" class="text-primary relative px-3 py-1 rounded-full bg-primary/10 flex flex-col items-center justify-center transition-all active:scale-90">
+        <span class="material-symbols-outlined text-[22px] font-bold">inbox</span>
+        <span class="font-label-caps text-[10px] leading-tight mt-0.5 uppercase font-bold">Inbox</span>
+    </a>
+</nav>
+</body></html>

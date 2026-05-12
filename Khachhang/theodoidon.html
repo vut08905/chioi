@@ -275,4 +275,54 @@
 <span class="text-label-sm font-label-sm font-medium">Tài khoản</span>
 </a>
 </nav>
+<script src="../shared/api.js"></script>
+<script>
+(async function() {
+  if (!ChiOiAuth.requireAuth('dangnhap.html')) return;
+
+  var params = new URLSearchParams(window.location.search);
+  var orderId = params.get('orderId');
+  if (!orderId) return;
+
+  // ===== Fetch Order Detail =====
+  try {
+    var order = await apiFetch('/api/orders/' + orderId);
+
+    // Update basic UI (simplified mapping for demonstration)
+    var taskerName = (order.taskers && order.taskers.users && order.taskers.users.full_name) ? order.taskers.users.full_name : 'Chưa có Tasker';
+    var serviceName = (order.services && order.services.name) ? order.services.name : 'Dịch vụ';
+
+    var h3 = document.querySelector('section:first-of-type h3');
+    if (h3) h3.textContent = taskerName;
+
+    var detailSpans = document.querySelectorAll('.space-y-sm .flex.justify-between span:last-child');
+    if (detailSpans.length >= 4) {
+      detailSpans[0].textContent = '#DH' + order.order_id;
+      detailSpans[1].textContent = serviceName;
+      detailSpans[2].textContent = formatDateTime(order.scheduled_time);
+      detailSpans[3].textContent = formatVND(order.total_price);
+    }
+  } catch (e) {
+    console.warn('[TheoDoi] Lỗi load đơn hàng:', e.message);
+  }
+
+  // ===== SOCKET.IO REAL-TIME UPDATES =====
+  var socket = connectSocket();
+  if (socket) {
+    socket.on('order_status_updated', function(data) {
+      if (String(data.order.order_id) === String(orderId)) {
+        showToastMsg('🔔 Trạng thái đơn: ' + data.order.status);
+        setTimeout(function() { location.reload(); }, 2000);
+      }
+    });
+
+    socket.on('order_accepted', function(data) {
+      if (String(data.order.order_id) === String(orderId)) {
+        showToastMsg('🎉 Tasker đã nhận đơn!');
+        setTimeout(function() { location.reload(); }, 2000);
+      }
+    });
+  }
+})();
+</script>
 </body></html>
