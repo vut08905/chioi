@@ -3,7 +3,7 @@
 <html lang="vi"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Ví &amp; Lịch sử giao dịch</title>
+<title>Ví Chị Ơi!</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
@@ -112,157 +112,71 @@
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
-<body class="text-on-background min-h-screen relative pb-32">
+<body class="bg-background text-on-surface font-body-lg min-h-screen pb-32">
 <div class="absolute top-0 left-0 w-full h-[300px] z-0 pointer-events-none" style="background: linear-gradient(rgb(255, 126, 54) 0%, rgb(252, 249, 248) 100%);"></div>
-<!-- TopAppBar Section -->
-<header class="bg-transparent text-on-surface sticky top-0 w-full z-50 flex justify-between items-center px-container-padding h-16">
-<div class="flex items-center">
-<button onclick="window.location.href='taikhoan.html'" class="material-symbols-outlined text-on-surface active:scale-95 transition-all duration-200" data-icon="arrow_back">arrow_back</button>
-</div>
-<h1 class="text-title-sm font-bold text-on-surface">Ví Chị Ơi</h1>
-<div class="flex items-center">
-<button class="material-symbols-outlined text-on-surface active:scale-95 transition-all duration-200" data-icon="help_outline">help_outline</button>
+<!-- Header -->
+<header class="relative z-10 flex justify-between items-center w-full px-container-padding h-16 pt-4">
+<div class="flex items-center gap-3">
+<button onclick="window.location.href='taikhoan.html'" class="w-10 h-10 flex items-center justify-center rounded-full bg-white/20 text-white active:scale-95 transition-all backdrop-blur-sm" style="cursor:pointer">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="text-[18px] font-extrabold text-white">Ví Chị Ơi</h1>
 </div>
 </header>
-<main class="relative z-10 pt-base pb-8 px-container-padding space-y-md">
-<!-- Balance Card: Bento Style -->
-<section class="orange-gradient rounded-3xl p-lg shadow-xl text-on-primary space-y-md relative overflow-hidden">
-<div class="absolute -top-10 -right-10 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
-<div class="flex flex-col">
-<span class="text-label-caps font-medium opacity-90 uppercase tracking-widest">Số dư khả dụng</span>
-<span class="text-display-lg font-bold">500.000 đ</span>
-</div>
-<div class="grid grid-cols-2 gap-sm pt-base">
-<button onclick="window.location.href='naptienqr.html'" class="bg-white/20 backdrop-blur-md text-on-primary font-semibold py-3 px-4 rounded-xl flex items-center justify-center gap-xs active:scale-95 transition-all">
-<span class="material-symbols-outlined text-[20px]" data-icon="add_circle">add_circle</span>
-                    Nạp tiền
-                </button>
-<button class="bg-white/20 backdrop-blur-md text-on-primary font-semibold py-3 px-4 rounded-xl flex items-center justify-center gap-xs active:scale-95 transition-all">
-<span class="material-symbols-outlined text-[20px]" data-icon="account_balance_wallet">account_balance_wallet</span>
-                    Rút tiền
-                </button>
+<!-- Balance Card -->
+<section class="relative z-10 mx-container-padding mt-4 orange-gradient p-6 rounded-2xl text-white shadow-lg">
+<p class="text-white/80 text-body-sm">Số dư khả dụng</p>
+<h2 id="wallet-balance" class="text-[32px] font-extrabold mt-1">0 đ</h2>
+<div class="flex gap-3 mt-4">
+<button onclick="window.location.href='naptienqr.html'" class="flex-1 bg-white/20 backdrop-blur-sm py-3 rounded-xl text-white font-bold flex items-center justify-center gap-2 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[20px]">add</span> Nạp tiền
+</button>
+<button id="withdraw-btn" class="flex-1 bg-white/20 backdrop-blur-sm py-3 rounded-xl text-white font-bold flex items-center justify-center gap-2 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[20px]">download</span> Rút tiền
+</button>
 </div>
 </section>
-<!-- Filter Section -->
-<section class="space-y-md">
+<!-- Lỗi 13 FIX: Filter tabs hoạt động -->
+<section class="relative z-10 mt-6 px-container-padding space-y-md">
 <div class="flex items-center justify-between">
 <h2 class="text-title-sm font-bold text-on-surface">Lịch sử giao dịch</h2>
 <span class="text-body-sm text-primary font-semibold">Tất cả</span>
 </div>
 <div class="space-y-sm">
-<div class="flex gap-sm overflow-x-auto pb-1 no-scrollbar">
-<div class="bg-primary text-on-primary px-5 py-2 rounded-full text-label-caps font-bold flex-shrink-0 cursor-pointer shadow-sm">
-                        Tất cả
-                    </div>
-<div class="bg-surface-container-low text-on-surface-variant border border-outline-variant/30 px-5 py-2 rounded-full text-label-caps font-bold flex-shrink-0 cursor-pointer">
-                        Nạp tiền
-                    </div>
-<div class="bg-surface-container-low text-on-surface-variant border border-outline-variant/30 px-5 py-2 rounded-full text-label-caps font-bold flex-shrink-0 cursor-pointer">
-                        Thanh toán
-                    </div>
-<div class="bg-surface-container-low text-on-surface-variant border border-outline-variant/30 px-5 py-2 rounded-full text-label-caps font-bold flex-shrink-0 cursor-pointer">
-                        Hoàn tiền
-                    </div>
-</div>
-<div class="flex gap-sm overflow-x-auto pb-1 no-scrollbar">
-<div class="bg-surface-container-low text-on-surface-variant border border-outline-variant/30 px-5 py-2 rounded-full text-label-caps font-bold flex-shrink-0 cursor-pointer">
-                        Hôm nay
-                    </div>
-<div class="bg-surface-container-low text-on-surface-variant border border-outline-variant/30 px-5 py-2 rounded-full text-label-caps font-bold flex-shrink-0 cursor-pointer">
-                        Tháng này
-                    </div>
-<div class="bg-surface-container-low text-on-surface-variant border border-outline-variant/30 px-5 py-2 rounded-full text-label-caps font-bold flex-shrink-0 cursor-pointer flex items-center gap-xs">
-                        Tùy chọn <span class="material-symbols-outlined text-[16px]" data-icon="calendar_today">calendar_today</span>
-</div>
+<!-- Type filter -->
+<div id="type-filters" class="flex gap-sm overflow-x-auto pb-1 no-scrollbar">
+<div class="filter-chip active bg-primary text-on-primary px-5 py-2 rounded-full text-label-sm font-bold flex-shrink-0 cursor-pointer shadow-sm" data-type="all">Tất cả</div>
+<div class="filter-chip bg-surface-container-low text-on-surface-variant border border-outline-variant/30 px-5 py-2 rounded-full text-label-sm font-bold flex-shrink-0 cursor-pointer" data-type="DEPOSIT">Nạp tiền</div>
+<div class="filter-chip bg-surface-container-low text-on-surface-variant border border-outline-variant/30 px-5 py-2 rounded-full text-label-sm font-bold flex-shrink-0 cursor-pointer" data-type="PAYMENT">Thanh toán</div>
+<div class="filter-chip bg-surface-container-low text-on-surface-variant border border-outline-variant/30 px-5 py-2 rounded-full text-label-sm font-bold flex-shrink-0 cursor-pointer" data-type="REFUND">Hoàn tiền</div>
 </div>
 </div>
 </section>
-<!-- Transaction List -->
-<section class="space-y-stack-gap">
-<!-- Transaction Item 1 -->
-<div class="bg-surface-container-lowest p-md rounded-2xl shadow-sm border border-surface-container flex items-center gap-md">
-<div class="w-12 h-12 rounded-full bg-primary-container/20 flex items-center justify-center text-primary">
-<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
-</div>
-<div class="flex-1">
-<h3 class="text-body-lg font-bold text-on-surface">Thanh toán dọn nhà</h3>
-<p class="text-body-sm text-on-surface-variant">14:30 - 24/10/2023</p>
-<span class="text-[11px] font-bold text-tertiary bg-tertiary-container/10 px-2 py-0.5 rounded-full uppercase tracking-wider">Thành công</span>
-</div>
-<div class="text-right">
-<span class="text-body-lg font-bold text-error">- 450.000 đ</span>
-</div>
-</div>
-<!-- Transaction Item 2 -->
-<div class="bg-surface-container-lowest p-md rounded-2xl shadow-sm border border-surface-container flex items-center gap-md">
-<div class="w-12 h-12 rounded-full bg-tertiary-container/20 flex items-center justify-center text-tertiary">
-<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
-</div>
-<div class="flex-1">
-<h3 class="text-body-lg font-bold text-on-surface">Nạp tiền vào ví</h3>
-<p class="text-body-sm text-on-surface-variant">09:15 - 23/10/2023</p>
-<span class="text-[11px] font-bold text-tertiary bg-tertiary-container/10 px-2 py-0.5 rounded-full uppercase tracking-wider">Thành công</span>
-</div>
-<div class="text-right">
-<span class="text-body-lg font-bold text-primary">+ 100.000 đ</span>
-</div>
-</div>
-<!-- Transaction Item 3 -->
-<div class="bg-surface-container-lowest p-md rounded-2xl shadow-sm border border-surface-container flex items-center gap-md">
-<div class="w-12 h-12 rounded-full bg-primary-container/20 flex items-center justify-center text-primary">
-<span class="material-symbols-outlined" data-icon="cleaning_services">cleaning_services</span>
-</div>
-<div class="flex-1">
-<h3 class="text-body-lg font-bold text-on-surface">Dọn dẹp định kỳ</h3>
-<p class="text-body-sm text-on-surface-variant">16:00 - 20/10/2023</p>
-<span class="text-[11px] font-bold text-tertiary bg-tertiary-container/10 px-2 py-0.5 rounded-full uppercase tracking-wider">Thành công</span>
-</div>
-<div class="text-right">
-<span class="text-body-lg font-bold text-error">- 320.000 đ</span>
-</div>
-</div>
-<!-- Transaction Item 4 -->
-<div class="bg-surface-container-lowest p-md rounded-2xl shadow-sm border border-surface-container flex items-center gap-md">
-<div class="w-12 h-12 rounded-full bg-secondary-container/20 flex items-center justify-center text-secondary">
-<span class="material-symbols-outlined" data-icon="history">history</span>
-</div>
-<div class="flex-1">
-<h3 class="text-body-lg font-bold text-on-surface">Hoàn tiền dịch vụ</h3>
-<p class="text-body-sm text-on-surface-variant">10:00 - 18/10/2023</p>
-<span class="text-[11px] font-bold text-tertiary bg-tertiary-container/10 px-2 py-0.5 rounded-full uppercase tracking-wider">Thành công</span>
-</div>
-<div class="text-right">
-<span class="text-body-lg font-bold text-primary">+ 50.000 đ</span>
-</div>
-</div>
+<!-- Lỗi 12 FIX: Transaction list từ DB -->
+<section id="transaction-list" class="relative z-10 px-container-padding mt-4 space-y-3">
+<!-- Rendered by JS -->
 </section>
-<!-- Empty State Illustration -->
-<div class="py-xl flex flex-col items-center justify-center text-center space-y-sm opacity-40">
-<div class="w-20 h-20 bg-surface-container-high rounded-full flex items-center justify-center">
-<span class="material-symbols-outlined text-[40px] text-outline" data-icon="receipt_long">receipt_long</span>
+<!-- Empty State -->
+<div id="empty-state" class="relative z-10 px-container-padding mt-8 text-center" style="display:none;">
+<span class="material-symbols-outlined text-[48px] text-outline-variant">receipt_long</span>
+<p class="text-on-surface-variant mt-2">Chưa có giao dịch nào</p>
 </div>
-<p class="text-body-sm font-medium max-w-[200px]">Đã hiển thị toàn bộ giao dịch trong 30 ngày qua</p>
-</div>
-</main>
-<!-- Floating Navigation Bar: Pill-shape, Shadow đậm, Hoàn toàn Tiếng Việt -->
+
+<!-- Bottom Navigation Bar -->
 <nav class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[92%] max-w-md z-50 flex justify-around items-center px-4 py-3 rounded-full bg-white shadow-xl border border-surface-container-high">
-<!-- Trang chủ -->
 <a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary active:scale-95 transition-transform" href="trangchu.html">
 <span class="material-symbols-outlined text-[28px]">home</span>
 <span class="text-label-sm font-label-sm font-medium">Trang chủ</span>
 </a>
-<!-- Hoạt động -->
-<a class="flex flex-col items-center justify-center text-primary transition-colors active:scale-95" href="lichsuhoatdong.html">
-<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">assignment</span>
-<span class="text-label-sm font-label-sm">Hoạt động</span>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:scale-95" href="lichsuhoatdong.html">
+<span class="material-symbols-outlined text-[28px]">assignment</span>
+<span class="text-label-sm font-label-sm font-medium">Hoạt động</span>
 </a>
-<!-- Thông báo (UC-KH-15) → M11 -->
 <a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:scale-95 relative" href="thongbao.html">
 <span class="material-symbols-outlined text-[28px]">notifications</span>
 <span class="absolute -top-1 left-1/2 ml-1 bg-secondary text-white text-[8px] w-4 h-4 rounded-full flex items-center justify-center font-bold">3</span>
 <span class="text-label-sm font-label-sm font-medium">Thông báo</span>
 </a>
-<!-- Tài khoản -->
 <a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:scale-95" href="taikhoan.html">
 <span class="material-symbols-outlined text-[28px]">person</span>
 <span class="text-label-sm font-label-sm font-medium">Tài khoản</span>
@@ -274,62 +188,114 @@
 (async function() {
   if (!ChiOiAuth.requireAuth('dangnhap.html')) return;
 
-  // ===== 1. Load Số dư ví =====
+  var allTransactions = [];
+  var currentFilter = 'all';
+
+  // ===== Load wallet balance =====
   try {
-    var wallet = await apiFetch('/api/wallets/balance');
-    if (wallet) {
-      var balanceEl = document.querySelector('.text-display-lg.font-bold');
-      if (balanceEl) balanceEl.textContent = formatVND(wallet.balance || 0);
+    var wallet = await apiFetch('/api/wallet/balance');
+    var balanceEl = document.getElementById('wallet-balance');
+    if (wallet && wallet.balance !== undefined) {
+      balanceEl.textContent = formatVND(wallet.balance);
     }
   } catch (e) {
-    console.warn('[Ví] Không thể load số dư:', e.message);
+    console.warn('[Ví] Không load được số dư:', e.message);
   }
 
-  // ===== 2. Load Lịch sử giao dịch =====
+  // ===== Lỗi 12 FIX: Load transactions từ DB =====
   try {
-    var transactions = await apiFetch('/api/wallets/transactions');
-    var txSection = document.querySelector('section.space-y-stack-gap');
-    if (txSection && transactions && transactions.length > 0) {
-      txSection.innerHTML = '';
+    var txData = await apiFetch('/api/wallet/transactions');
+    if (txData && Array.isArray(txData)) {
+      allTransactions = txData;
+    } else if (txData && txData.transactions) {
+      allTransactions = txData.transactions;
+    }
+  } catch (e) {
+    console.warn('[Ví] Không load được lịch sử GD:', e.message);
+  }
 
-      var typeIcons = {
-        'DEPOSIT': { icon: 'account_balance_wallet', bg: 'bg-tertiary-container/20', text: 'text-tertiary' },
-        'PAYMENT': { icon: 'shopping_cart', bg: 'bg-primary-container/20', text: 'text-primary' },
-        'WITHDRAWAL': { icon: 'savings', bg: 'bg-secondary-container/20', text: 'text-secondary' },
-        'REFUND': { icon: 'history', bg: 'bg-secondary-container/20', text: 'text-secondary' },
-        'COMMISSION': { icon: 'percent', bg: 'bg-primary-container/20', text: 'text-primary' },
-      };
+  // ===== Render transactions =====
+  function renderTransactions(filter) {
+    var list = document.getElementById('transaction-list');
+    var emptyState = document.getElementById('empty-state');
+    list.innerHTML = '';
 
-      transactions.forEach(function(tx) {
-        var typeStyle = typeIcons[tx.type] || typeIcons['PAYMENT'];
-        var isCredit = tx.type === 'DEPOSIT' || tx.type === 'REFUND';
-        var amountClass = isCredit ? 'text-body-lg font-bold text-primary' : 'text-body-lg font-bold text-error';
-        var amountPrefix = isCredit ? '+ ' : '- ';
-        var statusLabel = tx.status === 'COMPLETED' ? 'Thành công' : (tx.status === 'PENDING' ? 'Đang xử lý' : tx.status);
-
-        var typeLabel = {
-          'DEPOSIT': 'Nạp tiền vào ví',
-          'PAYMENT': 'Thanh toán dịch vụ',
-          'WITHDRAWAL': 'Rút tiền',
-          'REFUND': 'Hoàn tiền dịch vụ',
-          'COMMISSION': 'Hoa hồng',
-        }[tx.type] || tx.type;
-
-        var div = document.createElement('div');
-        div.className = 'bg-surface-container-lowest p-md rounded-2xl shadow-sm border border-surface-container flex items-center gap-md';
-        div.innerHTML = '<div class="w-12 h-12 rounded-full ' + typeStyle.bg + ' flex items-center justify-center ' + typeStyle.text + '">' +
-          '<span class="material-symbols-outlined">' + typeStyle.icon + '</span></div>' +
-          '<div class="flex-1">' +
-          '<h3 class="text-body-lg font-bold text-on-surface">' + typeLabel + '</h3>' +
-          '<p class="text-body-sm text-on-surface-variant">' + formatDateTime(tx.created_at) + '</p>' +
-          '<span class="text-[11px] font-bold text-tertiary bg-tertiary-container/10 px-2 py-0.5 rounded-full uppercase tracking-wider">' + statusLabel + '</span></div>' +
-          '<div class="text-right"><span class="' + amountClass + '">' + amountPrefix + formatVND(Math.abs(tx.amount)) + '</span></div>';
-        txSection.appendChild(div);
+    var filtered = allTransactions;
+    if (filter && filter !== 'all') {
+      filtered = allTransactions.filter(function(tx) {
+        return tx.tx_type === filter || tx.type === filter;
       });
     }
-  } catch (e) {
-    console.warn('[Ví] Không thể load giao dịch:', e.message);
+
+    if (filtered.length === 0) {
+      emptyState.style.display = 'block';
+      return;
+    }
+    emptyState.style.display = 'none';
+
+    filtered.forEach(function(tx) {
+      var type = tx.tx_type || tx.type || '';
+      var amount = tx.amount || 0;
+      var isIncome = type === 'DEPOSIT' || type === 'REFUND' || type === 'BONUS';
+      var icon = 'receipt';
+      var iconColor = 'text-primary';
+      var iconBg = 'bg-primary-container/20';
+      var label = type;
+
+      if (type === 'DEPOSIT') { icon = 'account_balance_wallet'; label = 'Nạp tiền'; iconColor = 'text-tertiary'; iconBg = 'bg-tertiary-container/20'; }
+      else if (type === 'PAYMENT') { icon = 'shopping_cart'; label = 'Thanh toán dịch vụ'; }
+      else if (type === 'REFUND') { icon = 'history'; label = 'Hoàn tiền'; iconColor = 'text-secondary'; iconBg = 'bg-secondary-container/20'; }
+      else if (type === 'WITHDRAWAL') { icon = 'download'; label = 'Rút tiền'; iconColor = 'text-error'; iconBg = 'bg-error-container/20'; }
+      else if (type === 'BONUS') { icon = 'redeem'; label = 'Thưởng'; iconColor = 'text-primary'; }
+
+      var dateStr = '';
+      if (tx.created_at) {
+        var d = new Date(tx.created_at);
+        dateStr = d.toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' }) + ' - ' + d.toLocaleDateString('vi-VN');
+      }
+
+      var statusText = tx.status || 'COMPLETED';
+      var statusClass = 'text-tertiary bg-tertiary-container/10';
+      if (statusText === 'PENDING') statusClass = 'text-yellow-700 bg-yellow-100';
+      else if (statusText === 'FAILED') statusClass = 'text-error bg-error-container/20';
+
+      var statusLabel = statusText === 'COMPLETED' ? 'Thành công' : statusText === 'PENDING' ? 'Đang xử lý' : statusText === 'FAILED' ? 'Thất bại' : statusText;
+
+      var amountText = (isIncome ? '+ ' : '- ') + formatVND(Math.abs(amount));
+      var amountColor = isIncome ? 'text-primary' : 'text-error';
+
+      var div = document.createElement('div');
+      div.className = 'bg-surface-container-lowest p-md rounded-2xl shadow-sm border border-surface-container flex items-center gap-md';
+      div.innerHTML = '<div class="w-12 h-12 rounded-full ' + iconBg + ' flex items-center justify-center ' + iconColor + '"><span class="material-symbols-outlined">' + icon + '</span></div>' +
+        '<div class="flex-1"><h3 class="text-body-lg font-bold text-on-surface">' + label + '</h3><p class="text-body-sm text-on-surface-variant">' + dateStr + '</p>' +
+        '<span class="text-[11px] font-bold ' + statusClass + ' px-2 py-0.5 rounded-full uppercase tracking-wider">' + statusLabel + '</span></div>' +
+        '<div class="text-right"><span class="text-body-lg font-bold ' + amountColor + '">' + amountText + '</span></div>';
+      list.appendChild(div);
+    });
   }
+
+  // ===== Lỗi 13 FIX: Filter chips hoạt động =====
+  var filterChips = document.querySelectorAll('.filter-chip');
+  filterChips.forEach(function(chip) {
+    chip.addEventListener('click', function() {
+      // Reset all chips
+      filterChips.forEach(function(c) {
+        c.className = 'filter-chip bg-surface-container-low text-on-surface-variant border border-outline-variant/30 px-5 py-2 rounded-full text-label-sm font-bold flex-shrink-0 cursor-pointer';
+      });
+      // Activate clicked chip
+      chip.className = 'filter-chip active bg-primary text-on-primary px-5 py-2 rounded-full text-label-sm font-bold flex-shrink-0 cursor-pointer shadow-sm';
+      currentFilter = chip.getAttribute('data-type');
+      renderTransactions(currentFilter);
+    });
+  });
+
+  // Initial render
+  renderTransactions('all');
+
+  // ===== Withdraw button =====
+  document.getElementById('withdraw-btn').addEventListener('click', function() {
+    showToastMsg('Chức năng rút tiền đang phát triển');
+  });
 })();
 </script>
 </body></html>

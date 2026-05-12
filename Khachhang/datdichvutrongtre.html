@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html lang="vi"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Trông trẻ - Book Cleaning</title>
+<title>Trông trẻ - Chị Ơi!</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
@@ -112,52 +112,40 @@
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
-<body class="text-on-surface antialiased bg-surface">
-<div class="absolute top-0 left-0 w-full h-[300px] z-0 pointer-events-none" style="background: linear-gradient(rgb(255, 126, 54) 0%, rgb(252, 249, 248) 100%);"></div><!-- Top App Bar - Updated Gradient Style -->
-<header class="fixed top-0 left-0 right-0 z-50 flex justify-between items-start w-full px-container-padding pt-6 pointer-events-none z-10">
+<body class="text-on-surface antialiased bg-surface pb-32">
+<div class="absolute top-0 left-0 w-full h-[300px] z-0 pointer-events-none" style="background: linear-gradient(rgb(255, 126, 54) 0%, rgb(252, 249, 248) 100%);"></div>
+<!-- Top App Bar -->
+<header class="fixed top-0 left-0 right-0 z-50 flex justify-between items-start w-full px-container-padding pt-6" style="background: linear-gradient(135deg, #ff7e36 0%, #a04100 100%); padding-bottom: 12px;">
 <div class="flex items-center gap-4">
-<button onclick="window.location.href='trangchu.html'" class="active:scale-95 transition-all duration-200 flex items-center justify-center pointer-events-auto" onclick="window.location.href='trangchu.html'" style="cursor:pointer">
-<span class="material-symbols-outlined text-primary font-bold">arrow_back</span>
+<button onclick="window.location.href='trangchu.html'" class="active:scale-95 transition-all duration-200 flex items-center justify-center" style="cursor:pointer">
+<span class="material-symbols-outlined text-white font-bold">arrow_back</span>
 </button>
-<h1 class="text-primary font-headline-md text-[18px] font-bold pointer-events-auto">Trông trẻ</h1>
+<h1 class="text-white text-[18px] font-bold">Trông trẻ</h1>
 </div>
-<button class="active:scale-95 transition-all duration-200 bg-primary/10 p-2 rounded-full flex items-center justify-center pointer-events-auto">
-<span class="material-symbols-outlined text-primary">chat_bubble</span>
+<button class="active:scale-95 transition-all duration-200 bg-white/20 p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-white">chat_bubble</span>
 </button>
 </header>
-<main class="pt-20 pb-44 px-container-padding flex flex-col gap-stack-gap overflow-y-auto hide-scrollbar max-w-md mx-auto relative z-10">
-<!-- Child Info Section -->
-<section class="bg-surface-container-lowest rounded-xl p-md custom-shadow border border-surface-container">
+<main class="pt-24 pb-8 px-container-padding flex flex-col gap-4 overflow-y-auto hide-scrollbar max-w-md mx-auto relative z-10">
+<!-- Lỗi 9 FIX: Child Info Section - Hoạt động được -->
+<section class="bg-surface-container-lowest rounded-xl p-md soft-shadow border border-surface-container">
 <div class="flex justify-between items-center mb-md">
 <h2 class="font-title-sm text-on-surface">Thông tin trẻ</h2>
 <div class="flex items-center gap-sm bg-surface-container-low rounded-full px-2 py-1">
-<button class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-primary-container shadow-sm font-bold border border-outline-variant/20">-</button>
-<span class="font-bold text-on-surface px-2">2</span>
-<button class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-primary-container shadow-sm font-bold border border-outline-variant/20">+</button>
+<button id="child-minus" class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-primary-container shadow-sm font-bold border border-outline-variant/20 active:scale-90 transition-all">-</button>
+<span id="child-count" class="font-bold text-on-surface px-2">1</span>
+<button id="child-plus" class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-primary-container shadow-sm font-bold border border-outline-variant/20 active:scale-90 transition-all">+</button>
 </div>
 </div>
-<div class="space-y-md">
-<div class="flex items-center justify-between p-sm bg-surface-bright rounded-lg border border-outline-variant/30">
-<span class="font-body-lg text-on-surface-variant">Trẻ 1:</span>
-<div class="flex items-center gap-sm">
-<span class="text-body-sm font-semibold">3 tuổi</span>
-<span class="material-symbols-outlined text-outline text-[20px]">keyboard_arrow_down</span>
-</div>
-</div>
-<div class="flex items-center justify-between p-sm bg-surface-bright rounded-lg border border-outline-variant/30">
-<span class="font-body-lg text-on-surface-variant">Trẻ 2:</span>
-<div class="flex items-center gap-sm">
-<span class="text-body-sm font-semibold">5 tuổi</span>
-<span class="material-symbols-outlined text-outline text-[20px]">keyboard_arrow_down</span>
-</div>
-</div>
+<div id="children-list" class="space-y-md">
+<!-- Children sẽ được render bằng JS -->
 </div>
 </section>
 <!-- Special Notes Section -->
 <section class="flex flex-col gap-sm">
 <label class="font-label-caps text-on-surface-variant uppercase tracking-wider px-1">Ghi chú đặc biệt</label>
-<div class="bg-surface-container-lowest rounded-xl custom-shadow border border-surface-container overflow-hidden">
-<textarea class="w-full p-md bg-transparent border-none focus:ring-primary-container min-h-[100px] text-body-sm" placeholder="VD: Trẻ bị dị ứng sữa bò, cần uống thuốc lúc 3h chiều..."></textarea>
+<div class="bg-surface-container-lowest rounded-xl soft-shadow border border-surface-container overflow-hidden">
+<textarea id="noteInput" class="w-full p-md bg-transparent border-none focus:ring-primary-container min-h-[100px] text-body-sm" placeholder="VD: Trẻ bị dị ứng sữa bò, cần uống thuốc lúc 3h chiều..."></textarea>
 </div>
 <div class="flex items-start gap-2 p-3 bg-error-container/20 rounded-lg border border-error/10">
 <span class="material-symbols-outlined text-error text-[20px]" style="font-variation-settings: 'FILL' 1;">warning</span>
@@ -167,109 +155,188 @@
 </div>
 </section>
 <!-- Date & Time Section -->
-<section class="bg-surface-container-lowest rounded-xl p-md custom-shadow border border-surface-container flex flex-col gap-md">
+<section class="bg-surface-container-lowest rounded-xl p-md soft-shadow border border-surface-container flex flex-col gap-md">
 <div class="grid grid-cols-2 gap-sm">
 <div class="flex flex-col gap-xs">
 <span class="text-label-caps text-outline">Ngày</span>
 <div class="flex items-center gap-2 p-sm bg-surface-bright rounded-lg border border-outline-variant/30">
 <span class="material-symbols-outlined text-primary-container text-[18px]">calendar_month</span>
-<span class="text-body-sm font-medium">20/10/2026</span>
+<input id="dateInput" type="date" class="border-none bg-transparent text-body-sm font-medium p-0 focus:ring-0 flex-1" />
 </div>
 </div>
 <div class="flex flex-col gap-xs">
 <span class="text-label-caps text-outline">Giờ bắt đầu</span>
 <div class="flex items-center gap-2 p-sm bg-surface-bright rounded-lg border border-outline-variant/30">
 <span class="material-symbols-outlined text-primary-container text-[18px]">schedule</span>
-<span class="text-body-sm font-medium">18:00</span>
+<input id="timeInput" type="time" value="18:00" class="border-none bg-transparent text-body-sm font-medium p-0 focus:ring-0 flex-1" />
 </div>
 </div>
 </div>
 <div class="flex justify-between items-center pt-md border-t border-outline-variant/20">
 <span class="font-body-lg text-on-surface-variant font-medium">Số giờ</span>
 <div class="flex items-center gap-sm bg-surface-container-low rounded-full px-2 py-1">
-<button class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-primary-container shadow-sm font-bold border border-outline-variant/20">-</button>
-<span class="font-bold text-on-surface px-2">3</span>
-<button class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-primary-container shadow-sm font-bold border border-outline-variant/20">+</button>
+<button id="hour-minus" class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-primary-container shadow-sm font-bold border border-outline-variant/20 active:scale-90 transition-all">-</button>
+<span id="hour-display" class="font-bold text-on-surface px-2">3</span>
+<button id="hour-plus" class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-primary-container shadow-sm font-bold border border-outline-variant/20 active:scale-90 transition-all">+</button>
 </div>
 </div>
 </section>
-<!-- Price Visual -->
-<div class="py-4 text-center">
-<p class="text-primary-container font-bold text-[18px] tracking-tight">
-                Giá: 3 giờ × 100.000 đ = <span class="text-[24px]">300.000 đ</span>
-</p>
-</div>
-<!-- Certification Badge -->
-<div class="bg-tertiary-container/10 border border-tertiary/20 p-md rounded-xl flex items-center gap-md">
-<div class="bg-tertiary-container text-on-tertiary rounded-full p-2 flex items-center justify-center">
-<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">verified</span>
-</div>
-<p class="text-body-sm font-medium text-on-tertiary-container">
-                Chỉ Tasker có chứng chỉ trông trẻ mới được nhận đơn này
-            </p>
-</div>
+<!-- Lỗi 8 FIX: Bỏ phần "Giá: 3 giờ × 100.000 đ" và badge chứng chỉ -->
 <!-- Summary Card -->
-<section class="bg-surface-container-lowest rounded-xl p-md custom-shadow border border-surface-container">
+<section class="bg-surface-container-lowest rounded-xl p-md soft-shadow border border-surface-container">
 <h3 class="font-title-sm text-on-surface mb-md">Tổng kết</h3>
 <div class="space-y-sm text-body-sm text-on-surface-variant">
 <div class="flex justify-between">
 <span>Số trẻ</span>
-<span class="font-bold text-on-surface">2 trẻ (3, 5 tuổi)</span>
+<span id="summary-children" class="font-bold text-on-surface">1 trẻ</span>
 </div>
 <div class="flex justify-between">
 <span>Thời gian</span>
-<span class="font-bold text-on-surface">20/10/2026 - 18:00</span>
+<span id="summary-time" class="font-bold text-on-surface">—</span>
 </div>
 <div class="flex justify-between">
 <span>Thời lượng</span>
-<span class="font-bold text-on-surface">3 giờ</span>
+<span id="summary-duration" class="font-bold text-on-surface">3 giờ</span>
 </div>
 <div class="flex justify-between pt-sm border-t border-outline-variant/20 mt-sm">
 <span class="text-body-lg font-bold">Tổng cộng</span>
-<span class="text-body-lg font-extrabold text-primary-container">300.000 đ</span>
+<span id="summary-total" class="text-body-lg font-extrabold text-primary-container">300.000 đ</span>
 </div>
 </div>
 </section>
 <!-- Payment Row -->
-<div class="flex justify-between items-center p-md bg-surface-container-lowest rounded-xl custom-shadow border border-surface-container">
+<div class="flex justify-between items-center p-md bg-surface-container-lowest rounded-xl soft-shadow border border-surface-container">
 <div class="flex items-center gap-sm">
 <span class="material-symbols-outlined text-primary-container" style="font-variation-settings: 'FILL' 1;">account_balance_wallet</span>
 <span class="font-medium text-body-sm">Thanh toán: <span class="text-on-surface font-bold">Ví Chị Ơi</span></span>
 </div>
 <button class="text-primary-container font-bold text-body-sm uppercase tracking-wider">Thay đổi</button>
 </div>
+<!-- Lỗi 7 FIX: Nút đặt dịch vụ nằm ngay dưới thanh toán, có background rõ ràng -->
+<button id="submit-btn" class="orange-gradient w-full py-4 rounded-full text-white font-bold text-lg shadow-lg active:scale-95 transition-all duration-200">
+    Đặt dịch vụ — 300.000 đ
+</button>
 </main>
-<!-- Fixed CTA & Bottom Nav -->
-<div class="fixed bottom-0 left-0 right-0 z-50 max-w-md mx-auto">
-<!-- Floating CTA Button -->
-<div class="px-container-padding pb-28 pt-2 bg-gradient-to-t from-surface via-surface/80 to-transparent">
-<button class="primary-gradient w-full py-4 rounded-full text-on-primary font-bold text-lg shadow-lg active:scale-95 transition-all duration-200">
-                Đặt dịch vụ — 300.000 đ
-            </button>
-</div>
-<!-- Bottom Navigation Bar - Rounded Pill Shape (Non-active) -->
+<!-- Bottom Navigation Bar -->
 <nav class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[92%] max-w-md z-50 flex justify-around items-center px-4 py-3 rounded-full bg-white shadow-xl border border-surface-container-high">
-<!-- Trang chủ -->
 <a class="flex flex-col items-center justify-center text-primary active:scale-95 transition-transform" href="trangchu.html">
 <span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">home</span>
 <span class="text-label-sm font-label-sm">Trang chủ</span>
 </a>
-<!-- Hoạt động -->
 <a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:scale-95" href="lichsuhoatdong.html">
 <span class="material-symbols-outlined text-[28px]">assignment</span>
 <span class="text-label-sm font-label-sm font-medium">Hoạt động</span>
 </a>
-<!-- Thông báo (UC-KH-15) → M11 -->
 <a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:scale-95 relative" href="thongbao.html">
 <span class="material-symbols-outlined text-[28px]">notifications</span>
 <span class="absolute -top-1 left-1/2 ml-1 bg-secondary text-white text-[8px] w-4 h-4 rounded-full flex items-center justify-center font-bold">3</span>
 <span class="text-label-sm font-label-sm font-medium">Thông báo</span>
 </a>
-<!-- Tài khoản -->
 <a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:scale-95" href="taikhoan.html">
 <span class="material-symbols-outlined text-[28px]">person</span>
 <span class="text-label-sm font-label-sm font-medium">Tài khoản</span>
 </a>
 </nav>
-</div>
+
+<script src="../shared/api.js"></script>
+<script>
+(function() {
+  // ===== State =====
+  var state = {
+    childCount: 1,
+    childAges: [3],
+    hours: 3,
+    pricePerHour: 100000,
+    date: '',
+    time: '18:00'
+  };
+
+  var ageOptions = [
+    '0-1 tuổi', '1 tuổi', '2 tuổi', '3 tuổi', '4 tuổi', 
+    '5 tuổi', '6 tuổi', '7 tuổi', '8 tuổi', '9 tuổi', '10 tuổi'
+  ];
+
+  // ===== Date Input =====
+  var dateInput = document.getElementById('dateInput');
+  if (dateInput) {
+    dateInput.value = new Date().toISOString().split('T')[0];
+    state.date = dateInput.value;
+    dateInput.addEventListener('change', function() { state.date = this.value; updateSummary(); });
+  }
+
+  var timeInput = document.getElementById('timeInput');
+  if (timeInput) {
+    timeInput.addEventListener('change', function() { state.time = this.value; updateSummary(); });
+  }
+
+  // ===== Render children list (Lỗi 9 FIX) =====
+  function renderChildren() {
+    var list = document.getElementById('children-list');
+    list.innerHTML = '';
+    for (var i = 0; i < state.childCount; i++) {
+      if (state.childAges[i] === undefined) state.childAges[i] = 3;
+      var div = document.createElement('div');
+      div.className = 'flex items-center justify-between p-sm bg-surface-bright rounded-lg border border-outline-variant/30';
+      div.innerHTML = '<span class="font-body-lg text-on-surface-variant">Trẻ ' + (i + 1) + ':</span>' +
+        '<select data-child="' + i + '" class="child-age-select border border-outline-variant/30 rounded-lg px-3 py-1.5 text-body-sm font-semibold bg-white focus:ring-primary-container">' +
+        ageOptions.map(function(opt, idx) {
+          var selected = state.childAges[i] === idx ? ' selected' : '';
+          return '<option value="' + idx + '"' + selected + '>' + opt + '</option>';
+        }).join('') +
+        '</select>';
+      list.appendChild(div);
+    }
+    // Attach event listeners to selects
+    document.querySelectorAll('.child-age-select').forEach(function(sel) {
+      sel.addEventListener('change', function() {
+        var idx = parseInt(this.getAttribute('data-child'));
+        state.childAges[idx] = parseInt(this.value);
+        updateSummary();
+      });
+    });
+    updateSummary();
+  }
+
+  // ===== Child +/- buttons =====
+  document.getElementById('child-minus').addEventListener('click', function() {
+    if (state.childCount > 1) {
+      state.childCount--;
+      state.childAges.pop();
+      document.getElementById('child-count').textContent = state.childCount;
+      renderChildren();
+    }
+  });
+  document.getElementById('child-plus').addEventListener('click', function() {
+    if (state.childCount < 5) {
+      state.childCount++;
+      state.childAges.push(3);
+      document.getElementById('child-count').textContent = state.childCount;
+      renderChildren();
+    }
+  });
+
+  // ===== Hour +/- buttons =====
+  document.getElementById('hour-minus').addEventListener('click', function() {
+    if (state.hours > 1) { state.hours--; document.getElementById('hour-display').textContent = state.hours; updateSummary(); }
+  });
+  document.getElementById('hour-plus').addEventListener('click', function() {
+    if (state.hours < 12) { state.hours++; document.getElementById('hour-display').textContent = state.hours; updateSummary(); }
+  });
+
+  // ===== Update Summary =====
+  function updateSummary() {
+    var total = state.hours * state.pricePerHour;
+    var agesStr = state.childAges.map(function(a) { return ageOptions[a] || a + ' tuổi'; }).join(', ');
+    
+    document.getElementById('summary-children').textContent = state.childCount + ' trẻ (' + agesStr + ')';
+    var dateFormatted = state.date ? new Date(state.date).toLocaleDateString('vi-VN') : '—';
+    document.getElementById('summary-time').textContent = dateFormatted + ' - ' + state.time;
+    document.getElementById('summary-duration').textContent = state.hours + ' giờ';
+    document.getElementById('summary-total').textContent = formatVND(total);
+    document.getElementById('submit-btn').textContent = 'Đặt dịch vụ — ' + formatVND(total);
+  }
+
+  renderChildren();
+})();
+</script>
 </body></html>

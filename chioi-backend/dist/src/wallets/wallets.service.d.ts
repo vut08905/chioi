@@ -13,8 +13,8 @@ export declare class WalletsService {
         created_at: Date | null;
         wallet_id: number;
         description: string | null;
-        type: string;
         order_id: number | null;
+        type: string;
         transaction_id: number;
         transaction_code: string;
         amount: import("@prisma/client-runtime-utils").Decimal;
@@ -31,8 +31,8 @@ export declare class WalletsService {
             created_at: Date | null;
             wallet_id: number;
             description: string | null;
-            type: string;
             order_id: number | null;
+            type: string;
             transaction_id: number;
             transaction_code: string;
             amount: import("@prisma/client-runtime-utils").Decimal;
@@ -50,8 +50,8 @@ export declare class WalletsService {
             created_at: Date | null;
             wallet_id: number;
             description: string | null;
-            type: string;
             order_id: number | null;
+            type: string;
             transaction_id: number;
             transaction_code: string;
             amount: import("@prisma/client-runtime-utils").Decimal;
@@ -69,8 +69,8 @@ export declare class WalletsService {
             created_at: Date | null;
             wallet_id: number;
             description: string | null;
-            type: string;
             order_id: number | null;
+            type: string;
             transaction_id: number;
             transaction_code: string;
             amount: import("@prisma/client-runtime-utils").Decimal;

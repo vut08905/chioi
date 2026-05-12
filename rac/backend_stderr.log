@@ -1,0 +1,41 @@
+[31m[Nest] 16672  - [39m05/12/2026, 4:37:07 PM [31m  ERROR[39m [38;5;3m[ExceptionsHandler] [39mPrismaClientKnownRequestError: 
+Invalid `this.prisma.users.findUnique()` invocation in
+D:\chioi\chioi-backend\src\auth\auth.service.ts:14:42
+
+  11 ) {}
+  12 
+  13 async validateUser(phone: string, pass: string): Promise<any> {
+→ 14   const user = await this.prisma.users.findUnique(
+Can't reach database server at 127.0.0.1:5432
+    at zr.handleRequestError [90m(D:\chioi\chioi-backend\[39mnode_modules\[4m@prisma\client[24m\src\runtime\RequestHandler.ts:237:13[90m)[39m
+    at zr.handleAndLogRequestError [90m(D:\chioi\chioi-backend\[39mnode_modules\[4m@prisma\client[24m\src\runtime\RequestHandler.ts:183:12[90m)[39m
+    at zr.request [90m(D:\chioi\chioi-backend\[39mnode_modules\[4m@prisma\client[24m\src\runtime\RequestHandler.ts:152:12[90m)[39m
+[90m    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)[39m
+    at async a [90m(D:\chioi\chioi-backend\[39mnode_modules\[4m@prisma\client[24m\src\runtime\getPrismaClient.ts:963:24[90m)[39m
+    at async AuthService.validateUser [90m(D:\chioi\chioi-backend\[39msrc\auth\auth.service.ts:14:18[90m)[39m
+    at async AuthController.login [90m(D:\chioi\chioi-backend\[39msrc\auth\auth.controller.ts:14:18[90m)[39m
+    at async [90mD:\chioi\chioi-backend\[39mnode_modules\[4m@nestjs\core[24m\router\router-execution-context.js:46:28
+    at async [90mD:\chioi\chioi-backend\[39mnode_modules\[4m@nestjs\core[24m\router\router-proxy.js:9:17 {
+  code: [32m'P1001'[39m,
+  meta: {
+    modelName: [32m'users'[39m,
+    driverAdapterError: DriverAdapterError: DatabaseNotReachable
+        at PrismaPgAdapter.onError [90m(D:\chioi\chioi-backend\[39mnode_modules\[4m@prisma\adapter-pg[24m\dist\index.js:678:11[90m)[39m
+        at PrismaPgAdapter.performIO [90m(D:\chioi\chioi-backend\[39mnode_modules\[4m@prisma\adapter-pg[24m\dist\index.js:673:12[90m)[39m
+    [90m    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)[39m
+        at async PrismaPgAdapter.queryRaw [90m(D:\chioi\chioi-backend\[39mnode_modules\[4m@prisma\adapter-pg[24m\dist\index.js:604:30[90m)[39m
+        at async e.interpretNode [90m(D:\chioi\chioi-backend\[39mnode_modules\[4m@prisma\client-engine-runtime[24m\src\interpreter\query-interpreter.ts:186:26[90m)[39m
+        at async e.interpretNode [90m(D:\chioi\chioi-backend\[39mnode_modules\[4m@prisma\client-engine-runtime[24m\src\interpreter\query-interpreter.ts:213:41[90m)[39m
+        at async e.interpretNode [90m(D:\chioi\chioi-backend\[39mnode_modules\[4m@prisma\client-engine-runtime[24m\src\interpreter\query-interpreter.ts:272:41[90m)[39m
+        at async e.run [90m(D:\chioi\chioi-backend\[39mnode_modules\[4m@prisma\client-engine-runtime[24m\src\interpreter\query-interpreter.ts:94:23[90m)[39m
+        at async e.execute [90m(D:\chioi\chioi-backend\[39mnode_modules\[4m@prisma\client[24m\src\runtime\core\engines\client\LocalExecutor.ts:81:12[90m)[39m
+        at async jt.request [90m(D:\chioi\chioi-backend\[39mnode_modules\[4m@prisma\client[24m\src\runtime\core\engines\client\ClientEngine.ts:504:22[90m)[39m {
+      cause: {
+        kind: [32m'DatabaseNotReachable'[39m,
+        host: [32m'127.0.0.1'[39m,
+        port: [33m5432[39m
+      }
+    }
+  },
+  clientVersion: [32m'7.8.0'[39m
+}

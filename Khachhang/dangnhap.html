@@ -114,8 +114,9 @@
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
-<body class="bg-background text-on-surface min-h-screen flex flex-col items-center">
-<div class="absolute top-0 left-0 w-full h-[300px] z-0 pointer-events-none" style="background: linear-gradient(rgb(255, 126, 54) 0%, rgb(252, 249, 248) 100%);"></div>
+<body class="bg-surface-dim text-on-surface min-h-screen flex flex-col items-center">
+    <div class="w-full max-w-[430px] min-h-screen bg-background relative shadow-2xl overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-[300px] z-0 pointer-events-none" style="background: linear-gradient(rgb(255, 126, 54) 0%, rgb(252, 249, 248) 100%);"></div>
 <!-- Header Section (Top 30%) -->
 <header class="orange-gradient w-full h-[309px] flex flex-col items-center justify-center relative overflow-hidden">
 <!-- Abstract decorative shapes for modern tactile feel -->
@@ -232,7 +233,7 @@ document.getElementById('phoneInput').addEventListener('keydown', function(e) {
 </script>
 <!-- Register Link -->
 <p class="font-body-sm text-body-sm text-on-surface-variant">
-                    Chưa có tài khoản? <a class="text-primary font-bold" href="#">Đăng ký ngay</a>
+                    Chưa có tài khoản? <a class="text-primary font-bold" href="dangky.html">Đăng ký ngay</a>
 </p>
 </div>
 </div>
@@ -264,4 +265,5 @@ document.getElementById('phoneInput').addEventListener('keydown', function(e) {
 </div>
 <p class="text-outline/50 font-label-caps text-[10px]">© 2024 Chị Ơi! Home Services. All rights reserved.</p>
 </footer>
+    </div>
 </body></html>

@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html class="light" lang="vi"><head>
+
+<html lang="vi"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Gói gia đình - Chị Ơi!</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
@@ -108,114 +110,254 @@
         }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        /* Modal overlay */
+        .modal-overlay { position:fixed; inset:0; z-index:100; background:rgba(0,0,0,0.5); display:flex; align-items:center; justify-content:center; }
+        .modal-box { background:#fff; border-radius:24px; width:90%; max-width:380px; padding:24px; animation: scaleIn 0.25s ease-out; }
+        @keyframes scaleIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
     </style>
 </head>
-<body class="bg-surface text-on-surface min-h-screen pb-32">
+<body class="bg-background text-on-surface font-body-lg min-h-screen pb-32">
 <div class="absolute top-0 left-0 w-full h-[300px] z-0 pointer-events-none" style="background: linear-gradient(rgb(255, 126, 54) 0%, rgb(252, 249, 248) 100%);"></div>
-
-<!-- Top Bar Navigation Shell -->
-<header class="relative top-0 w-full z-40 bg-transparent flex justify-between items-center px-container-padding h-16">
-    <button onclick="window.history.back()" class="flex items-center justify-center w-10 h-10 text-on-primary hover:bg-white/10 rounded-full active:scale-95 transition-all duration-200" style="cursor:pointer">
-        <span class="material-symbols-outlined">arrow_back</span>
-    </button>
-    <h1 class="text-h1-display text-[18px] text-on-primary">Gói Gia Đình</h1>
-    <button onclick="window.location.href='chatvoitasker.html'" class="flex items-center justify-center w-10 h-10 text-on-primary hover:bg-white/10 rounded-full active:scale-95 transition-all duration-200">
-        <span class="material-symbols-outlined">chat_bubble</span>
-    </button>
-</header>
-
-<main class="relative z-10 px-container-padding space-y-lg mt-4">
-    <!-- Hero Section -->
-    <section class="bg-surface-container-lowest rounded-xl p-md shadow-lg border border-surface-container-low text-center overflow-hidden relative soft-shadow">
-        <div class="absolute top-0 right-0 bg-green-500 text-white text-caption font-bold px-3 py-1 rounded-bl-xl z-10">Tiết kiệm 30%</div>
-        <div class="absolute inset-0 opacity-10 orange-gradient"></div>
-        <div class="relative z-10">
-            <span class="material-symbols-outlined text-[64px] text-primary mb-2">family_home</span>
-            <h2 class="text-h2-section text-primary mb-1">GÓI GIA ĐÌNH 30 NGÀY</h2>
-            <p class="text-[28px] font-bold text-on-surface mb-2">1.500.000 đ <span class="text-body-md text-on-surface-variant font-normal">/ tháng</span></p>
-        </div>
-    </section>
-
-    <!-- Quyền lợi nổi bật -->
-    <section class="bg-surface-container-lowest rounded-xl p-md soft-shadow border border-surface-container-low">
-        <h3 class="text-h2-section text-on-surface mb-4 flex items-center gap-2"><span class="material-symbols-outlined text-primary">stars</span>Đặc quyền của bạn</h3>
-        <ul class="space-y-3">
-            <li class="flex items-start gap-3">
-                <span class="material-symbols-outlined text-green-500 mt-0.5">check_circle</span>
-                <span class="text-body-lg text-on-surface">Dọn dẹp nhà 4 lần/tháng (Tối đa 4 giờ/lần)</span>
-            </li>
-            <li class="flex items-start gap-3">
-                <span class="material-symbols-outlined text-green-500 mt-0.5">check_circle</span>
-                <span class="text-body-lg text-on-surface">Tặng kèm 1 lần giặt sofa/rèm cửa</span>
-            </li>
-            <li class="flex items-start gap-3">
-                <span class="material-symbols-outlined text-green-500 mt-0.5">check_circle</span>
-                <span class="text-body-lg text-on-surface">Ưu tiên Tasker 5 sao, không phụ phí giờ cao điểm</span>
-            </li>
-            <li class="flex items-start gap-3">
-                <span class="material-symbols-outlined text-green-500 mt-0.5">check_circle</span>
-                <span class="text-body-lg text-on-surface">Hỗ trợ CSKH VIP ưu tiên 24/7</span>
-            </li>
-        </ul>
-    </section>
-
-    <!-- Điều khoản (T&C) -->
-    <section class="bg-surface-container-low rounded-xl p-md border border-surface-container">
-        <h3 class="text-body-lg font-bold text-on-surface mb-2">Điều khoản và điều kiện</h3>
-        <p class="text-body-md text-on-surface-variant leading-relaxed">
-            Gói dịch vụ sẽ được gia hạn tự động hàng tháng. Hệ thống sẽ tự động gửi thông báo nhắc nhở 3 ngày trước khi tiến hành gia hạn để bạn có thể chủ động quản lý. Bạn có thể hủy gói bất kỳ lúc nào trong phần Cài đặt tài khoản.
-        </p>
-    </section>
-
-    <!-- FAQ -->
-    <section class="mb-8">
-        <h3 class="text-h2-section text-on-surface mb-4">Câu hỏi thường gặp</h3>
-        <div class="space-y-2">
-            <!-- Accordion item -->
-            <details class="bg-surface-container-lowest rounded-xl border border-surface-container-low group soft-shadow">
-                <summary class="flex justify-between items-center p-4 cursor-pointer list-none font-bold text-on-surface">
-                    Gói này có dùng được cho nhiều địa chỉ không?
-                    <span class="material-symbols-outlined text-outline transition-transform group-open:rotate-180">expand_more</span>
-                </summary>
-                <div class="px-4 pb-4 pt-0 text-body-md text-on-surface-variant">
-                    Chỉ áp dụng cho 1 địa chỉ mặc định đã đăng ký lúc thanh toán.
-                </div>
-            </details>
-            <!-- Accordion item -->
-            <details class="bg-surface-container-lowest rounded-xl border border-surface-container-low group soft-shadow">
-                <summary class="flex justify-between items-center p-4 cursor-pointer list-none font-bold text-on-surface">
-                    Tôi có thể chọn Tasker cố định không?
-                    <span class="material-symbols-outlined text-outline transition-transform group-open:rotate-180">expand_more</span>
-                </summary>
-                <div class="px-4 pb-4 pt-0 text-body-md text-on-surface-variant">
-                    Có, bạn có thể thiết lập danh sách Tasker yêu thích ưu tiên trong mục Tài khoản.
-                </div>
-            </details>
-            <!-- Accordion item -->
-            <details class="bg-surface-container-lowest rounded-xl border border-surface-container-low group soft-shadow">
-                <summary class="flex justify-between items-center p-4 cursor-pointer list-none font-bold text-on-surface">
-                    Việc gia hạn tự động diễn ra như thế nào?
-                    <span class="material-symbols-outlined text-outline transition-transform group-open:rotate-180">expand_more</span>
-                </summary>
-                <div class="px-4 pb-4 pt-0 text-body-md text-on-surface-variant">
-                    Hệ thống trừ tiền tự động từ Ví Chị Ơi hoặc Thẻ tín dụng liên kết lúc 00:00 ngày cuối chu kỳ.
-                </div>
-            </details>
-        </div>
-    </section>
-</main>
-
-<!-- Sticky Bottom CTA -->
-<div class="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-surface-container shadow-[0_-4px_20px_rgba(0,0,0,0.05)] px-container-padding py-4 pb-8 flex items-center justify-between">
-    <div>
-        <p class="text-caption text-on-surface-variant">Tổng cộng</p>
-        <p class="text-[20px] font-bold text-primary">1.500.000 đ</p>
-    </div>
-    <button onclick="window.location.href='naptienqr.html'" class="orange-gradient text-white font-bold py-3 px-8 rounded-full shadow-lg active:scale-95 transition-transform flex items-center gap-2">
-        Đăng ký ngay
-        <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
-    </button>
+<!-- Header -->
+<header class="relative z-10 flex justify-between items-center w-full px-container-padding h-16 pt-4">
+<div class="flex items-center gap-3">
+<button onclick="window.location.href='taikhoan.html'" class="w-10 h-10 flex items-center justify-center rounded-full bg-white/20 text-white active:scale-95 transition-all backdrop-blur-sm" style="cursor:pointer">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="text-[18px] font-extrabold text-white">Gói gia đình</h1>
 </div>
+</header>
+<main class="relative z-10 mt-4 px-container-padding space-y-lg max-w-md mx-auto">
+<!-- Hero Banner -->
+<section class="orange-gradient p-6 rounded-2xl text-white relative overflow-hidden">
+<div class="relative z-10">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-[32px]" style="font-variation-settings:'FILL' 1;">family_restroom</span>
+<h2 class="text-[22px] font-extrabold">Gói gia đình</h2>
+</div>
+<p class="text-white/80 text-body-sm">Tiết kiệm hơn khi đăng ký dịch vụ theo gói hàng tháng</p>
+</div>
+<div class="absolute -right-4 -bottom-4 w-32 h-32 bg-white/10 rounded-full"></div>
+<div class="absolute right-12 -top-4 w-20 h-20 bg-white/5 rounded-full"></div>
+</section>
+<!-- Package Options -->
+<section class="space-y-sm">
+<h2 class="font-title-sm text-on-surface px-1">Chọn gói</h2>
+<div id="package-list" class="space-y-3">
+<!-- Rendered by JS -->
+</div>
+</section>
+<!-- Benefits -->
+<section class="bg-white p-md rounded-2xl soft-shadow border border-outline-variant/20 space-y-md">
+<h3 class="font-title-sm text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">stars</span> Quyền lợi gói gia đình
+</h3>
+<div class="space-y-sm">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-[20px] mt-0.5" style="font-variation-settings:'FILL' 1;">check_circle</span>
+<p class="text-body-sm text-on-surface-variant">Giảm <span class="font-bold text-on-surface">15%</span> phí dịch vụ dọn dẹp định kỳ</p>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-[20px] mt-0.5" style="font-variation-settings:'FILL' 1;">check_circle</span>
+<p class="text-body-sm text-on-surface-variant">Ưu tiên xếp Tasker <span class="font-bold text-on-surface">quen</span></p>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-[20px] mt-0.5" style="font-variation-settings:'FILL' 1;">check_circle</span>
+<p class="text-body-sm text-on-surface-variant">Miễn phí <span class="font-bold text-on-surface">1 lần trông trẻ/tháng</span></p>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-[20px] mt-0.5" style="font-variation-settings:'FILL' 1;">check_circle</span>
+<p class="text-body-sm text-on-surface-variant">Hỗ trợ khách hàng <span class="font-bold text-on-surface">24/7 ưu tiên</span></p>
+</div>
+</div>
+</section>
+<!-- Terms -->
+<section class="bg-surface-container-low p-md rounded-2xl space-y-xs">
+<p class="text-body-sm text-on-surface-variant">• Gói tự động gia hạn hàng tháng.</p>
+<p class="text-body-sm text-on-surface-variant">• Hủy gói trước 7 ngày trước khi hết hạn.</p>
+<p class="text-body-sm text-on-surface-variant">• Thanh toán trực tiếp từ Ví Chị Ơi.</p>
+</section>
+<!-- Lỗi 5 FIX: Thanh toán đặt trong flow, không đè lên nội dung -->
+<section class="bg-white border border-surface-container rounded-2xl soft-shadow px-container-padding py-4 flex items-center justify-between">
+<div>
+<p class="text-caption text-on-surface-variant">Tổng cộng</p>
+<p id="total-price" class="text-[20px] font-bold text-primary">1.500.000 đ</p>
+</div>
+<button id="register-btn" class="orange-gradient text-white font-bold py-3 px-8 rounded-full shadow-lg active:scale-95 transition-transform flex items-center gap-2">
+Đăng ký ngay
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</section>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[92%] max-w-md z-50 flex justify-around items-center px-4 py-3 rounded-full bg-white shadow-xl border border-surface-container-high">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary active:scale-95 transition-transform" href="trangchu.html">
+<span class="material-symbols-outlined text-[28px]">home</span>
+<span class="text-label-sm font-label-sm font-medium">Trang chủ</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:scale-95" href="lichsuhoatdong.html">
+<span class="material-symbols-outlined text-[28px]">assignment</span>
+<span class="text-label-sm font-label-sm font-medium">Hoạt động</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:scale-95 relative" href="thongbao.html">
+<span class="material-symbols-outlined text-[28px]">notifications</span>
+<span class="absolute -top-1 left-1/2 ml-1 bg-secondary text-white text-[8px] w-4 h-4 rounded-full flex items-center justify-center font-bold">3</span>
+<span class="text-label-sm font-label-sm font-medium">Thông báo</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:scale-95" href="taikhoan.html">
+<span class="material-symbols-outlined text-[28px]">person</span>
+<span class="text-label-sm font-label-sm font-medium">Tài khoản</span>
+</a>
+</nav>
 
-</body>
-</html>
+<script src="../shared/api.js"></script>
+<script>
+(async function() {
+  if (!ChiOiAuth.requireAuth('dangnhap.html')) return;
+
+  var packages = [
+    { id: 1, name: 'Gói Cơ bản', price: 500000, duration: '1 tháng', desc: 'Dọn dẹp 4 lần/tháng' },
+    { id: 2, name: 'Gói Tiêu chuẩn', price: 1000000, duration: '1 tháng', desc: 'Dọn dẹp 8 lần + 1 lần trông trẻ', popular: true },
+    { id: 3, name: 'Gói Cao cấp', price: 1500000, duration: '1 tháng', desc: 'Dọn dẹp 12 lần + 2 lần trông trẻ + 2 lần mua hộ' }
+  ];
+
+  // Try to load packages from API
+  try {
+    var apiPkgs = await apiFetch('/api/packages');
+    if (apiPkgs && apiPkgs.length > 0) {
+      packages = apiPkgs.map(function(p) {
+        return { id: p.package_id, name: p.name, price: p.price, duration: p.duration_text || '1 tháng', desc: p.description || '' };
+      });
+    }
+  } catch (e) { console.warn('[Gói] Không load được packages:', e.message); }
+
+  var selectedPkg = packages[1] || packages[0]; // default Tiêu chuẩn
+
+  function renderPackages() {
+    var el = document.getElementById('package-list');
+    el.innerHTML = '';
+    packages.forEach(function(pkg) {
+      var active = pkg.id === selectedPkg.id;
+      var div = document.createElement('div');
+      div.className = active
+        ? 'relative bg-white border-2 border-primary p-md rounded-2xl soft-shadow cursor-pointer transition-all'
+        : 'relative bg-white border border-outline-variant/30 p-md rounded-2xl soft-shadow cursor-pointer transition-all hover:border-orange-200';
+      div.innerHTML = (pkg.popular ? '<span class="absolute -top-2.5 right-4 bg-primary-container text-white text-[10px] font-bold px-3 py-0.5 rounded-full">Phổ biến</span>' : '') +
+        '<div class="flex justify-between items-start">' +
+        '<div><h3 class="font-title-sm ' + (active ? 'text-primary' : 'text-on-surface') + '">' + pkg.name + '</h3>' +
+        '<p class="text-body-sm text-on-surface-variant mt-1">' + pkg.desc + '</p></div>' +
+        '<div class="text-right"><p class="text-[18px] font-extrabold ' + (active ? 'text-primary' : 'text-on-surface') + '">' + formatVND(pkg.price) + '</p>' +
+        '<p class="text-caption text-on-surface-variant">/' + pkg.duration + '</p></div></div>' +
+        '<div class="flex items-center gap-2 mt-2"><span class="material-symbols-outlined text-[18px] ' + (active ? 'text-primary' : 'text-outline-variant') + '">' + (active ? 'check_circle' : 'radio_button_unchecked') + '</span>' +
+        '<span class="text-body-sm ' + (active ? 'text-primary font-bold' : 'text-on-surface-variant') + '">' + (active ? 'Đã chọn' : 'Chọn gói này') + '</span></div>';
+      div.addEventListener('click', function() {
+        selectedPkg = pkg;
+        renderPackages();
+        updateTotal();
+      });
+      el.appendChild(div);
+    });
+  }
+
+  function updateTotal() {
+    document.getElementById('total-price').textContent = formatVND(selectedPkg.price);
+  }
+
+  // ===== Lỗi 14 FIX: Đăng ký trừ tiền ví, nếu không đủ thì hỏi nạp thêm =====
+  document.getElementById('register-btn').addEventListener('click', async function() {
+    showLoading();
+    try {
+      // Kiểm tra số dư ví
+      var wallet = await apiFetch('/api/wallet/balance');
+      var balance = wallet ? (wallet.balance || 0) : 0;
+
+      hideLoading();
+
+      if (balance < selectedPkg.price) {
+        // Không đủ tiền -> hiện modal hỏi nạp thêm
+        showInsufficientModal(balance, selectedPkg.price);
+      } else {
+        // Đủ tiền -> xác nhận đăng ký
+        showConfirmModal();
+      }
+    } catch (e) {
+      hideLoading();
+      showToastMsg('❌ ' + e.message);
+    }
+  });
+
+  // ===== Modal không đủ tiền =====
+  function showInsufficientModal(balance, price) {
+    var shortage = price - balance;
+    var overlay = document.createElement('div');
+    overlay.id = 'pkg-modal';
+    overlay.className = 'modal-overlay';
+    overlay.innerHTML = '<div class="modal-box">' +
+      '<div class="text-center mb-4"><span class="material-symbols-outlined text-[48px] text-yellow-500">account_balance_wallet</span></div>' +
+      '<h3 class="text-title-sm font-bold text-center mb-2">Số dư không đủ</h3>' +
+      '<p class="text-body-sm text-on-surface-variant text-center mb-1">Số dư hiện tại: <span class="font-bold text-on-surface">' + formatVND(balance) + '</span></p>' +
+      '<p class="text-body-sm text-on-surface-variant text-center mb-4">Cần thêm: <span class="font-bold text-error">' + formatVND(shortage) + '</span></p>' +
+      '<p class="text-body-sm text-center text-on-surface mb-4">Quý khách có muốn nạp thêm tiền vào ví không?</p>' +
+      '<div class="flex gap-3">' +
+      '<button id="modal-cancel" class="flex-1 py-3 rounded-xl border-2 border-outline-variant text-on-surface-variant font-bold active:scale-95 transition-all">Không</button>' +
+      '<button id="modal-topup" class="flex-1 py-3 rounded-xl orange-gradient text-white font-bold active:scale-95 transition-all">Nạp tiền</button>' +
+      '</div></div>';
+    overlay.addEventListener('click', function(e) { if (e.target === overlay) closePkgModal(); });
+    document.body.appendChild(overlay);
+
+    document.getElementById('modal-cancel').addEventListener('click', function() {
+      closePkgModal();
+      window.location.href = 'taikhoan.html';
+    });
+    document.getElementById('modal-topup').addEventListener('click', function() {
+      closePkgModal();
+      window.location.href = 'naptienqr.html';
+    });
+  }
+
+  // ===== Modal xác nhận đăng ký =====
+  function showConfirmModal() {
+    var overlay = document.createElement('div');
+    overlay.id = 'pkg-modal';
+    overlay.className = 'modal-overlay';
+    overlay.innerHTML = '<div class="modal-box">' +
+      '<div class="text-center mb-4"><span class="material-symbols-outlined text-[48px] text-primary" style="font-variation-settings:\'FILL\' 1;">family_restroom</span></div>' +
+      '<h3 class="text-title-sm font-bold text-center mb-2">Xác nhận đăng ký</h3>' +
+      '<p class="text-body-sm text-on-surface-variant text-center mb-1">Gói: <span class="font-bold text-on-surface">' + selectedPkg.name + '</span></p>' +
+      '<p class="text-body-sm text-on-surface-variant text-center mb-4">Trừ từ Ví Chị Ơi: <span class="font-bold text-primary">' + formatVND(selectedPkg.price) + '</span></p>' +
+      '<div class="flex gap-3">' +
+      '<button id="modal-cancel" class="flex-1 py-3 rounded-xl border-2 border-outline-variant text-on-surface-variant font-bold active:scale-95 transition-all">Hủy</button>' +
+      '<button id="modal-confirm" class="flex-1 py-3 rounded-xl orange-gradient text-white font-bold active:scale-95 transition-all">Xác nhận</button>' +
+      '</div></div>';
+    overlay.addEventListener('click', function(e) { if (e.target === overlay) closePkgModal(); });
+    document.body.appendChild(overlay);
+
+    document.getElementById('modal-cancel').addEventListener('click', closePkgModal);
+    document.getElementById('modal-confirm').addEventListener('click', async function() {
+      closePkgModal();
+      showLoading();
+      try {
+        await apiFetch('/api/packages/subscribe', {
+          method: 'POST',
+          body: { package_id: selectedPkg.id }
+        });
+        hideLoading();
+        showToastMsg('✅ Đăng ký gói thành công! Đã trừ ' + formatVND(selectedPkg.price) + ' từ ví.');
+        setTimeout(function() { window.location.href = 'taikhoan.html'; }, 2500);
+      } catch (e) {
+        hideLoading();
+        showToastMsg('❌ ' + e.message);
+      }
+    });
+  }
+
+  function closePkgModal() {
+    var m = document.getElementById('pkg-modal');
+    if (m) m.remove();
+  }
+
+  renderPackages();
+  updateTotal();
+})();
+</script>
+</body></html>

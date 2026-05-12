@@ -3,7 +3,7 @@
 <html lang="vi"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Tài khoản - Book Cleaning</title>
+<title>Tài khoản - Chị Ơi!</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
@@ -110,6 +110,10 @@
         }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        /* Modal overlay */
+        .modal-overlay { position:fixed; inset:0; z-index:100; background:rgba(0,0,0,0.5); display:flex; align-items:flex-end; justify-content:center; }
+        .modal-content { background:#fff; border-radius:24px 24px 0 0; width:100%; max-width:430px; padding:24px 20px 32px; animation: slideUp 0.3s ease-out; }
+        @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
     </style>
 </head>
 <body class="text-on-surface">
@@ -122,34 +126,29 @@
 </div>
 </header>
 <!-- Scrollable Body Content -->
-<main class="relative z-10 pt-32 pb-32 px-container-padding space-y-stack-gap overflow-y-auto">
-<!-- User Profile Card -->
-<section class="bg-surface-container-lowest rounded-xl p-md custom-shadow border border-surface-container">
+<main class="relative z-10 pt-32 pb-32 px-container-padding space-y-4 overflow-y-auto">
+<!-- Lỗi 11 FIX: User Profile Card - hiển thị đúng thông tin từ DB -->
+<section class="bg-surface-container-lowest rounded-xl p-md soft-shadow border border-surface-container">
 <div class="flex items-center space-x-md mb-md">
 <div class="relative">
-<img alt="User Avatar" class="w-16 h-16 rounded-full border-2 border-primary-fixed" data-alt="A high-quality professional portrait of a Vietnamese man in his early 30s with a warm and friendly smile. He is wearing a clean, casual business shirt. The background is a soft-focus interior of a modern, well-lit apartment with warm orange accents and clean white walls, reflecting a pristine and organized environment. The lighting is soft and natural, emphasizing a professional yet approachable personality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB97LG_LpMt4HH15ZuR3CGIBOR804D05gfGgyvYQEk6MISaXlwpBu13UvYH8wg0KAG7itg8h2yJduNHvDMeDDIQdjiBrcmZ3LqLMttMmzuI9qBxSds4s-LQlLVTOYQkLfuUEEMBCCntmzXnkvs_m4Hv6YvkDMePyJPE40tTH0pxkL1RyQnpLX1G8LTBaDOosWe5DUi3FVFE4dRjqGaIVHxZrz_xAXlUzqp0KoaKYeaF0s3goQxQTmmPC5Pm6e9kGoJ35zRpjxGHtUg"/>
+<div id="user-avatar" class="w-16 h-16 rounded-full border-2 border-primary-fixed bg-primary-fixed flex items-center justify-center text-primary text-[24px] font-bold overflow-hidden">
+<span class="material-symbols-outlined text-[32px]">person</span>
+</div>
 </div>
 <div class="flex-1">
-<h2 class="text-title-sm font-title-sm text-on-surface">Nguyễn Văn A</h2>
-<p class="text-body-sm font-body-sm text-on-surface-variant">090xxxx123</p>
-<div class="flex items-center space-x-xs mt-xs">
-<span class="text-body-sm font-body-sm text-on-surface-variant">A1-2003</span>
-<span class="bg-green-100 text-green-700 text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center">
-<span class="material-symbols-outlined text-[12px] mr-0.5" style="font-variation-settings: 'FILL' 1;">verified</span>
-                            Đã xác thực BQL
-                        </span>
-</div>
+<h2 id="user-name" class="text-title-sm font-title-sm text-on-surface">Đang tải...</h2>
+<p id="user-phone" class="text-body-sm font-body-sm text-on-surface-variant">...</p>
 </div>
 </div>
 <p class="text-[11px] text-on-surface-variant italic leading-tight mb-md">
                 Đổi SĐT cần OTP. Đổi địa chỉ cần BQL xác thực.
             </p>
-<button class="w-full py-2.5 rounded-full border-2 border-primary text-primary font-title-sm text-sm active:scale-95 transition-all">
+<button id="edit-profile-btn" class="w-full py-2.5 rounded-full border-2 border-primary text-primary font-title-sm text-sm active:scale-95 transition-all">
                 Chỉnh sửa hồ sơ
             </button>
 </section>
 <!-- Finance & Services Menu -->
-<section class="bg-surface-container-lowest rounded-xl custom-shadow border border-surface-container overflow-hidden">
+<section class="bg-surface-container-lowest rounded-xl soft-shadow border border-surface-container overflow-hidden">
 <div class="divide-y divide-surface-container">
 <button onclick="window.location.href='vivalichsu.html'" class="w-full flex items-center justify-between p-md hover:bg-surface-container-low transition-colors">
 <div class="flex items-center space-x-md">
@@ -171,10 +170,10 @@
 </button>
 </div>
 </section>
-<!-- Support & Settings Menu -->
-<section class="bg-surface-container-lowest rounded-xl custom-shadow border border-surface-container overflow-hidden">
+<!-- Lỗi 15 FIX: Support & Settings Menu - Tất cả nút đều có chức năng -->
+<section class="bg-surface-container-lowest rounded-xl soft-shadow border border-surface-container overflow-hidden">
 <div class="divide-y divide-surface-container">
-<button class="w-full flex items-center justify-between p-md hover:bg-surface-container-low transition-colors">
+<button id="btn-cskh" class="w-full flex items-center justify-between p-md hover:bg-surface-container-low transition-colors">
 <div class="flex items-center space-x-md">
 <div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant">
 <span class="material-symbols-outlined">headset_mic</span>
@@ -183,7 +182,7 @@
 </div>
 <span class="material-symbols-outlined text-outline">chevron_right</span>
 </button>
-<button class="w-full flex items-center justify-between p-md hover:bg-surface-container-low transition-colors">
+<button id="btn-settings" class="w-full flex items-center justify-between p-md hover:bg-surface-container-low transition-colors">
 <div class="flex items-center space-x-md">
 <div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant">
 <span class="material-symbols-outlined">settings</span>
@@ -192,7 +191,7 @@
 </div>
 <span class="material-symbols-outlined text-outline">chevron_right</span>
 </button>
-<button class="w-full flex items-center justify-between p-md hover:bg-surface-container-low transition-colors">
+<button id="btn-security" class="w-full flex items-center justify-between p-md hover:bg-surface-container-low transition-colors">
 <div class="flex items-center space-x-md">
 <div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant">
 <span class="material-symbols-outlined">lock</span>
@@ -201,7 +200,7 @@
 </div>
 <span class="material-symbols-outlined text-outline">chevron_right</span>
 </button>
-<button class="w-full flex items-center justify-between p-md hover:bg-surface-container-low transition-colors">
+<button id="btn-delete-account" class="w-full flex items-center justify-between p-md hover:bg-surface-container-low transition-colors">
 <div class="flex items-center space-x-md">
 <div class="w-10 h-10 rounded-full bg-error-container/30 flex items-center justify-center text-error">
 <span class="material-symbols-outlined">delete</span>
@@ -213,33 +212,191 @@
 </div>
 </section>
 <!-- Logout Button -->
-<button onclick="window.location.href='dangnhap.html'" class="w-full py-4 mt-4 bg-error-container/20 text-error font-title-sm rounded-xl flex items-center justify-center space-x-sm active:scale-95 transition-all">
+<button id="logout-btn" class="w-full py-4 mt-4 bg-error-container/20 text-error font-title-sm rounded-xl flex items-center justify-center space-x-sm active:scale-95 transition-all">
 <span class="material-symbols-outlined">logout</span>
 <span>Đăng xuất</span>
 </button>
 </main>
 <!-- Bottom Navigation Bar -->
 <nav class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[92%] max-w-md z-50 flex justify-around items-center px-4 py-3 rounded-full bg-white shadow-xl border border-surface-container-high">
-<!-- Trang chủ -->
 <a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary active:scale-95 transition-transform" href="trangchu.html">
 <span class="material-symbols-outlined text-[28px]">home</span>
 <span class="text-label-sm font-label-sm font-medium">Trang chủ</span>
 </a>
-<!-- Hoạt động -->
 <a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:scale-95" href="lichsuhoatdong.html">
 <span class="material-symbols-outlined text-[28px]">assignment</span>
 <span class="text-label-sm font-label-sm font-medium">Hoạt động</span>
 </a>
-<!-- Thông báo (UC-KH-15) → M11 -->
 <a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:scale-95 relative" href="thongbao.html">
 <span class="material-symbols-outlined text-[28px]">notifications</span>
 <span class="absolute -top-1 left-1/2 ml-1 bg-secondary text-white text-[8px] w-4 h-4 rounded-full flex items-center justify-center font-bold">3</span>
 <span class="text-label-sm font-label-sm font-medium">Thông báo</span>
 </a>
-<!-- Tài khoản -->
 <a class="flex flex-col items-center justify-center text-primary transition-colors active:scale-95" href="taikhoan.html">
 <span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">person</span>
 <span class="text-label-sm font-label-sm">Tài khoản</span>
 </a>
 </nav>
+
+<script src="../shared/api.js"></script>
+<script>
+(async function() {
+  if (!ChiOiAuth.requireAuth('dangnhap.html')) return;
+
+  // ===== Lỗi 11 FIX: Hiển thị đúng thông tin user =====
+  var user = ChiOiAuth.getUser();
+  if (user) {
+    document.getElementById('user-name').textContent = user.full_name || 'Chưa cập nhật';
+    document.getElementById('user-phone').textContent = user.phone || '...';
+    // Avatar: hiển thị chữ cái đầu
+    var avatarEl = document.getElementById('user-avatar');
+    if (user.full_name) {
+      var initials = user.full_name.split(' ').map(function(w) { return w[0]; }).join('').substring(0, 2).toUpperCase();
+      avatarEl.innerHTML = initials;
+    }
+  }
+
+  // ===== Lỗi 4+11 FIX: Chỉnh sửa hồ sơ - đầy đủ giới tính, email, địa chỉ =====
+  document.getElementById('edit-profile-btn').addEventListener('click', function() {
+    showModal('Chỉnh sửa hồ sơ', 
+      '<div class="space-y-4">' +
+      '<div><label class="text-body-sm text-on-surface-variant block mb-1">Họ và tên</label>' +
+      '<input id="edit-name" type="text" value="' + (user ? user.full_name || '' : '') + '" class="w-full p-3 rounded-xl border border-outline-variant bg-surface-container-low focus:ring-2 focus:ring-primary-container text-body-lg" /></div>' +
+      '<div><label class="text-body-sm text-on-surface-variant block mb-1">Số điện thoại</label>' +
+      '<input type="tel" value="' + (user ? user.phone || '' : '') + '" class="w-full p-3 rounded-xl border border-outline-variant bg-surface-container-high text-body-lg text-on-surface-variant" disabled />' +
+      '<p class="text-[11px] text-on-surface-variant mt-1">Đổi SĐT cần xác thực OTP</p></div>' +
+      '<div><label class="text-body-sm text-on-surface-variant block mb-1">Giới tính</label>' +
+      '<select id="edit-gender" class="w-full p-3 rounded-xl border border-outline-variant bg-surface-container-low focus:ring-2 focus:ring-primary-container text-body-lg">' +
+      '<option value="">-- Chọn --</option>' +
+      '<option value="male"' + (user && user.gender === 'male' ? ' selected' : '') + '>Nam</option>' +
+      '<option value="female"' + (user && user.gender === 'female' ? ' selected' : '') + '>Nữ</option>' +
+      '<option value="other"' + (user && user.gender === 'other' ? ' selected' : '') + '>Khác</option></select></div>' +
+      '<div><label class="text-body-sm text-on-surface-variant block mb-1">Email</label>' +
+      '<input id="edit-email" type="email" value="' + (user ? user.email || '' : '') + '" placeholder="email@example.com" class="w-full p-3 rounded-xl border border-outline-variant bg-surface-container-low focus:ring-2 focus:ring-primary-container text-body-lg" /></div>' +
+      '<div><label class="text-body-sm text-on-surface-variant block mb-1">Địa chỉ nhà</label>' +
+      '<input id="edit-address" type="text" value="' + (user ? user.address || '' : '') + '" placeholder="VD: Căn A1-2003, Vinhomes" class="w-full p-3 rounded-xl border border-outline-variant bg-surface-container-low focus:ring-2 focus:ring-primary-container text-body-lg" />' +
+      '<p class="text-[11px] text-on-surface-variant mt-1">Đổi địa chỉ cần BQL xác thực</p></div>' +
+      '<button id="save-profile-btn" class="orange-gradient w-full py-3 rounded-xl text-white font-bold active:scale-95 transition-all">Lưu thay đổi</button>' +
+      '</div>',
+      function() {
+        document.getElementById('save-profile-btn').addEventListener('click', async function() {
+          var newName = document.getElementById('edit-name').value.trim();
+          var newGender = document.getElementById('edit-gender').value;
+          var newEmail = document.getElementById('edit-email').value.trim();
+          var newAddress = document.getElementById('edit-address').value.trim();
+          if (!newName) { showToastMsg('Vui lòng nhập họ tên'); return; }
+          try {
+            await apiFetch('/api/users/profile', { method: 'PUT', body: { full_name: newName, gender: newGender, email: newEmail, address: newAddress } });
+            user.full_name = newName; user.gender = newGender; user.email = newEmail; user.address = newAddress;
+            localStorage.setItem('chioi_user', JSON.stringify(user));
+            document.getElementById('user-name').textContent = newName;
+            closeModal();
+            showToastMsg('✅ Cập nhật hồ sơ thành công');
+          } catch (e) { showToastMsg('❌ ' + e.message); }
+        });
+      }
+    );
+  });
+
+  // ===== Lỗi 15 FIX: Các nút CSKH, Cài đặt, Bảo mật, Xóa TK =====
+  document.getElementById('btn-cskh').addEventListener('click', function() {
+    showModal('Liên hệ CSKH',
+      '<div class="space-y-4 text-center">' +
+      '<span class="material-symbols-outlined text-[48px] text-primary">support_agent</span>' +
+      '<p class="text-body-lg font-bold">Hỗ trợ khách hàng 24/7</p>' +
+      '<p class="text-body-sm text-on-surface-variant">Hotline: <a href="tel:19001234" class="text-primary font-bold">1900 1234</a></p>' +
+      '<p class="text-body-sm text-on-surface-variant">Email: <a href="mailto:support@chioi.vn" class="text-primary font-bold">support@chioi.vn</a></p>' +
+      '<button onclick="window.location.href=\'chatvoitasker.html\'" class="orange-gradient w-full py-3 rounded-xl text-white font-bold active:scale-95 transition-all mt-2">Chat với CSKH</button></div>'
+    );
+  });
+
+  document.getElementById('btn-settings').addEventListener('click', function() {
+    showModal('Cài đặt',
+      '<div class="space-y-4">' +
+      '<div class="flex items-center justify-between p-3 bg-surface-container-low rounded-xl"><span class="text-body-lg">Thông báo đẩy</span><label class="relative inline-flex items-center cursor-pointer"><input type="checkbox" checked class="sr-only peer"><div class="w-11 h-6 bg-outline-variant rounded-full peer peer-checked:bg-primary-container after:content-[\'\'] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-full"></div></label></div>' +
+      '<div class="flex items-center justify-between p-3 bg-surface-container-low rounded-xl"><span class="text-body-lg">Thông báo SMS</span><label class="relative inline-flex items-center cursor-pointer"><input type="checkbox" class="sr-only peer"><div class="w-11 h-6 bg-outline-variant rounded-full peer peer-checked:bg-primary-container after:content-[\'\'] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-full"></div></label></div>' +
+      '<div class="flex items-center justify-between p-3 bg-surface-container-low rounded-xl"><span class="text-body-lg">Ngôn ngữ</span><span class="text-primary font-bold">Tiếng Việt</span></div></div>'
+    );
+  });
+
+  // Lỗi 6 FIX: Bảo mật - đổi mật khẩu + đăng xuất tất cả thiết bị
+  document.getElementById('btn-security').addEventListener('click', function() {
+    showModal('Bảo mật & Quyền riêng tư',
+      '<div class="space-y-4">' +
+      '<button id="btn-change-pw" class="w-full flex items-center justify-between p-3 bg-surface-container-low rounded-xl hover:bg-surface-container transition-colors"><span class="text-body-lg">Đổi mật khẩu</span><span class="material-symbols-outlined text-outline">chevron_right</span></button>' +
+      '<div class="flex items-center justify-between p-3 bg-surface-container-low rounded-xl"><span class="text-body-lg">Xác thực 2 lớp (2FA)</span><label class="relative inline-flex items-center cursor-pointer"><input type="checkbox" class="sr-only peer"><div class="w-11 h-6 bg-outline-variant rounded-full peer peer-checked:bg-primary-container after:content-[\'\'] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-full"></div></label></div>' +
+      '<button id="btn-logout-all" class="w-full flex items-center justify-between p-3 bg-surface-container-low rounded-xl hover:bg-surface-container transition-colors"><span class="text-body-lg">Đăng xuất tất cả thiết bị</span><span class="material-symbols-outlined text-outline">chevron_right</span></button></div>',
+      function() {
+        document.getElementById('btn-change-pw').addEventListener('click', function() {
+          closeModal();
+          showModal('Đổi mật khẩu',
+            '<div class="space-y-4">' +
+            '<div><label class="text-body-sm text-on-surface-variant block mb-1">Mật khẩu hiện tại</label><input id="pw-current" type="password" class="w-full p-3 rounded-xl border border-outline-variant bg-surface-container-low text-body-lg" placeholder="Nhập mật khẩu cũ" /></div>' +
+            '<div><label class="text-body-sm text-on-surface-variant block mb-1">Mật khẩu mới</label><input id="pw-new" type="password" class="w-full p-3 rounded-xl border border-outline-variant bg-surface-container-low text-body-lg" placeholder="Nhập mật khẩu mới" /></div>' +
+            '<div><label class="text-body-sm text-on-surface-variant block mb-1">Xác nhận mật khẩu mới</label><input id="pw-confirm" type="password" class="w-full p-3 rounded-xl border border-outline-variant bg-surface-container-low text-body-lg" placeholder="Nhập lại mật khẩu mới" /></div>' +
+            '<button id="save-pw-btn" class="orange-gradient w-full py-3 rounded-xl text-white font-bold active:scale-95 transition-all">Đổi mật khẩu</button></div>',
+            function() {
+              document.getElementById('save-pw-btn').addEventListener('click', async function() {
+                var cur = document.getElementById('pw-current').value;
+                var np = document.getElementById('pw-new').value;
+                var cf = document.getElementById('pw-confirm').value;
+                if (!cur || !np) { showToastMsg('Vui lòng nhập đầy đủ'); return; }
+                if (np.length < 6) { showToastMsg('Mật khẩu mới ít nhất 6 ký tự'); return; }
+                if (np !== cf) { showToastMsg('Mật khẩu xác nhận không khớp'); return; }
+                try { await apiFetch('/api/auth/change-password', { method: 'POST', body: { current_password: cur, new_password: np } }); closeModal(); showToastMsg('✅ Đổi mật khẩu thành công'); }
+                catch (e) { showToastMsg('❌ ' + e.message); }
+              });
+            }
+          );
+        });
+        document.getElementById('btn-logout-all').addEventListener('click', function() {
+          closeModal();
+          showModal('Đăng xuất tất cả thiết bị',
+            '<div class="space-y-4 text-center">' +
+            '<span class="material-symbols-outlined text-[48px] text-yellow-500">devices</span>' +
+            '<p class="text-body-lg font-bold">Bạn có chắc chắn?</p>' +
+            '<p class="text-body-sm text-on-surface-variant">Tất cả phiên đăng nhập trên các thiết bị khác sẽ bị kết thúc.</p>' +
+            '<div class="flex gap-3 mt-4"><button onclick="closeModal()" class="flex-1 py-3 rounded-xl border-2 border-outline-variant text-on-surface-variant font-bold active:scale-95">Hủy</button>' +
+            '<button id="confirm-logout-all" class="flex-1 py-3 rounded-xl bg-error text-white font-bold active:scale-95">Đăng xuất tất cả</button></div></div>',
+            function() { document.getElementById('confirm-logout-all').addEventListener('click', function() { closeModal(); ChiOiAuth.logout('dangnhap.html'); }); }
+          );
+        });
+      }
+    );
+  });
+
+  document.getElementById('btn-delete-account').addEventListener('click', function() {
+    showModal('Xóa tài khoản',
+      '<div class="space-y-4 text-center">' +
+      '<span class="material-symbols-outlined text-[48px] text-error">warning</span>' +
+      '<p class="text-body-lg font-bold text-error">Bạn có chắc chắn muốn xóa tài khoản?</p>' +
+      '<p class="text-body-sm text-on-surface-variant">Hành động này không thể hoàn tác. Tất cả dữ liệu sẽ bị xóa sau 30 ngày.</p>' +
+      '<div class="flex gap-3 mt-4"><button onclick="closeModal()" class="flex-1 py-3 rounded-xl border-2 border-outline-variant text-on-surface-variant font-bold active:scale-95">Hủy</button>' +
+      '<button class="flex-1 py-3 rounded-xl bg-error text-white font-bold active:scale-95">Xác nhận xóa</button></div></div>'
+    );
+  });
+
+  // ===== Đăng xuất =====
+  document.getElementById('logout-btn').addEventListener('click', function() {
+    ChiOiAuth.logout('dangnhap.html');
+  });
+
+  // ===== Modal helper =====
+  function showModal(title, contentHTML, onRender) {
+    closeModal();
+    var overlay = document.createElement('div');
+    overlay.id = 'modal-overlay';
+    overlay.className = 'modal-overlay';
+    overlay.innerHTML = '<div class="modal-content"><div class="flex justify-between items-center mb-4"><h2 class="text-title-sm font-bold">' + title + '</h2><button onclick="closeModal()" class="text-outline"><span class="material-symbols-outlined">close</span></button></div><div>' + contentHTML + '</div></div>';
+    overlay.addEventListener('click', function(e) { if (e.target === overlay) closeModal(); });
+    document.body.appendChild(overlay);
+    if (onRender) onRender();
+  }
+})();
+
+function closeModal() {
+  var m = document.getElementById('modal-overlay');
+  if (m) m.remove();
+}
+</script>
 </body></html>

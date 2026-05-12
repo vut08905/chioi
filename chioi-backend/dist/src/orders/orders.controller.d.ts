@@ -35,11 +35,11 @@ export declare class OrdersController {
         status: string | null;
         created_at: Date | null;
         updated_at: Date | null;
-        customer_id: number;
-        tasker_id: number | null;
         service_id: number;
         order_id: number;
         order_code: string;
+        customer_id: number;
+        tasker_id: number | null;
         voucher_id: number | null;
         scheduled_time: Date;
         address: string;
@@ -56,11 +56,11 @@ export declare class OrdersController {
         status: string | null;
         created_at: Date | null;
         updated_at: Date | null;
-        customer_id: number;
-        tasker_id: number | null;
         service_id: number;
         order_id: number;
         order_code: string;
+        customer_id: number;
+        tasker_id: number | null;
         voucher_id: number | null;
         scheduled_time: Date;
         address: string;
@@ -79,11 +79,11 @@ export declare class OrdersController {
             status: string | null;
             created_at: Date | null;
             updated_at: Date | null;
-            customer_id: number;
-            tasker_id: number | null;
             service_id: number;
             order_id: number;
             order_code: string;
+            customer_id: number;
+            tasker_id: number | null;
             voucher_id: number | null;
             scheduled_time: Date;
             address: string;
@@ -101,9 +101,9 @@ export declare class OrdersController {
         message: string;
         review: {
             created_at: Date | null;
+            order_id: number;
             customer_id: number;
             tasker_id: number;
-            order_id: number;
             review_id: number;
             rating: number;
             comment: string | null;
@@ -134,8 +134,8 @@ export declare class OrdersController {
         services: {
             created_at: Date | null;
             name: string;
-            description: string | null;
             service_id: number;
+            description: string | null;
             base_price: import("@prisma/client-runtime-utils").Decimal;
             icon_url: string | null;
             is_active: boolean | null;
@@ -144,11 +144,11 @@ export declare class OrdersController {
         status: string | null;
         created_at: Date | null;
         updated_at: Date | null;
-        customer_id: number;
-        tasker_id: number | null;
         service_id: number;
         order_id: number;
         order_code: string;
+        customer_id: number;
+        tasker_id: number | null;
         voucher_id: number | null;
         scheduled_time: Date;
         address: string;
@@ -163,8 +163,8 @@ export declare class OrdersController {
     })[]>;
     getChatHistory(orderId: number): Promise<{
         created_at: Date | null;
-        content: string;
         order_id: number;
+        content: string;
         is_read: boolean | null;
         message_id: number;
         sender_id: number;
